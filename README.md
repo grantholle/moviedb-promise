@@ -2,9 +2,9 @@
 
 A Node library that makes the interaction with themoviedb.org V3 API easy.
 
-This was original a pull request that went stale, so it's its own package now. The original package developed by [IMPRONUNCIABLE](https://github.com/impronunciable) uses callbacks to handle the asynchronous nature of Node, while this package uses native Promises.
+This was original a pull request that went stale, so it's its own package now. The original package developed by [Dan Zajdband](https://github.com/impronunciable) uses callbacks to handle the asynchronous nature of Node, while this package uses native Promises.
 
-The main credit goes to the [original `moviedb` package](https://github.com/impronunciable/moviedb).
+The main credit goes to the [original `moviedb` package](https://github.com/impronunciable/moviedb) by Dan Zajdband.
 
 ## Installation
 
