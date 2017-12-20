@@ -36,51 +36,39 @@ describe('moviedb', function () {
   this.timeout(30000)
 
   // basic movie search
-  it('should search for Zoolander', done => {
-    api.searchMovie({ query: 'Zoolander' }).then(res => {
-      haveValidGenericResponse(res)
-      done()
-    }).catch(done)
+  it('should search for Zoolander', async () => {
+    const res = await api.searchMovie({ query: 'Zoolander' })
+    haveValidGenericResponse(res)
   })
 
-  it('should get the tv shows airing today', done => {
-    api.tvAiringToday().then(res => {
-      haveValidGenericResponse(res)
-      done()
-    }).catch(done)
+  it('should get the tv shows airing today', async () => {
+    const res = await api.tvAiringToday()
+    haveValidGenericResponse(res)
   })
 
-  it('should get the tv shows OnTheAir', done => {
-    api.tvOnTheAir().then(res => {
-      haveValidGenericResponse(res)
-      done()
-    }).catch(done)
+  it('should get the tv shows OnTheAir', async () => {
+    const res = await api.tvOnTheAir()
+    haveValidGenericResponse(res)
   })
 
-  it('should get the movie release dates', done => {
-    api.movieReleaseDates({ id: 209112 }).then(res => {
-      haveValidGenericResponse(res)
-      assert.equal(res.id, 209112)
-      done()
-    }).catch(done)
+  it('should get the movie release dates', async () => {
+    const res = await api.movieReleaseDates({ id: 209112 })
+    haveValidGenericResponse(res)
+    assert.equal(res.id, 209112)
   })
 
-  it(`should accept a non-object parameter if there's only one endpoint placeholder`, done => {
-    api.tvInfo(61888).then(res => {
-      res.should.be.an('object')
-      res.should.have.property('name')
-      done()
-    }).catch(done)
+  it(`should accept a non-object parameter if there's only one endpoint placeholder`, async () => {
+    const res = await api.tvInfo(61888)
+    res.should.be.an('object')
+    res.should.have.property('name')
   })
 
   if (sessionId) {
-    it(`should fetch the user's watchlist without including the account id in the call`, done => {
+    it(`should fetch the user's watchlist without including the account id in the call`, async () => {
       api.sessionId = sessionId
 
-      api.accountMovieWatchlist().then(res => {
-        haveValidGenericResponse(res)
-        done()
-      }).catch(done)
+      const res = await api.accountMovieWatchlist()
+      haveValidGenericResponse(res)
     })
   }
 
@@ -91,7 +79,9 @@ describe('moviedb', function () {
 
     // Requests need to be fired asynchronously
     while (i < requests) {
-      api.discoverMovie().then(() => {
+      api.discoverMovie().then(res => {
+        console.log(res.total_results)
+
         if (++finishedRequests === requests) {
           done()
         }

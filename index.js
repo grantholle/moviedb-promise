@@ -19,10 +19,9 @@ module.exports = class {
       const met = endpoints.methods[method]
 
       Object.keys(met).forEach(m => {
-        this[method + m] = (params = {}) => {
+        this[method + m] = async (params = {}) => {
           if (!this.token || Date.now() > +new Date(this.token.expires_at)) {
-            return this.requestToken()
-              .then(() => this.makeRequest(met[m].method, params, met[m].resource))
+            await this.requestToken()
           }
 
           return this.makeRequest(met[m].method, params, met[m].resource)
@@ -36,20 +35,11 @@ module.exports = class {
    *
    * @returns {Promise}
    */
-  requestToken () {
-    return new Promise((resolve, reject) => {
-      request
-        .get(this.baseUrl + endpoints.authentication.requestToken)
-        .query({ 'api_key': this.apiKey })
-        .end((err, res) => {
-          if (err) {
-            return reject(err)
-          }
+  async requestToken () {
+    const res = await this.makeRequest('get', {}, endpoints.authentication.requestToken)
 
-          this.token = res.body
-          resolve(this.token.request_token)
-        })
-    })
+    this.token = res
+    return this.token.request_token
   }
 
   /**
@@ -57,20 +47,11 @@ module.exports = class {
    *
    * @returns {Promise}
    */
-  session () {
-    return new Promise((resolve, reject) => {
-      request
-        .get(this.baseUrl + endpoints.authentication.session)
-        .query({ 'api_key': this.apiKey, 'request_token': this.token.request_token })
-        .end((err, res) => {
-          if (err || !res.body.success) {
-            return reject(err || res.body)
-          }
+  async session () {
+    const res = await this.makeRequest('get', { request_token: this.token.request_token }, endpoints.authentication.session)
 
-          this.sessionId = res.body.session_id
-          resolve(this.sessionId)
-        })
-    })
+    this.sessionId = res.session_id
+    return this.sessionId
   }
 
   /**
@@ -109,18 +90,13 @@ module.exports = class {
       type = type.toUpperCase()
 
       let req = request(type, this.baseUrl + endpoint)
-        .query({ api_key: this.apiKey, session_id: this.sessionId })
 
-      if (params.ifNoneMatch) {
-        req = req.set('If-None-Match', params.ifNoneMatch)
-      } else if (params.ifModifiedSince) {
-        let t = params.ifModifiedSince
+      if (this.apiKey) {
+        req.query({ api_key: this.apiKey })
+      }
 
-        if (t.toUTCString) {
-          t = t.toUTCString()
-        }
-
-        req = req.set('If-Modified-Since', t)
+      if (this.sessionId) {
+        req.query({ session_id: this.sessionId })
       }
 
       req[type === 'GET' ? 'query' : 'send'](params)

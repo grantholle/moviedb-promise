@@ -21,12 +21,41 @@ const MovieDb = require('moviedb')
 const moviedb = new MovieDb('your api key')
 ```
 
-All api methods return a Promise. Use the api methods as you want, for example:
+### `async/await` reminder
+
+All functions return a Promise, which means that you can also use `async/await`. The caveat of using `await` when making function calls is that the `await` has to be within a function that has been declard `async`. Keep that in mind if you plan to use `await`.
+
+## Examples
 
 ```js
+// Using just the Promise
 moviedb.searchMovie({ query: 'Alien' }).then(res => {
   console.log(res)
 }).catch(console.error)
+
+// Using await
+// You probably wouldn't ever use it this way...
+;(async function () {
+  try {
+    const res = await moviedb.searchMovie({ query: 'alien' })
+    console.log(res)
+  } catch (e) {
+    console.log(e)
+  }
+})()
+
+// This is a more reasonable example
+const findMovie = async title => {
+  const res = await moviedb.searchMovie({ query: title })
+
+  return res
+}
+
+try {
+  const results = findMovie('alien')
+} catch (e) {
+  // Do something
+}
 ```
 
 or
@@ -58,6 +87,9 @@ moviedb.requestToken().then(token => {
 moviedb.session().then(sessionId => {
   // Probably cache this id somewhere to avoid this workflow
   console.log(sessionId)
+
+  // After the sessionId is cached, the next time use instantiate the class,
+  // set the sessionId by moviedb.sessionId = 'my-session-id'
 
   // This can be called now because sessionId is set
   moviedb.accountMovieWatchlist().then(res => {
