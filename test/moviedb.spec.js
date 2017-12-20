@@ -99,8 +99,7 @@ describe('moviedb', function () {
     try {
       let promises = new Array(requests).fill(0).map(customApi.discoverMovie)
       await Promise.all(promises)
-    }
-    catch (error) {
+    } catch (error) {
       return
     }
     throw new Error('Should have thrown error')

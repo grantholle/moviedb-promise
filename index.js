@@ -116,8 +116,7 @@ module.exports = class {
 
       if (this.throttle) {
         this.throttle.push(requestHandler)
-      }
-      else {
+      } else {
         requestHandler()
       }
     })
