@@ -3,16 +3,19 @@
 const request = require('superagent')
 const endpoints = require('./lib/endpoints')
 const limits = require('limits.js')
-const throttle = limits().within(10 * 1000, 39)
 
 module.exports = class {
-  constructor (apiKey, baseUrl = 'https://api.themoviedb.org/3/') {
+  constructor (apiKey, useDefaultLimits = true, baseUrl = 'https://api.themoviedb.org/3/') {
     if (!apiKey) {
       throw new Error('Bad api key')
     }
 
     this.apiKey = apiKey
     this.baseUrl = baseUrl
+
+    if (useDefaultLimits) {
+      this.throttle = limits().within(10 * 1000, 39)
+    }
 
     // Create the dynamic api methods using the configuration found in lib/endpoints
     Object.keys(endpoints.methods).forEach(method => {
@@ -101,7 +104,7 @@ module.exports = class {
 
       req[type === 'GET' ? 'query' : 'send'](params)
 
-      throttle.push(() => {
+      let requestHandler = () => {
         req.end((err, res) => {
           if (err) {
             return reject(err)
@@ -109,7 +112,13 @@ module.exports = class {
 
           resolve(res.body, res)
         })
-      })
+      }
+
+      if (this.throttle) {
+        this.throttle.push(requestHandler)
+      } else {
+        requestHandler()
+      }
     })
   }
 }
