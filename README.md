@@ -99,6 +99,17 @@ moviedb.session().then(sessionId => {
 }).catch(console.error)
 ```
 
+## Advanced use
+
+The MovieDB constructor accepts 3 parameters:
+```js
+const MovieDb = require('moviedb')
+const moviedb = new MovieDb(apiKey, useDefaultLimits, baseURL)
+```
+By default, moviedb-promise limits the requests you can send to 39 requests/10 seconds (this is the limit imposed by [TheMovieDB](https://developers.themoviedb.org/3/getting-started/request-rate-limiting)). This way you won't have to deal with 429 errors.
+
+If you want to implement your own request rate limiter, you can set `useDefaultLimits` to `false` when creating the moviedb instance.
+
 ## Available methods
 
 All V3 functionality is included. Endpoints and their respective method names can be seen on the [wiki page](https://github.com/impronunciable/moviedb/wiki/Library-endpoints).

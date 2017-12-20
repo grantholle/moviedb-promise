@@ -90,4 +90,19 @@ describe('moviedb', function () {
       i++
     }
   })
+
+  it('should get a rate limit error with useDefaultLimits = false', async () => {
+    const requests = 50
+
+    const customApi = new MovieDb(apiKey, false)
+
+    try {
+      let promises = new Array(requests).fill(0).map(customApi.discoverMovie)
+      await Promise.all(promises)
+    }
+    catch (error) {
+      return
+    }
+    throw new Error('Should have thrown error')
+  })
 })
