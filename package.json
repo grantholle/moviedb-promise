@@ -4,7 +4,8 @@
   "version": "1.2.0",
   "scripts": {
     "test": "./node_modules/.bin/mocha --reporter spec",
-    "lint": "./node_modules/.bin/standard"
+    "lint": "./node_modules/.bin/standard",
+    "table": "node tools/method-table"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "colors": "^1.1.2",
+    "markdown-table": "^1.1.1",
     "mocha": "^3.1.2",
     "standard": "^10.0.3"
   }
