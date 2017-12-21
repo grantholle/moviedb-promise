@@ -119,6 +119,7 @@ The Function column lists all the available functions on the class. The Endpoint
 ### Examples
 
 | Function | Endpoint |
+| -------- | -------- |
 | tvInfo   | tv/:id   |
 
 ```js
@@ -131,6 +132,7 @@ moviedb.tvInfo(61888).then(...)
 ```
 
 | Function    | Endpoint     |
+| ----------- | ------------ |
 | searchMovie | search/movie |
 
 There aren't any placeholders, but the [documentation](https://developers.themoviedb.org/3/search/search-movies) shows there are `language`, `query`, `page`, `include_adult`, `region`, `year`, and `primary_release_year` available to use. Each expect a certain data type or format, so check out the docs for the details.
