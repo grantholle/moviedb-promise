@@ -1,5 +1,7 @@
 # moviedb-promise
 
+[![npm](https://img.shields.io/npm/dw/localeval.svg?style=for-the-badge)](https://www.npmjs.com/package/moviedb-promise)
+
 A Node library that makes the interaction with themoviedb.org V3 API easy.
 
 This was original a pull request that went stale, so it's its own package now. The original package developed by [Dan Zajdband](https://github.com/impronunciable) uses callbacks to handle the asynchronous nature of Node, while this package uses native Promises.
