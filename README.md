@@ -19,8 +19,8 @@ npm install moviedb-promise --save
 Require the module and instantiate the class with your themoviedb.org API KEY.
 
 ```js
-const MovieDb = require('moviedb-promise');
-const moviedb = new MovieDb('your api key');
+const MovieDb = require('moviedb-promise')
+const moviedb = new MovieDb('your api key')
 ```
 
 ### `async/await` reminder
@@ -106,8 +106,8 @@ moviedb.session().then(sessionId => {
 The MovieDB constructor accepts 3 parameters:
 
 ```js
-const MovieDb = require('moviedb-promise');
-const moviedb = new MovieDb(apiKey, useDefaultLimits, baseURL);
+const MovieDb = require('moviedb-promise')
+const moviedb = new MovieDb(apiKey, useDefaultLimits, baseURL)
 ```
 
 By default, moviedb-promise limits the requests you can send to 39 requests/10 seconds (this is the limit imposed by [TheMovieDB](https://developers.themoviedb.org/3/getting-started/request-rate-limiting)). This way you won't have to deal with 429 errors.
