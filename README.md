@@ -1,6 +1,6 @@
 # moviedb-promise
 
-[![npm](https://img.shields.io/npm/dw/localeval.svg?style=for-the-badge)](https://www.npmjs.com/package/moviedb-promise)
+[![npm](https://img.shields.io/npm/dw/moviedb-promise.svg?style=for-the-badge)](https://www.npmjs.com/package/moviedb-promise)
 
 A Node library that makes the interaction with themoviedb.org V3 API easy.
 
