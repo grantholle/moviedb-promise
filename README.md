@@ -19,7 +19,7 @@ npm install moviedb-promise --save
 Require the module and instantiate the class with your themoviedb.org API KEY.
 
 ```js
-const MovieDb = require('moviedb')
+const MovieDb = require('moviedb-promise')
 const moviedb = new MovieDb('your api key')
 ```
 
@@ -106,7 +106,7 @@ moviedb.session().then(sessionId => {
 The MovieDB constructor accepts 3 parameters:
 
 ```js
-const MovieDb = require('moviedb')
+const MovieDb = require('moviedb-promise')
 const moviedb = new MovieDb(apiKey, useDefaultLimits, baseURL)
 ```
 
