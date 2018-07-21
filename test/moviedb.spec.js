@@ -80,8 +80,6 @@ describe('moviedb', function () {
     // Requests need to be fired asynchronously
     while (i < requests) {
       api.discoverMovie().then(res => {
-        console.log(res.total_results)
-
         if (++finishedRequests === requests) {
           done()
         }
