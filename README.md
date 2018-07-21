@@ -169,6 +169,7 @@ moviedb.searchMovie(parameters).then(...)
 | movieInfo              | movie/:id                                                         |
 | movieAlternativeTitles | movie/:id/alternative_titles                                      |
 | movieCredits           | movie/:id/credits                                                 |
+| movieExternalIds       | /movie/:id/external_ids                                           |
 | movieImages            | movie/:id/images                                                  |
 | movieVideos            | movie/:id/videos                                                  |
 | movieKeywords          | movie/:id/keywords                                                |
