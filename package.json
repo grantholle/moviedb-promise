@@ -1,7 +1,7 @@
 {
   "name": "moviedb-promise",
   "description": "A library for interacting with themoviedb.org API using Promises",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "scripts": {
     "test": "./node_modules/.bin/mocha --reporter spec",
     "lint": "./node_modules/.bin/standard",
@@ -26,13 +26,13 @@
   "author": "Grant Holle <https://github.com/grantholle>",
   "dependencies": {
     "limits.js": "^0.1.4",
-    "superagent": "^2.3.0"
+    "superagent": "^3.8.3"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "colors": "^1.3.0",
     "markdown-table": "^1.1.2",
-    "mocha": "^3.1.2",
+    "mocha": "^5.2.0",
     "standard": "^10.0.3"
   }
 }
