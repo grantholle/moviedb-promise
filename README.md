@@ -173,6 +173,7 @@ moviedb.searchMovie(parameters).then(...)
 | movieImages            | movie/:id/images                                                  |
 | movieVideos            | movie/:id/videos                                                  |
 | movieKeywords          | movie/:id/keywords                                                |
+| movieRecommend         | movie/:id/recommendations                                         |
 | movieReleases          | movie/:id/releases                                                |
 | movieReleaseDates      | movie/:id/release_dates                                           |
 | movieTrailers          | movie/:id/trailers                                                |
