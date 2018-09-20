@@ -67,6 +67,8 @@ describe('moviedb', function () {
     const res = await api.tvInfo(4629, 'season/1,season/1/credits')
     res.should.be.an('object')
     res.should.have.property('name')
+    res.should.have.property('season/1')
+    res.should.have.property('season/1/credits')
   })
 
   if (sessionId) {
