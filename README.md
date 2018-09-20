@@ -114,6 +114,14 @@ By default, moviedb-promise limits the requests you can send to 39 requests/10 s
 
 If you want to implement your own request rate limiter, you can set `useDefaultLimits` to `false` when creating the moviedb instance.
 
+## Support for append_to_response
+
+The movieInfo, tvInfo, tvSeasonInfo, tvEpisodeInfo and personInfo methods support an additional argument for the [TMDB api's append_to_response query parameter](https://developers.themoviedb.org/3/getting-started/append-to-response). This makes it possible to make sub requests within the same namespace in a single HTTP request. Each request will get appended to the response as a new JSON object.
+
+```js
+const res = await api.tvInfo(4629, 'season/1,season/1/credits')
+```
+
 ## Available methods
 
 The Function column lists all the available functions on the class. The Endpoint column lists possible request parameters (placehoders prefixed with `:`) needed for the call. If the endpoint doesn't have any placeholders, check out the [documentation](https://developers.themoviedb.org/3/) for the query parameters you can use.

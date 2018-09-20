@@ -63,6 +63,12 @@ describe('moviedb', function () {
     res.should.have.property('name')
   })
 
+  it(`should get tv, season 1, season 1 episodes and credit details for Stargate SG-1`, async () => {
+    const res = await api.tvInfo(4629, 'season/1,season/1/credits')
+    res.should.be.an('object')
+    res.should.have.property('name')
+  })
+
   if (sessionId) {
     it(`should fetch the user's watchlist without including the account id in the call`, async () => {
       api.sessionId = sessionId
