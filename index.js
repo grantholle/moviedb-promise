@@ -22,12 +22,12 @@ module.exports = class {
       const met = endpoints.methods[method]
 
       Object.keys(met).forEach(m => {
-        this[method + m] = async (params = {}) => {
+        this[method + m] = async (params = {}, appendToResponse) => {
           if (!this.token || Date.now() > +new Date(this.token.expires_at)) {
             await this.requestToken()
           }
 
-          return this.makeRequest(met[m].method, params, met[m].resource)
+          return this.makeRequest(met[m].method, params, met[m].resource, appendToResponse)
         }
       })
     })
@@ -65,7 +65,7 @@ module.exports = class {
    * @param {String} endpoint The api endpoint relative to the base url
    * @returns {Promise}
    */
-  makeRequest (type, params, endpoint) {
+  makeRequest (type, params, endpoint, appendToResponse) {
     return new Promise((resolve, reject) => {
       // Some endpoints have an optional account_id parameter (when there's a session).
       // If it's not included, assume we want the current user's id,
@@ -73,7 +73,6 @@ module.exports = class {
       if (endpoint.indexOf(':id') !== -1 && params === {} && this.sessionId) {
         params.id = '{account_id}'
       }
-
       // Check params to see if params an object
       // and if there is only one parameter in the endpoint
       if (typeof params !== 'object' && endpoint.split(':').length === 2) {
@@ -91,7 +90,6 @@ module.exports = class {
       }
 
       type = type.toUpperCase()
-
       let req = request(type, this.baseUrl + endpoint)
 
       if (this.apiKey) {
@@ -102,8 +100,11 @@ module.exports = class {
         req.query({ session_id: this.sessionId })
       }
 
-      req[type === 'GET' ? 'query' : 'send'](params)
+      if (appendToResponse) {
+        req.query({ append_to_response: appendToResponse })
+      }
 
+      req[type === 'GET' ? 'query' : 'send'](params)
       let requestHandler = () => {
         req.end((err, res) => {
           if (err) {
