@@ -69,6 +69,15 @@ describe('moviedb', function () {
     res.should.have.property('name')
   })
 
+  it(`specify a really short response (1ms) to force timeout`, async () => {
+    try {
+      await api.tvInfo(4629, 'season/1,season/1/credits', { response: 1, deadline: 2 })
+    } catch (error) {
+      if (error.timeout) return
+    }
+    throw new Error('Should have thrown timeout error')
+  })
+
   if (sessionId) {
     it(`should fetch the user's watchlist without including the account id in the call`, async () => {
       api.sessionId = sessionId
@@ -101,7 +110,7 @@ describe('moviedb', function () {
     const customApi = new MovieDb(apiKey, false)
 
     try {
-      let promises = new Array(requests).fill(0).map(customApi.discoverMovie)
+      let promises = new Array(requests).fill(null).map(customApi.discoverMovie)
       await Promise.all(promises)
     } catch (error) {
       return

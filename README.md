@@ -122,6 +122,18 @@ The movieInfo, tvInfo, tvSeasonInfo, tvEpisodeInfo and personInfo methods suppor
 const res = await api.tvInfo(4629, 'season/1,season/1/credits')
 ```
 
+## Request Timeouts
+
+To specify something other than the default timeout for a request, you may provide a third object parameter to any method in the shape of a standard [superagent timeout object](https://visionmedia.github.io/superagent/#timeouts).
+
+```js
+const res = await api.tvInfo(4629, 'season/1,season/1/credits', { response: 10000, deadline: 30000 });
+```
+or in the case where append_to_response is not desired:
+```js
+const res = await api.tvInfo(4629, null, { response: 10000, deadline: 30000 });
+```
+
 ## Available methods
 
 The Function column lists all the available functions on the class. The Endpoint column lists possible request parameters (placehoders prefixed with `:`) needed for the call. If the endpoint doesn't have any placeholders, check out the [documentation](https://developers.themoviedb.org/3/) for the query parameters you can use.

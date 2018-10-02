@@ -22,12 +22,12 @@ module.exports = class {
       const met = endpoints.methods[method]
 
       Object.keys(met).forEach(m => {
-        this[method + m] = async (params = {}, appendToResponse) => {
+        this[method + m] = async (params = {}, appendToResponse, timeout) => {
           if (!this.token || Date.now() > +new Date(this.token.expires_at)) {
             await this.requestToken()
           }
 
-          return this.makeRequest(met[m].method, params, met[m].resource, appendToResponse)
+          return this.makeRequest(met[m].method, params, met[m].resource, appendToResponse, timeout)
         }
       })
     })
@@ -63,9 +63,11 @@ module.exports = class {
    * @param {String} type The http verb
    * @param {Object} params The parameters to pass to the api
    * @param {String} endpoint The api endpoint relative to the base url
+   * @param {String} appendToResponse optional additional argument for the TMDB api's append_to_response query parameter
+   * @param {timeout} timeout optional superagent timeout object for request
    * @returns {Promise}
    */
-  makeRequest (type, params, endpoint, appendToResponse) {
+  makeRequest (type, params, endpoint, appendToResponse, timeout) {
     return new Promise((resolve, reject) => {
       // Some endpoints have an optional account_id parameter (when there's a session).
       // If it's not included, assume we want the current user's id,
@@ -102,6 +104,10 @@ module.exports = class {
 
       if (appendToResponse) {
         req.query({ append_to_response: appendToResponse })
+      }
+
+      if (timeout) {
+        req.timeout(timeout)
       }
 
       req[type === 'GET' ? 'query' : 'send'](params)
