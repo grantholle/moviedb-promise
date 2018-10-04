@@ -1,7 +1,7 @@
 {
   "name": "moviedb-promise",
   "description": "A library for interacting with themoviedb.org API using Promises",
-  "version": "1.2.6",
+  "version": "1.2.8",
   "scripts": {
     "test": "./node_modules/.bin/mocha --reporter spec",
     "lint": "./node_modules/.bin/standard",
@@ -24,6 +24,16 @@
   "homepage": "https://github.com/grantholle/moviedb-promise#readme",
   "main": "index.js",
   "author": "Grant Holle <https://github.com/grantholle>",
+  "contributors": [
+    "Irwing Reza <irwing85@gmail.com> (http://irwingreza.com/)",
+    {
+      "name": "Chad Michael",
+      "email": "chad@medlor.com",
+      "url": "https://medlor.com/"
+    },
+    "pankaja92 (http://thidasapankaja.me/)",
+    "Valentin Mocanu <mr_vali@yahoo.ro> (http://rontavstudio.com)"
+  ],
   "dependencies": {
     "limits.js": "^0.1.4",
     "superagent": "^3.8.3"

@@ -66,12 +66,16 @@ describe('moviedb', function () {
   it(`should get tv, season 1, season 1 episodes and credit details for Stargate SG-1`, async () => {
     const res = await api.tvInfo(4629, 'season/1,season/1/credits')
     res.should.be.an('object')
+    res.should.have.property('name')
+    res.should.have.property('season/1')
     res.should.have.property('season/1/credits')
   })
 
   it(`specify append_to_response as option`, async () => {
     const res = await api.tvInfo(4629, { append_to_response: 'season/1,season/1/credits' })
     res.should.be.an('object')
+    res.should.have.property('name')
+    res.should.have.property('season/1')
     res.should.have.property('season/1/credits')
   })
 
