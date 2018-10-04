@@ -114,26 +114,6 @@ By default, moviedb-promise limits the requests you can send to 39 requests/10 s
 
 If you want to implement your own request rate limiter, you can set `useDefaultLimits` to `false` when creating the moviedb instance.
 
-## Support for append_to_response
-
-The movieInfo, tvInfo, tvSeasonInfo, tvEpisodeInfo and personInfo methods support an additional argument for the [TMDB api's append_to_response query parameter](https://developers.themoviedb.org/3/getting-started/append-to-response). This makes it possible to make sub requests within the same namespace in a single HTTP request. Each request will get appended to the response as a new JSON object.
-
-```js
-const res = await api.tvInfo(4629, 'season/1,season/1/credits')
-```
-
-## Request Timeouts
-
-To specify something other than the default timeout for a request, you may provide a third object parameter to any method in the shape of a standard [superagent timeout object](https://visionmedia.github.io/superagent/#timeouts).
-
-```js
-const res = await api.tvInfo(4629, 'season/1,season/1/credits', { response: 10000, deadline: 30000 });
-```
-or in the case where append_to_response is not desired:
-```js
-const res = await api.tvInfo(4629, null, { response: 10000, deadline: 30000 });
-```
-
 ## Available methods
 
 The Function column lists all the available functions on the class. The Endpoint column lists possible request parameters (placehoders prefixed with `:`) needed for the call. If the endpoint doesn't have any placeholders, check out the [documentation](https://developers.themoviedb.org/3/) for the query parameters you can use.
@@ -262,6 +242,36 @@ moviedb.searchMovie(parameters).then(...)
 | miscPopularTvs         | tv/popular                                                        |
 | requestToken           | authentication/token/new                                          |
 | session                | authentication/session/new                                        |
+
+## Method Options
+
+You can set additional settings for each method call by specifying the desired property on the options object parameter.
+
+## Support for append_to_response
+
+The movieInfo, tvInfo, tvSeasonInfo, tvEpisodeInfo and personInfo methods support an option to specify the [TMDB api's append_to_response query parameter](https://developers.themoviedb.org/3/getting-started/append-to-response). This makes it possible to make sub requests within the same namespace in a single HTTP request. Each request will get appended to the response as a new JSON object.
+
+```js
+const res = await api.tvInfo(4629, { append_to_response: 'season/1,season/1/credits' })
+```
+
+### Request Timeouts
+
+To specify something other than the default timeout for a method call's request, specify the timeout property of the options object. The timeout property object is the shape of a standard [superagent timeout object](https://visionmedia.github.io/superagent/#timeouts).
+
+```js
+const res = await api.tvInfo(4629, { timeout: { response: 10000, deadline: 30000 } });
+```
+or when combining multiple options append_to_response is desired:
+```js
+const res = await api.tvInfo(
+  4629,
+  {
+    append_to_response: 'season/1,season/1/credits',
+    timeout: { response: 10000, deadline: 30000 }
+  }
+);
+```
 
 ## Contributing
 
