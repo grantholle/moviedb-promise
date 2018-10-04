@@ -66,12 +66,27 @@ describe('moviedb', function () {
   it(`should get tv, season 1, season 1 episodes and credit details for Stargate SG-1`, async () => {
     const res = await api.tvInfo(4629, 'season/1,season/1/credits')
     res.should.be.an('object')
-    res.should.have.property('name')
+    res.should.have.property('season/1/credits')
   })
 
-  it(`specify a really short response (1ms) to force timeout`, async () => {
+  it(`specify append_to_response as option`, async () => {
+    const res = await api.tvInfo(4629, { append_to_response: 'season/1,season/1/credits' })
+    res.should.be.an('object')
+    res.should.have.property('season/1/credits')
+  })
+
+  it(`specify all options with a short response (1ms) to force timeout`, async () => {
     try {
       await api.tvInfo(4629, { append_to_response: 'season/1,season/1/credits', timeout: { response: 1, deadline: 2 } })
+    } catch (error) {
+      if (error.timeout) return
+    }
+    throw new Error('Should have thrown timeout error')
+  })
+
+  it(`specify only timeout option`, async () => {
+    try {
+      await api.tvInfo(4629, { timeout: { response: 1, deadline: 2 } })
     } catch (error) {
       if (error.timeout) return
     }
