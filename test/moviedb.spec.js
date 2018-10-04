@@ -71,7 +71,7 @@ describe('moviedb', function () {
 
   it(`specify a really short response (1ms) to force timeout`, async () => {
     try {
-      await api.tvInfo(4629, 'season/1,season/1/credits', { response: 1, deadline: 2 })
+      await api.tvInfo(4629, { append_to_response: 'season/1,season/1/credits', timeout: { response: 1, deadline: 2 } })
     } catch (error) {
       if (error.timeout) return
     }
