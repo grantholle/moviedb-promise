@@ -71,6 +71,32 @@ describe('moviedb', function () {
     res.should.have.property('season/1/credits')
   })
 
+  it(`specify append_to_response as option`, async () => {
+    const res = await api.tvInfo(4629, { append_to_response: 'season/1,season/1/credits' })
+    res.should.be.an('object')
+    res.should.have.property('name')
+    res.should.have.property('season/1')
+    res.should.have.property('season/1/credits')
+  })
+
+  it(`specify all options with a short response (1ms) to force timeout`, async () => {
+    try {
+      await api.tvInfo(4629, { append_to_response: 'season/1,season/1/credits', timeout: { response: 1, deadline: 2 } })
+    } catch (error) {
+      if (error.timeout) return
+    }
+    throw new Error('Should have thrown timeout error')
+  })
+
+  it(`specify only timeout option`, async () => {
+    try {
+      await api.tvInfo(4629, { timeout: { response: 1, deadline: 2 } })
+    } catch (error) {
+      if (error.timeout) return
+    }
+    throw new Error('Should have thrown timeout error')
+  })
+
   if (sessionId) {
     it(`should fetch the user's watchlist without including the account id in the call`, async () => {
       api.sessionId = sessionId
@@ -103,7 +129,7 @@ describe('moviedb', function () {
     const customApi = new MovieDb(apiKey, false)
 
     try {
-      let promises = new Array(requests).fill(0).map(customApi.discoverMovie)
+      let promises = new Array(requests).fill(null).map(customApi.discoverMovie)
       await Promise.all(promises)
     } catch (error) {
       return
