@@ -2,12 +2,10 @@
 // Project: moviedb-promise
 // Definitions by: Grant Holle <grantholle.com>
 
-const MovieDb = require('./index')
-
 export = MovieDb
 
 declare class MovieDb {
-  constructor (apiKey: string, useDefaultLimits: boolean = false, baseUrl: string = 'https://api.themoviedb.org/3/')
+  constructor (apiKey: string, useDefaultLimits?: boolean, baseUrl?: string)
   configuration (params: any, options?: any): Promise<any>
   find (params: any, options?: any): Promise<any>
   searchMovie (params: any, options?: any): Promise<any>
