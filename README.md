@@ -8,6 +8,10 @@ This was original a pull request that went stale, so it's its own package now. T
 
 The main credit goes to the [original `moviedb` package](https://github.com/impronunciable/moviedb) by Dan Zajdband.
 
+## Integrations
+
+- [Gatsby source](https://github.com/LekoArts/gatsby-source-tmdb)
+
 ## Installation
 
 ```bash
