@@ -35,7 +35,6 @@
     "Valentin Mocanu <mr_vali@yahoo.ro> (http://rontavstudio.com)"
   ],
   "dependencies": {
-    "limits.js": "^0.1.4",
     "superagent": "^3.8.3"
   },
   "devDependencies": {
