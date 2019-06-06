@@ -23,9 +23,7 @@ module.exports = class {
 
       Object.keys(met).forEach(m => {
         this[method + m] = async (params = {}, options = {}) => {
-          if (!this.token || Date.now() > +new Date(this.token.expires_at)) {
-            await this.requestToken()
-          }
+          await this.requestToken()
 
           return this.makeRequest(met[m].method, params, met[m].resource, options)
         }
@@ -39,10 +37,10 @@ module.exports = class {
    * @returns {Promise}
    */
   async requestToken () {
-    const res = await this.makeRequest('get', {}, endpoints.authentication.requestToken)
-
-    this.token = res
-    return this.token.request_token
+    if (!this.token || Date.now() > new Date(this.token.expires_at).getTime()) {
+      this.token = this.makeRequest('get', {}, endpoints.authentication.requestToken)
+    }
+    return await this.token
   }
 
   /**
@@ -51,7 +49,9 @@ module.exports = class {
    * @returns {Promise}
    */
   async session () {
-    const res = await this.makeRequest('get', { request_token: this.token.request_token }, endpoints.authentication.session)
+    const token = await this.requestToken()
+
+    const res = await this.makeRequest('get', { request_token: token.request_token }, endpoints.authentication.session)
 
     this.sessionId = res.session_id
     return this.sessionId

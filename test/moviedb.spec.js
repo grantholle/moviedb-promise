@@ -123,6 +123,16 @@ describe('moviedb', function () {
     }
   })
 
+  it('should only request one token', async () => {
+    const customApi = new MovieDb(apiKey, false)
+
+    // request multiple tokens at the same time
+    let promises = new Array(10).fill(0).map(e => customApi.requestToken())
+    promises = await Promise.all(promises)
+
+    promises.map(promise => promise.should.have.property('request_token', promises[0].request_token));
+  })
+
   it('should get a rate limit error with useDefaultLimits = false', async () => {
     const requests = 50
 
