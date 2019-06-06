@@ -23,8 +23,6 @@ module.exports = class {
 
       Object.keys(met).forEach(m => {
         this[method + m] = async (params = {}, options = {}) => {
-          await this.requestToken()
-
           return this.makeRequest(met[m].method, params, met[m].resource, options)
         }
       })
