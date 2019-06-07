@@ -41,9 +41,9 @@ module.exports = class {
    *
    * @returns {Promise}
    */
-  async requestToken () {
+  requestToken () {
     if (!this.token || Date.now() > new Date(this.token.expires_at).getTime()) {
-      this.token = await this.makeRequest('get', {}, endpoints.authentication.requestToken)
+      this.token = this.makeRequest('get', {}, endpoints.authentication.requestToken)
     }
 
     return this.token
