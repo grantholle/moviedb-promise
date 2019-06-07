@@ -2,7 +2,6 @@
 
 const request = require('superagent')
 const endpoints = require('./lib/endpoints')
-const limits = require('limits.js')
 
 module.exports = class {
   constructor (apiKey, useDefaultLimits = true, baseUrl = 'https://api.themoviedb.org/3/') {
@@ -12,10 +11,17 @@ module.exports = class {
 
     this.apiKey = apiKey
     this.baseUrl = baseUrl
+    this.useDefaultLimits = useDefaultLimits
 
-    if (useDefaultLimits) {
-      this.throttle = limits().within(10 * 1000, 39)
+    if (this.useDefaultLimits) {
+      this.limit = {
+        remaining: 40,
+        reset: Date.now() + 10 * 1000
+      }
+      this.requestQueue = []
+      this.requestLimitTimeout = undefined
     }
+    this.checkQueue = this.checkQueue.bind(this)
 
     // Create the dynamic api methods using the configuration found in lib/endpoints
     Object.keys(endpoints.methods).forEach(method => {
@@ -55,6 +61,32 @@ module.exports = class {
     return this.sessionId
   }
 
+  async checkQueue () {
+    if (!this.requestQueue.length) {
+      return
+    }
+    clearTimeout(this.requestLimitTimeout)
+
+    let delay = this.limit.reset - Date.now()
+    if (delay > 0) {
+      this.requestLimitTimeout = setTimeout(this.checkQueue, delay)
+    }
+    else {
+      this.limit.remaining = 40
+    }
+
+    if (this.limit.remaining > 0) {
+      for (let i = 0; i < this.limit.remaining; i++) {
+        let sendRequest = this.requestQueue.shift()
+        if (sendRequest) {
+          sendRequest.start(sendRequest.resolve, sendRequest.reject)
+        }
+      }
+
+      setTimeout(this.checkQueue)
+    }
+  }
+
   /**
    * Makes the request to the api using the configuration from lib/endpoints
    *
@@ -66,8 +98,21 @@ module.exports = class {
    * @param {timeout} options.timeout superagent timeout object for request
    * @returns {Promise}
    */
-  makeRequest (type, params, endpoint, options) {
-    return new Promise((resolve, reject) => {
+  async makeRequest (type, params, endpoint, options) {
+    const createAndStartRequest = (resolve, reject) => {
+      if (this.useDefaultLimits) {
+        if (this.limit.remaining <= 0) {
+          this.requestQueue.push({
+            start: createAndStartRequest,
+            resolve,
+            reject,
+          })
+          this.checkQueue()
+          return
+        }
+        this.limit.remaining--
+      }
+
       // Interpret options
       const { append_to_response: appendToResponse, timeout } = (typeof options === 'string' || options instanceof String) ? { append_to_response: options } : options || ''
       // Some endpoints have an optional account_id parameter (when there's a session).
@@ -112,21 +157,35 @@ module.exports = class {
       }
 
       req[type === 'GET' ? 'query' : 'send'](params)
-      let requestHandler = () => {
-        req.end((err, res) => {
-          if (err) {
-            return reject(err)
+      req.end((err, res) => {
+        if (err) {
+          if (this.useDefaultLimits && err.status == 429) {
+            // if we exceed the request limit, we won't receive x-ratelimit-reset anymore
+            // this is only a fallback and should never happen
+            if (!this.limit.reset || this.limit.reset < Date.now()) {
+              let retryAfter = parseInt(res.header['retry-after'])
+              this.limit.reset = Date.now() + (retryAfter <= 0 ? 0.5 : retryAfter) * 1000
+            }
+
+            this.requestQueue.push({
+              start: createAndStartRequest,
+              resolve,
+              reject,
+            })
+            this.checkQueue()
+            return
           }
 
-          resolve(res.body, res)
-        })
-      }
+          return reject(err)
+        }
+        if (this.useDefaultLimits) {
+          this.limit.remaining = parseInt(res.header['x-ratelimit-remaining'])
+          this.limit.reset = parseInt(res.header['x-ratelimit-reset']) * 1000
+        }
 
-      if (this.throttle) {
-        this.throttle.push(requestHandler)
-      } else {
-        requestHandler()
-      }
-    })
+        resolve(res.body, res)
+      })
+    }
+    return new Promise(createAndStartRequest)
   }
 }
