@@ -21,6 +21,7 @@ module.exports = class {
       this.requestQueue = []
       this.requestLimitTimeout = undefined
     }
+
     this.checkQueue = this.checkQueue.bind(this)
 
     // Create the dynamic api methods using the configuration found in lib/endpoints
@@ -42,9 +43,10 @@ module.exports = class {
    */
   async requestToken () {
     if (!this.token || Date.now() > new Date(this.token.expires_at).getTime()) {
-      this.token = this.makeRequest('get', {}, endpoints.authentication.requestToken)
+      this.token = await this.makeRequest('get', {}, endpoints.authentication.requestToken)
     }
-    return await this.token
+
+    return this.token
   }
 
   /**
@@ -65,19 +67,21 @@ module.exports = class {
     if (!this.requestQueue.length) {
       return
     }
+
     clearTimeout(this.requestLimitTimeout)
 
     let delay = this.limit.reset - Date.now()
+
     if (delay > 0) {
       this.requestLimitTimeout = setTimeout(this.checkQueue, delay)
-    }
-    else {
+    } else {
       this.limit.remaining = 40
     }
 
     if (this.limit.remaining > 0) {
       for (let i = 0; i < this.limit.remaining; i++) {
         let sendRequest = this.requestQueue.shift()
+
         if (sendRequest) {
           sendRequest.start(sendRequest.resolve, sendRequest.reject)
         }
@@ -105,22 +109,25 @@ module.exports = class {
           this.requestQueue.push({
             start: createAndStartRequest,
             resolve,
-            reject,
+            reject
           })
-          this.checkQueue()
-          return
+
+          return this.checkQueue()
         }
+
         this.limit.remaining--
       }
 
       // Interpret options
       const { append_to_response: appendToResponse, timeout } = (typeof options === 'string' || options instanceof String) ? { append_to_response: options } : options || ''
+
       // Some endpoints have an optional account_id parameter (when there's a session).
       // If it's not included, assume we want the current user's id,
       // which is setting it to '{account_id}'
       if (endpoint.indexOf(':id') !== -1 && params === {} && this.sessionId) {
         params.id = '{account_id}'
       }
+
       // Check params to see if params an object
       // and if there is only one parameter in the endpoint
       if (typeof params !== 'object' && endpoint.split(':').length === 2) {
@@ -157,6 +164,7 @@ module.exports = class {
       }
 
       req[type === 'GET' ? 'query' : 'send'](params)
+
       req.end((err, res) => {
         if (err) {
           if (this.useDefaultLimits && err.status == 429) {
@@ -170,14 +178,15 @@ module.exports = class {
             this.requestQueue.push({
               start: createAndStartRequest,
               resolve,
-              reject,
+              reject
             })
-            this.checkQueue()
-            return
+
+            return this.checkQueue()
           }
 
           return reject(err)
         }
+
         if (this.useDefaultLimits) {
           this.limit.remaining = parseInt(res.header['x-ratelimit-remaining'])
           this.limit.reset = parseInt(res.header['x-ratelimit-reset']) * 1000
@@ -186,6 +195,7 @@ module.exports = class {
         resolve(res.body, res)
       })
     }
+
     return new Promise(createAndStartRequest)
   }
 }

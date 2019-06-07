@@ -113,7 +113,7 @@ describe('moviedb', function () {
     let promises = new Array(10).fill(0).map(e => customApi.requestToken())
     promises = await Promise.all(promises)
 
-    promises.map(promise => promise.should.have.property('request_token', promises[0].request_token));
+    promises.map(promise => promise.should.have.property('request_token', promises[0].request_token))
   })
 
   it('should not get a rate limit error when a lot of requests are made within 10 seconds', async () => {
@@ -136,6 +136,7 @@ describe('moviedb', function () {
     } catch (error) {
       return
     }
+
     throw new Error('Should have thrown error')
   })
 })
