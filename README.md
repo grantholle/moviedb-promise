@@ -235,6 +235,7 @@ moviedb.searchMovie(parameters).then(...)
 | accountTvWatchlist     | account/:id/watchlist/tv                                          |
 | accountWatchlistUpdate | account/:id/watchlist                                             |
 | accountRatedTv         | account/:id/rated/tv                                              |
+| accountRatedTvEpisodes | account/:id/rated/tv/episodes                                     |
 | accountFavoriteTv      | account/:id/favorite/tv                                           |
 | miscLatestMovies       | movie/latest                                                      |
 | miscUpcomingMovies     | movie/upcoming                                                    |
