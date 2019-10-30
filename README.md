@@ -188,6 +188,7 @@ moviedb.searchMovie(parameters).then(...)
 | movieChanges           | movie/:id/changes                                                 |
 | movieRatingUpdate      | movie/:id/rating                                                  |
 | tvInfo                 | tv/:id                                                            |
+| tvAlternativeTitles    | tv/:id/alternative_titles                                         |
 | tvCredits              | tv/:id/credits                                                    |
 | tvExternalIds          | tv/:id/external_ids                                               |
 | tvImages               | tv/:id/images                                                     |

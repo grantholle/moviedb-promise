@@ -38,6 +38,7 @@ declare class MovieDb {
   movieChanges (params: any, options?: any): Promise<any>
   movieRatingUpdate (params: any, options?: any): Promise<any>
   tvInfo (params: any, options?: any): Promise<any>
+  tvAlternativeTitles (params: any, options?: any): Promise<any>
   tvCredits (params: any, options?: any): Promise<any>
   tvExternalIds (params: any, options?: any): Promise<any>
   tvImages (params: any, options?: any): Promise<any>
