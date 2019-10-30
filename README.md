@@ -4,7 +4,7 @@
 
 A Node library that makes the interaction with themoviedb.org V3 API easy.
 
-This was original a pull request that went stale, so it's its own package now. The original package developed by [Dan Zajdband](https://github.com/impronunciable) uses callbacks to handle the asynchronous nature of Node, while this package uses native Promises.
+This was originally a pull request that went stale, so it's its own package now. The original package developed by [Dan Zajdband](https://github.com/impronunciable) uses callbacks to handle the asynchronous nature of Node, while this package uses native Promises.
 
 The main credit goes to the [original `moviedb` package](https://github.com/impronunciable/moviedb) by Dan Zajdband.
 
@@ -29,7 +29,7 @@ const moviedb = new MovieDb('your api key')
 
 ### `async/await` reminder
 
-All functions return a Promise, which means that you can also use `async/await`. The caveat of using `await` when making function calls is that the `await` has to be within a function that has been declard `async`. Keep that in mind if you plan to use `await`.
+All functions return a Promise, which means that you can also use `async/await`. The caveat of using `await` when making function calls is that the `await` has to be within a function that has been declared `async`. Keep that in mind if you plan to use `await`.
 
 ## Examples
 
@@ -120,7 +120,7 @@ If you want to implement your own request rate limiter, you can set `useDefaultL
 
 ## Available methods
 
-The Function column lists all the available functions on the class. The Endpoint column lists possible request parameters (placehoders prefixed with `:`) needed for the call. If the endpoint doesn't have any placeholders, check out the [documentation](https://developers.themoviedb.org/3/) for the query parameters you can use.
+The Function column lists all the available functions in the class. The Endpoint column lists possible request parameters (placeholders prefixed with `:`) needed for the call. If the endpoint doesn't have any placeholders, check out the [documentation](https://developers.themoviedb.org/3/) for the query parameters you can use.
 
 ### Examples
 
@@ -141,7 +141,7 @@ moviedb.tvInfo(61888).then(...)
 | ----------- | ------------ |
 | searchMovie | search/movie |
 
-There aren't any placeholders, but the [documentation](https://developers.themoviedb.org/3/search/search-movies) shows there are `language`, `query`, `page`, `include_adult`, `region`, `year`, and `primary_release_year` available to use. Each expect a certain data type or format, so check out the docs for the details.
+There aren't any placeholders, but the [documentation](https://developers.themoviedb.org/3/search/search-movies) shows there are `language`, `query`, `page`, `include_adult`, `region`, `year`, and `primary_release_year` available to use. Each expects a certain data type or format, so check out the docs for the details.
 
 ```js
 const parameters = {
@@ -255,7 +255,7 @@ You can set additional settings for each method call by specifying the desired p
 
 ## Support for append_to_response
 
-The movieInfo, tvInfo, tvSeasonInfo, tvEpisodeInfo and personInfo methods support an option to specify the [TMDB api's append_to_response query parameter](https://developers.themoviedb.org/3/getting-started/append-to-response). This makes it possible to make sub requests within the same namespace in a single HTTP request. Each request will get appended to the response as a new JSON object.
+The movieInfo, tvInfo, tvSeasonInfo, tvEpisodeInfo and personInfo methods support an option to specify the [TMDB API's append_to_response query parameter](https://developers.themoviedb.org/3/getting-started/append-to-response). This makes it possible to make sub requests within the same namespace in a single HTTP request. Each request will get appended to the response as a new JSON object.
 
 ```js
 const res = await api.tvInfo(4629, { append_to_response: 'season/1,season/1/credits' })
