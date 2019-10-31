@@ -4,7 +4,7 @@
 
 A Node library that makes the interaction with themoviedb.org V3 API easy.
 
-This was original a pull request that went stale, so it's its own package now. The original package developed by [Dan Zajdband](https://github.com/impronunciable) uses callbacks to handle the asynchronous nature of Node, while this package uses native Promises.
+This was originally a pull request that went stale, so it's its own package now. The original package developed by [Dan Zajdband](https://github.com/impronunciable) uses callbacks to handle the asynchronous nature of Node, while this package uses native Promises.
 
 The main credit goes to the [original `moviedb` package](https://github.com/impronunciable/moviedb) by Dan Zajdband.
 
@@ -29,7 +29,7 @@ const moviedb = new MovieDb('your api key')
 
 ### `async/await` reminder
 
-All functions return a Promise, which means that you can also use `async/await`. The caveat of using `await` when making function calls is that the `await` has to be within a function that has been declard `async`. Keep that in mind if you plan to use `await`.
+All functions return a Promise, which means that you can also use `async/await`. The caveat of using `await` when making function calls is that the `await` has to be within a function that has been declared `async`. Keep that in mind if you plan to use `await`.
 
 ## Examples
 
@@ -120,7 +120,7 @@ If you want to implement your own request rate limiter, you can set `useDefaultL
 
 ## Available methods
 
-The Function column lists all the available functions on the class. The Endpoint column lists possible request parameters (placehoders prefixed with `:`) needed for the call. If the endpoint doesn't have any placeholders, check out the [documentation](https://developers.themoviedb.org/3/) for the query parameters you can use.
+The Function column lists all the available functions in the class. The Endpoint column lists possible request parameters (placeholders prefixed with `:`) needed for the call. If the endpoint doesn't have any placeholders, check out the [documentation](https://developers.themoviedb.org/3/) for the query parameters you can use.
 
 ### Examples
 
@@ -141,7 +141,7 @@ moviedb.tvInfo(61888).then(...)
 | ----------- | ------------ |
 | searchMovie | search/movie |
 
-There aren't any placeholders, but the [documentation](https://developers.themoviedb.org/3/search/search-movies) shows there are `language`, `query`, `page`, `include_adult`, `region`, `year`, and `primary_release_year` available to use. Each expect a certain data type or format, so check out the docs for the details.
+There aren't any placeholders, but the [documentation](https://developers.themoviedb.org/3/search/search-movies) shows there are `language`, `query`, `page`, `include_adult`, `region`, `year`, and `primary_release_year` available to use. Each expects a certain data type or format, so check out the docs for the details.
 
 ```js
 const parameters = {
@@ -154,100 +154,111 @@ moviedb.searchMovie(parameters).then(...)
 
 ### Complete list
 
-| Function               | Endpoint                                                          |
-| ---------------------- | ----------------------------------------------------------------- |
-| configuration          | configuration                                                     |
-| find                   | find/:id                                                          |
-| searchMovie            | search/movie                                                      |
-| searchTv               | search/tv                                                         |
-| searchMulti            | search/multi                                                      |
-| searchCollection       | search/collection                                                 |
-| searchPerson           | search/person                                                     |
-| searchList             | search/list                                                       |
-| searchCompany          | search/company                                                    |
-| searchKeyword          | search/keyword                                                    |
-| collectionInfo         | collection/:id                                                    |
-| collectionImages       | collection/:id/images                                             |
-| discoverMovie          | discover/movie                                                    |
-| discoverTv             | discover/tv                                                       |
-| movieInfo              | movie/:id                                                         |
-| movieAlternativeTitles | movie/:id/alternative_titles                                      |
-| movieCredits           | movie/:id/credits                                                 |
-| movieExternalIds       | /movie/:id/external_ids                                           |
-| movieImages            | movie/:id/images                                                  |
-| movieVideos            | movie/:id/videos                                                  |
-| movieKeywords          | movie/:id/keywords                                                |
-| movieRecommendations   | movie/:id/recommendations                                         |
-| movieReleases          | movie/:id/releases                                                |
-| movieReleaseDates      | movie/:id/release_dates                                           |
-| movieTrailers          | movie/:id/trailers                                                |
-| movieTranslations      | movie/:id/translations                                            |
-| movieSimilar           | movie/:id/similar_movies                                          |
-| movieReviews           | movie/:id/reviews                                                 |
-| movieLists             | movie/:id/lists                                                   |
-| movieChanges           | movie/:id/changes                                                 |
-| movieRatingUpdate      | movie/:id/rating                                                  |
-| tvInfo                 | tv/:id                                                            |
-| tvCredits              | tv/:id/credits                                                    |
-| tvExternalIds          | tv/:id/external_ids                                               |
-| tvImages               | tv/:id/images                                                     |
-| tvVideos               | tv/:id/videos                                                     |
-| tvSimilar              | tv/:id/similar                                                    |
-| tvTranslations         | tv/:id/translations                                               |
-| tvSeasonInfo           | tv/:id/season/:season_number                                      |
-| tvSeasonCredits        | tv/:id/season/:season_number/credits                              |
-| tvSeasonVideos         | tv/:id/season/:season_number/videos                               |
-| tvSeasonExternalIds    | tv/:id/season/:season_number/external_ids                         |
-| tvSeasonImages         | tv/:id/season/:season_number/images                               |
-| tvEpisodeInfo          | tv/:id/season/:season_number/episode/:episode_number              |
-| tvEpisodeCredits       | tv/:id/season/:season_number/episode/:episode_number/credits      |
-| tvEpisodeExternalIds   | tv/:id/season/:season_number/episode/:episode_number/external_ids |
-| tvEpisodeImages        | tv/:id/season/:season_number/episode/:episode_number/images       |
-| tvOnTheAir             | tv/on_the_air                                                     |
-| tvAiringToday          | tv/airing_today                                                   |
-| tvRecommend            | tv/:id/recommendations                                            |
-| tvChanges              | tv/:id/changes                                                    |
-| personInfo             | person/:id                                                        |
-| personMovieCredits     | person/:id/movie_credits                                          |
-| personTvCredits        | person/:id/tv_credits                                             |
-| personCombinedCredits  | person/:id/combined_credits                                       |
-| personImages           | person/:id/images                                                 |
-| personTaggedImages     | person/:id/tagged_images                                          |
-| personChanges          | person/:id/changes                                                |
-| personLatest           | person/latest                                                     |
-| personPopular          | person/popular                                                    |
-| personExternalIds      | person/:id/external_ids                                           |
-| creditInfo             | credit/:id                                                        |
-| listInfo               | list/:id                                                          |
-| genreMovieList         | genre/movie/list                                                  |
-| genreTvList            | genre/tv/list                                                     |
-| genreMovies            | genre/:id/movies                                                  |
-| keywordInfo            | keyword/:id                                                       |
-| keywordMovies          | keyword/:id/movies                                                |
-| companyInfo            | company/:id                                                       |
-| companyMovies          | company/:id/movies                                                |
-| accountInfo            | account                                                           |
-| accountLists           | account/:id/lists                                                 |
-| accountFavoriteMovies  | account/:id/favorite/movies                                       |
-| accountFavoriteUpdate  | account/:id/favorite                                              |
-| accountRatedMovies     | account/:id/rated/movies                                          |
-| accountMovieWatchlist  | account/:id/watchlist/movies                                      |
-| accountTvWatchlist     | account/:id/watchlist/tv                                          |
-| accountWatchlistUpdate | account/:id/watchlist                                             |
-| accountRatedTv         | account/:id/rated/tv                                              |
-| accountFavoriteTv      | account/:id/favorite/tv                                           |
-| miscLatestMovies       | movie/latest                                                      |
-| miscUpcomingMovies     | movie/upcoming                                                    |
-| miscNowPlayingMovies   | movie/now_playing                                                 |
-| miscPopularMovies      | movie/popular                                                     |
-| miscTopRatedMovies     | movie/top_rated                                                   |
-| miscChangedMovies      | movie/changes                                                     |
-| miscChangedTvs         | tv/changes                                                        |
-| miscChangedPeople      | person/changes                                                    |
-| miscTopRatedTvs        | tv/top_rated                                                      |
-| miscPopularTvs         | tv/popular                                                        |
-| requestToken           | authentication/token/new                                          |
-| session                | authentication/session/new                                        |
+| Function                | Endpoint                                                          |
+| ----------------------- | ----------------------------------------------------------------- |
+| configuration           | configuration                                                     |
+| find                    | find/:id                                                          |
+| searchMovie             | search/movie                                                      |
+| searchTv                | search/tv                                                         |
+| searchMulti             | search/multi                                                      |
+| searchCollection        | search/collection                                                 |
+| searchPerson            | search/person                                                     |
+| searchList              | search/list                                                       |
+| searchCompany           | search/company                                                    |
+| searchKeyword           | search/keyword                                                    |
+| collectionInfo          | collection/:id                                                    |
+| collectionImages        | collection/:id/images                                             |
+| collectionTranslations  | collection/:id/translations                                       |
+| discoverMovie           | discover/movie                                                    |
+| discoverTv              | discover/tv                                                       |
+| movieInfo               | movie/:id                                                         |
+| movieAlternativeTitles  | movie/:id/alternative_titles                                      |
+| movieCredits            | movie/:id/credits                                                 |
+| movieExternalIds        | /movie/:id/external_ids                                           |
+| movieImages             | movie/:id/images                                                  |
+| movieVideos             | movie/:id/videos                                                  |
+| movieKeywords           | movie/:id/keywords                                                |
+| movieRecommendations    | movie/:id/recommendations                                         |
+| movieReleases           | movie/:id/releases                                                |
+| movieReleaseDates       | movie/:id/release_dates                                           |
+| movieTrailers           | movie/:id/trailers                                                |
+| movieTranslations       | movie/:id/translations                                            |
+| movieSimilar            | movie/:id/similar                                                 |
+| movieReviews            | movie/:id/reviews                                                 |
+| movieLists              | movie/:id/lists                                                   |
+| movieChanges            | movie/:id/changes                                                 |
+| movieRatingUpdate       | movie/:id/rating                                                  |
+| tvInfo                  | tv/:id                                                            |
+| tvAlternativeTitles     | tv/:id/alternative_titles                                         |
+| tvContentRatings        | tv/:id/content_ratings                                            |
+| tvCredits               | tv/:id/credits                                                    |
+| tvEpisodeGroups         | tv/:id/episode_groups                                             |
+| tvExternalIds           | tv/:id/external_ids                                               |
+| tvImages                | tv/:id/images                                                     |
+| tvKeywords              | tv/:id/keywords                                                   |
+| tvVideos                | tv/:id/videos                                                     |
+| tvScreenedTheatrically  | tv/:id/screened_theatrically                                      |
+| tvReviews               | tv/:id/reviews                                                    |
+| tvSimilar               | tv/:id/similar                                                    |
+| tvTranslations          | tv/:id/translations                                               |
+| tvSeasonInfo            | tv/:id/season/:season_number                                      |
+| tvSeasonCredits         | tv/:id/season/:season_number/credits                              |
+| tvSeasonVideos          | tv/:id/season/:season_number/videos                               |
+| tvSeasonExternalIds     | tv/:id/season/:season_number/external_ids                         |
+| tvSeasonImages          | tv/:id/season/:season_number/images                               |
+| tvEpisodeInfo           | tv/:id/season/:season_number/episode/:episode_number              |
+| tvEpisodeCredits        | tv/:id/season/:season_number/episode/:episode_number/credits      |
+| tvEpisodeExternalIds    | tv/:id/season/:season_number/episode/:episode_number/external_ids |
+| tvEpisodeImages         | tv/:id/season/:season_number/episode/:episode_number/images       |
+| tvOnTheAir              | tv/on_the_air                                                     |
+| tvAiringToday           | tv/airing_today                                                   |
+| tvRecommendations       | tv/:id/recommendations                                            |
+| tvChanges               | tv/:id/changes                                                    |
+| tvRatingUpdate          | tv/:id/rating                                                     |
+| personInfo              | person/:id                                                        |
+| personChanges           | person/:id/changes                                                |
+| personMovieCredits      | person/:id/movie_credits                                          |
+| personTvCredits         | person/:id/tv_credits                                             |
+| personCombinedCredits   | person/:id/combined_credits                                       |
+| personExternalIds       | person/:id/external_ids                                           |
+| personImages            | person/:id/images                                                 |
+| personTaggedImages      | person/:id/tagged_images                                          |
+| personTranslations      | person/:id/translations                                           |
+| personLatest            | person/latest                                                     |
+| personPopular           | person/popular                                                    |
+| creditInfo              | credit/:id                                                        |
+| listInfo                | list/:id                                                          |
+| genreMovieList          | genre/movie/list                                                  |
+| genreTvList             | genre/tv/list                                                     |
+| keywordInfo             | keyword/:id                                                       |
+| keywordMovies           | keyword/:id/movies                                                |
+| companyInfo             | company/:id                                                       |
+| companyAlternativeNames | company/:id/alternative_names                                     |
+| companyImages           | company/:id/images                                                |
+| accountInfo             | account                                                           |
+| accountLists            | account/:id/lists                                                 |
+| accountFavoriteMovies   | account/:id/favorite/movies                                       |
+| accountFavoriteUpdate   | account/:id/favorite                                              |
+| accountRatedMovies      | account/:id/rated/movies                                          |
+| accountMovieWatchlist   | account/:id/watchlist/movies                                      |
+| accountTvWatchlist      | account/:id/watchlist/tv                                          |
+| accountWatchlistUpdate  | account/:id/watchlist                                             |
+| accountRatedTv          | account/:id/rated/tv                                              |
+| accountRatedTvEpisodes  | account/:id/rated/tv/episodes                                     |
+| accountFavoriteTv       | account/:id/favorite/tv                                           |
+| miscLatestMovies        | movie/latest                                                      |
+| miscNowPlayingMovies    | movie/now_playing                                                 |
+| miscPopularMovies       | movie/popular                                                     |
+| miscTopRatedMovies      | movie/top_rated                                                   |
+| miscUpcomingMovies      | movie/upcoming                                                    |
+| miscChangedMovies       | movie/changes                                                     |
+| miscChangedTvs          | tv/changes                                                        |
+| miscChangedPeople       | person/changes                                                    |
+| miscLatestTvs           | tv/latest                                                         |
+| miscPopularTvs          | tv/popular                                                        |
+| miscTopRatedTvs         | tv/top_rated                                                      |
+| requestToken            | authentication/token/new                                          |
+| session                 | authentication/session/new                                        |
 
 ## Method Options
 
@@ -255,7 +266,7 @@ You can set additional settings for each method call by specifying the desired p
 
 ## Support for append_to_response
 
-The movieInfo, tvInfo, tvSeasonInfo, tvEpisodeInfo and personInfo methods support an option to specify the [TMDB api's append_to_response query parameter](https://developers.themoviedb.org/3/getting-started/append-to-response). This makes it possible to make sub requests within the same namespace in a single HTTP request. Each request will get appended to the response as a new JSON object.
+The movieInfo, tvInfo, tvSeasonInfo, tvEpisodeInfo and personInfo methods support an option to specify the [TMDB API's append_to_response query parameter](https://developers.themoviedb.org/3/getting-started/append-to-response). This makes it possible to make sub requests within the same namespace in a single HTTP request. Each request will get appended to the response as a new JSON object.
 
 ```js
 const res = await api.tvInfo(4629, { append_to_response: 'season/1,season/1/credits' })

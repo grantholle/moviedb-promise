@@ -18,6 +18,7 @@ declare class MovieDb {
   searchKeyword (params: any, options?: any): Promise<any>
   collectionInfo (params: any, options?: any): Promise<any>
   collectionImages (params: any, options?: any): Promise<any>
+  collectionTranslations (params: any, options?: any): Promise<any>
   discoverMovie (params: any, options?: any): Promise<any>
   discoverTv (params: any, options?: any): Promise<any>
   movieInfo (params: any, options?: any): Promise<any>
@@ -38,10 +39,16 @@ declare class MovieDb {
   movieChanges (params: any, options?: any): Promise<any>
   movieRatingUpdate (params: any, options?: any): Promise<any>
   tvInfo (params: any, options?: any): Promise<any>
+  tvAlternativeTitles (params: any, options?: any): Promise<any>
+  tvContentRatings (params: any, options?: any): Promise<any>
   tvCredits (params: any, options?: any): Promise<any>
+  tvEpisodeGroups (params: any, options?: any): Promise<any>
   tvExternalIds (params: any, options?: any): Promise<any>
   tvImages (params: any, options?: any): Promise<any>
+  tvKeywords (params: any, options?: any): Promise<any>
   tvVideos (params: any, options?: any): Promise<any>
+  tvScreenedTheatrically (params: any, options?: any): Promise<any>
+  tvReviews (params: any, options?: any): Promise<any>
   tvSimilar (params: any, options?: any): Promise<any>
   tvTranslations (params: any, options?: any): Promise<any>
   tvSeasonInfo (params: any, options?: any): Promise<any>
@@ -55,27 +62,29 @@ declare class MovieDb {
   tvEpisodeImages (params: any, options?: any): Promise<any>
   tvOnTheAir (params: any, options?: any): Promise<any>
   tvAiringToday (params: any, options?: any): Promise<any>
-  tvRecommend (params: any, options?: any): Promise<any>
+  tvRecommendations (params: any, options?: any): Promise<any>
   tvChanges (params: any, options?: any): Promise<any>
+  tvRatingUpdate (params: any, options?: any): Promise<any>
   personInfo (params: any, options?: any): Promise<any>
+  personChanges (params: any, options?: any): Promise<any>
   personMovieCredits (params: any, options?: any): Promise<any>
   personTvCredits (params: any, options?: any): Promise<any>
   personCombinedCredits (params: any, options?: any): Promise<any>
+  personExternalIds (params: any, options?: any): Promise<any>
   personImages (params: any, options?: any): Promise<any>
   personTaggedImages (params: any, options?: any): Promise<any>
-  personChanges (params: any, options?: any): Promise<any>
+  personTranslations (params: any, options?: any): Promise<any>
   personLatest (params: any, options?: any): Promise<any>
   personPopular (params: any, options?: any): Promise<any>
-  personExternalIds (params: any, options?: any): Promise<any>
   creditInfo (params: any, options?: any): Promise<any>
   listInfo (params: any, options?: any): Promise<any>
   genreMovieList (params: any, options?: any): Promise<any>
   genreTvList (params: any, options?: any): Promise<any>
-  genreMovies (params: any, options?: any): Promise<any>
   keywordInfo (params: any, options?: any): Promise<any>
   keywordMovies (params: any, options?: any): Promise<any>
   companyInfo (params: any, options?: any): Promise<any>
-  companyMovies (params: any, options?: any): Promise<any>
+  companyAlternativeNames (params: any, options?: any): Promise<any>
+  companyImages (params: any, options?: any): Promise<any>
   accountInfo (params: any, options?: any): Promise<any>
   accountLists (params: any, options?: any): Promise<any>
   accountFavoriteMovies (params: any, options?: any): Promise<any>
@@ -84,16 +93,20 @@ declare class MovieDb {
   accountMovieWatchlist (params: any, options?: any): Promise<any>
   accountTvWatchlist (params: any, options?: any): Promise<any>
   accountWatchlistUpdate (params: any, options?: any): Promise<any>
+  accountRatedTv (params: any, options?: any): Promise<any>
+  accountRatedTvEpisodes (params: any, options?: any): Promise<any>
+  accountFavoriteTv (params: any, options?: any): Promise<any>
   miscLatestMovies (params: any, options?: any): Promise<any>
-  miscUpcomingMovies (params: any, options?: any): Promise<any>
   miscNowPlayingMovies (params: any, options?: any): Promise<any>
   miscPopularMovies (params: any, options?: any): Promise<any>
   miscTopRatedMovies (params: any, options?: any): Promise<any>
+  miscUpcomingMovies (params: any, options?: any): Promise<any>
   miscChangedMovies (params: any, options?: any): Promise<any>
   miscChangedTvs (params: any, options?: any): Promise<any>
   miscChangedPeople (params: any, options?: any): Promise<any>
-  miscTopRatedTvs (params: any, options?: any): Promise<any>
+  miscLatestTvs (params: any, options?: any): Promise<any>
   miscPopularTvs (params: any, options?: any): Promise<any>
+  miscTopRatedTvs (params: any, options?: any): Promise<any>
   requestToken (): Promise<string>
   session (): Promise<string>
 }

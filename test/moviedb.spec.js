@@ -27,7 +27,7 @@ if (!apiKey || apiKey.length === 0) {
   console.log('You have not provided the API key'.red)
   console.log('\tRunning tests:'.cyan)
   console.log('\tnpm test --key="{your api key}"'.cyan)
-  throw new Error('Missing API key, please `run npm test --key="{your api key}"`')
+  throw new Error('Missing API key, please run `npm test --key="{your api key}"`')
 }
 
 const api = new MovieDb(apiKey)
