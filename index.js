@@ -138,7 +138,7 @@ module.exports = class {
       }
 
       // Iterate the keys of params and replace the endpoint sections
-      if (typeof params === 'object') {
+      if (typeof params === 'object' && params !== null && params !== undefined) {
         Object.keys(params).forEach(key => {
           endpoint = endpoint.replace(`:${key}`, params[key])
         })
