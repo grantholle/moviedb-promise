@@ -114,9 +114,7 @@ const MovieDb = require('moviedb-promise')
 const moviedb = new MovieDb(apiKey, useDefaultLimits, baseURL)
 ```
 
-By default, moviedb-promise limits the requests you can send to 39 requests/10 seconds (this is the limit imposed by [TheMovieDB](https://developers.themoviedb.org/3/getting-started/request-rate-limiting)). This way you won't have to deal with 429 errors.
-
-If you want to implement your own request rate limiter, you can set `useDefaultLimits` to `false` when creating the moviedb instance.
+If you want to implement use a request rate limiter, you can set `useDefaultLimits` to `true` when creating the moviedb instance.
 
 ## Available methods
 
