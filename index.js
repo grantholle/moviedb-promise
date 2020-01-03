@@ -4,7 +4,7 @@ const request = require('superagent')
 const endpoints = require('./lib/endpoints')
 
 module.exports = class {
-  constructor (apiKey, useDefaultLimits = true, baseUrl = 'https://api.themoviedb.org/3/') {
+  constructor (apiKey, useDefaultLimits = false, baseUrl = 'https://api.themoviedb.org/3/') {
     if (!apiKey) {
       throw new Error('Bad api key')
     }

@@ -116,27 +116,22 @@ describe('moviedb', function () {
     promises.map(promise => promise.should.have.property('request_token', promises[0].request_token))
   })
 
-  it('should not get a rate limit error when a lot of requests are made within 10 seconds', async () => {
+  it('should not get a rate limit error when a lot of requests are made within 10 seconds with rate limiting', async () => {
     const requests = 50
 
+    const customApi = new MovieDb(apiKey, true)
+
     // Requests need to be fired asynchronously
-    let promises = new Array(requests).fill(0).map(api.discoverMovie)
+    let promises = new Array(requests).fill(0).map(customApi.discoverMovie)
     promises = await Promise.all(promises)
     promises.forEach(haveValidGenericResponse)
   })
 
-  it('should get a rate limit error with useDefaultLimits = false', async () => {
+  it('should not get a rate limit error without using rate limiting', async () => {
     const requests = 50
 
-    const customApi = new MovieDb(apiKey, false)
-
-    try {
-      let promises = new Array(requests).fill(null).map(customApi.discoverMovie)
-      await Promise.all(promises)
-    } catch (error) {
-      return
-    }
-
-    throw new Error('Should have thrown error')
+    let promises = new Array(requests).fill(null).map(api.discoverMovie)
+    promises = await Promise.all(promises)
+    promises.forEach(haveValidGenericResponse)
   })
 })
