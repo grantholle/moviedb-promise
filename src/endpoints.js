@@ -6,438 +6,426 @@ module.exports = {
     session: 'authentication/session/new'
   },
   methods: {
-    configuration: {
-      '': {
-        resource: 'configuration',
-        method: 'get'
-      }
-    },
-    find: {
-      '': {
-        resource: 'find/:id',
-        method: 'get'
-      }
-    },
     search: {
       Movie: {
-        resource: 'search/movie',
-        method: 'get'
+        path: 'search/movie',
+        verb: 'get'
       },
       Tv: {
-        resource: 'search/tv',
-        method: 'get'
+        path: 'search/tv',
+        verb: 'get'
       },
       Multi: {
-        resource: 'search/multi',
-        method: 'get'
+        path: 'search/multi',
+        verb: 'get'
       },
       Collection: {
-        resource: 'search/collection',
-        method: 'get'
+        path: 'search/collection',
+        verb: 'get'
       },
       Person: {
-        resource: 'search/person',
-        method: 'get'
+        path: 'search/person',
+        verb: 'get'
       },
       List: {
-        resource: 'search/list',
-        method: 'get'
+        path: 'search/list',
+        verb: 'get'
       },
       Company: {
-        resource: 'search/company',
-        method: 'get'
+        path: 'search/company',
+        verb: 'get'
       },
       Keyword: {
-        resource: 'search/keyword',
-        method: 'get'
+        path: 'search/keyword',
+        verb: 'get'
       }
     },
     collection: {
       Info: {
-        resource: 'collection/:id',
-        method: 'get'
+        path: 'collection/:id',
+        verb: 'get'
       },
       Images: {
-        resource: 'collection/:id/images',
-        method: 'get'
+        path: 'collection/:id/images',
+        verb: 'get'
       },
       Translations: {
-        resource: 'collection/:id/translations',
-        method: 'get'
+        path: 'collection/:id/translations',
+        verb: 'get'
       }
     },
     discover: {
       Movie: {
-        resource: 'discover/movie',
-        method: 'get'
+        path: 'discover/movie',
+        verb: 'get'
       },
       Tv: {
-        resource: 'discover/tv',
-        method: 'get'
+        path: 'discover/tv',
+        verb: 'get'
       }
     },
     movie: {
       Info: {
-        resource: 'movie/:id',
-        method: 'get'
+        path: 'movie/:id',
+        verb: 'get'
       },
       AlternativeTitles: {
-        resource: 'movie/:id/alternative_titles',
-        method: 'get'
+        path: 'movie/:id/alternative_titles',
+        verb: 'get'
       },
       Credits: {
-        resource: 'movie/:id/credits',
-        method: 'get'
+        path: 'movie/:id/credits',
+        verb: 'get'
       },
       ExternalIds: {
-        resource: '/movie/:id/external_ids',
-        method: 'get'
+        path: '/movie/:id/external_ids',
+        verb: 'get'
       },
       Images: {
-        resource: 'movie/:id/images',
-        method: 'get'
+        path: 'movie/:id/images',
+        verb: 'get'
       },
       Videos: {
-        resource: 'movie/:id/videos',
-        method: 'get'
+        path: 'movie/:id/videos',
+        verb: 'get'
       },
       Keywords: {
-        resource: 'movie/:id/keywords',
-        method: 'get'
+        path: 'movie/:id/keywords',
+        verb: 'get'
       },
       Recommendations: {
-        resource: 'movie/:id/recommendations',
-        method: 'get'
+        path: 'movie/:id/recommendations',
+        verb: 'get'
       },
       Releases: {
-        resource: 'movie/:id/releases',
-        method: 'get'
+        path: 'movie/:id/releases',
+        verb: 'get'
       },
       ReleaseDates: {
-        resource: 'movie/:id/release_dates',
-        method: 'get'
+        path: 'movie/:id/release_dates',
+        verb: 'get'
       },
       Trailers: {
-        resource: 'movie/:id/trailers',
-        method: 'get'
+        path: 'movie/:id/trailers',
+        verb: 'get'
       },
       Translations: {
-        resource: 'movie/:id/translations',
-        method: 'get'
+        path: 'movie/:id/translations',
+        verb: 'get'
       },
       Similar: {
-        resource: 'movie/:id/similar',
-        method: 'get'
+        path: 'movie/:id/similar',
+        verb: 'get'
       },
       Reviews: {
-        resource: 'movie/:id/reviews',
-        method: 'get'
+        path: 'movie/:id/reviews',
+        verb: 'get'
       },
       Lists: {
-        resource: 'movie/:id/lists',
-        method: 'get'
+        path: 'movie/:id/lists',
+        verb: 'get'
       },
       Changes: {
-        resource: 'movie/:id/changes',
-        method: 'get'
+        path: 'movie/:id/changes',
+        verb: 'get'
       },
       RatingUpdate: {
-        resource: 'movie/:id/rating',
-        method: 'post'
+        path: 'movie/:id/rating',
+        verb: 'post'
       }
     },
     tv: {
       Info: {
-        resource: 'tv/:id',
-        method: 'get'
+        path: 'tv/:id',
+        verb: 'get'
       },
       AlternativeTitles: {
-        resource: 'tv/:id/alternative_titles',
-        method: 'get'
+        path: 'tv/:id/alternative_titles',
+        verb: 'get'
       },
       ContentRatings: {
-        resource: 'tv/:id/content_ratings',
-        method: 'get'
+        path: 'tv/:id/content_ratings',
+        verb: 'get'
       },
       Credits: {
-        resource: 'tv/:id/credits',
-        method: 'get'
+        path: 'tv/:id/credits',
+        verb: 'get'
       },
       EpisodeGroups: {
-        resource: 'tv/:id/episode_groups',
-        method: 'get'
+        path: 'tv/:id/episode_groups',
+        verb: 'get'
       },
       ExternalIds: {
-        resource: 'tv/:id/external_ids',
-        method: 'get'
+        path: 'tv/:id/external_ids',
+        verb: 'get'
       },
       Images: {
-        resource: 'tv/:id/images',
-        method: 'get'
+        path: 'tv/:id/images',
+        verb: 'get'
       },
       Keywords: {
-        resource: 'tv/:id/keywords',
-        method: 'get'
+        path: 'tv/:id/keywords',
+        verb: 'get'
       },
       Videos: {
-        resource: 'tv/:id/videos',
-        method: 'get'
+        path: 'tv/:id/videos',
+        verb: 'get'
       },
       ScreenedTheatrically: {
-        resource: 'tv/:id/screened_theatrically',
-        method: 'get'
+        path: 'tv/:id/screened_theatrically',
+        verb: 'get'
       },
       Reviews: {
-        resource: 'tv/:id/reviews',
-        method: 'get'
+        path: 'tv/:id/reviews',
+        verb: 'get'
       },
       Similar: {
-        resource: 'tv/:id/similar',
-        method: 'get'
+        path: 'tv/:id/similar',
+        verb: 'get'
       },
       Translations: {
-        resource: 'tv/:id/translations',
-        method: 'get'
+        path: 'tv/:id/translations',
+        verb: 'get'
       },
       SeasonInfo: {
-        resource: 'tv/:id/season/:season_number',
-        method: 'get'
+        path: 'tv/:id/season/:season_number',
+        verb: 'get'
       },
       SeasonCredits: {
-        resource: 'tv/:id/season/:season_number/credits',
-        method: 'get'
+        path: 'tv/:id/season/:season_number/credits',
+        verb: 'get'
       },
       SeasonVideos: {
-        resource: 'tv/:id/season/:season_number/videos',
-        method: 'get'
+        path: 'tv/:id/season/:season_number/videos',
+        verb: 'get'
       },
       SeasonExternalIds: {
-        resource: 'tv/:id/season/:season_number/external_ids',
-        method: 'get'
+        path: 'tv/:id/season/:season_number/external_ids',
+        verb: 'get'
       },
       SeasonImages: {
-        resource: 'tv/:id/season/:season_number/images',
-        method: 'get'
+        path: 'tv/:id/season/:season_number/images',
+        verb: 'get'
       },
       EpisodeInfo: {
-        resource: 'tv/:id/season/:season_number/episode/:episode_number',
-        method: 'get'
+        path: 'tv/:id/season/:season_number/episode/:episode_number',
+        verb: 'get'
       },
       EpisodeCredits: {
-        resource: 'tv/:id/season/:season_number/episode/:episode_number/credits',
-        method: 'get'
+        path: 'tv/:id/season/:season_number/episode/:episode_number/credits',
+        verb: 'get'
       },
       EpisodeExternalIds: {
-        resource: 'tv/:id/season/:season_number/episode/:episode_number/external_ids',
-        method: 'get'
+        path: 'tv/:id/season/:season_number/episode/:episode_number/external_ids',
+        verb: 'get'
       },
       EpisodeImages: {
-        resource: 'tv/:id/season/:season_number/episode/:episode_number/images',
-        method: 'get'
+        path: 'tv/:id/season/:season_number/episode/:episode_number/images',
+        verb: 'get'
       },
       OnTheAir: {
-        resource: 'tv/on_the_air',
-        method: 'get'
+        path: 'tv/on_the_air',
+        verb: 'get'
       },
       AiringToday: {
-        resource: 'tv/airing_today',
-        method: 'get'
+        path: 'tv/airing_today',
+        verb: 'get'
       },
       Recommendations: {
-        resource: 'tv/:id/recommendations',
-        method: 'get'
+        path: 'tv/:id/recommendations',
+        verb: 'get'
       },
       Changes: {
-        resource: 'tv/:id/changes',
-        method: 'get'
+        path: 'tv/:id/changes',
+        verb: 'get'
       },
       RatingUpdate: {
-        resource: 'tv/:id/rating',
-        method: 'post'
+        path: 'tv/:id/rating',
+        verb: 'post'
       }
     },
     person: {
       Info: {
-        resource: 'person/:id',
-        method: 'get'
+        path: 'person/:id',
+        verb: 'get'
       },
       Changes: {
-        resource: 'person/:id/changes',
-        method: 'get'
+        path: 'person/:id/changes',
+        verb: 'get'
       },
       MovieCredits: {
-        resource: 'person/:id/movie_credits',
-        method: 'get'
+        path: 'person/:id/movie_credits',
+        verb: 'get'
       },
       TvCredits: {
-        resource: 'person/:id/tv_credits',
-        method: 'get'
+        path: 'person/:id/tv_credits',
+        verb: 'get'
       },
       CombinedCredits: {
-        resource: 'person/:id/combined_credits',
-        method: 'get'
+        path: 'person/:id/combined_credits',
+        verb: 'get'
       },
       ExternalIds: {
-        resource: 'person/:id/external_ids',
-        method: 'get'
+        path: 'person/:id/external_ids',
+        verb: 'get'
       },
       Images: {
-        resource: 'person/:id/images',
-        method: 'get'
+        path: 'person/:id/images',
+        verb: 'get'
       },
       TaggedImages: {
-        resource: 'person/:id/tagged_images',
-        method: 'get'
+        path: 'person/:id/tagged_images',
+        verb: 'get'
       },
       Translations: {
-        resource: 'person/:id/translations',
-        method: 'get'
+        path: 'person/:id/translations',
+        verb: 'get'
       },
       Latest: {
-        resource: 'person/latest',
-        method: 'get'
+        path: 'person/latest',
+        verb: 'get'
       },
       Popular: {
-        resource: 'person/popular',
-        method: 'get'
+        path: 'person/popular',
+        verb: 'get'
       }
     },
     credit: {
       Info: {
-        resource: 'credit/:id',
-        method: 'get'
+        path: 'credit/:id',
+        verb: 'get'
       }
     },
     list: {
       Info: {
-        resource: 'list/:id',
-        method: 'get'
+        path: 'list/:id',
+        verb: 'get'
       }
     },
     genre: {
       MovieList: {
-        resource: 'genre/movie/list',
-        method: 'get'
+        path: 'genre/movie/list',
+        verb: 'get'
       },
       TvList: {
-        resource: 'genre/tv/list',
-        method: 'get'
+        path: 'genre/tv/list',
+        verb: 'get'
       }
     },
     keyword: {
       Info: {
-        resource: 'keyword/:id',
-        method: 'get'
+        path: 'keyword/:id',
+        verb: 'get'
       },
       Movies: {
-        resource: 'keyword/:id/movies',
-        method: 'get'
+        path: 'keyword/:id/movies',
+        verb: 'get'
       }
     },
     company: {
       Info: {
-        resource: 'company/:id',
-        method: 'get'
+        path: 'company/:id',
+        verb: 'get'
       },
       AlternativeNames: {
-        resource: 'company/:id/alternative_names',
-        method: 'get'
+        path: 'company/:id/alternative_names',
+        verb: 'get'
       },
       Images: {
-        resource: 'company/:id/images',
-        method: 'get'
+        path: 'company/:id/images',
+        verb: 'get'
       }
     },
     account: {
       Info: {
-        resource: 'account',
-        method: 'get'
+        path: 'account',
+        verb: 'get'
       },
       Lists: {
-        resource: 'account/:id/lists',
-        method: 'get'
+        path: 'account/:id/lists',
+        verb: 'get'
       },
       FavoriteMovies: {
-        resource: 'account/:id/favorite/movies',
-        method: 'get'
+        path: 'account/:id/favorite/movies',
+        verb: 'get'
       },
       FavoriteUpdate: {
-        resource: 'account/:id/favorite',
-        method: 'post'
+        path: 'account/:id/favorite',
+        verb: 'post'
       },
       RatedMovies: {
-        resource: 'account/:id/rated/movies',
-        method: 'get'
+        path: 'account/:id/rated/movies',
+        verb: 'get'
       },
       MovieWatchlist: {
-        resource: 'account/:id/watchlist/movies',
-        method: 'get'
+        path: 'account/:id/watchlist/movies',
+        verb: 'get'
       },
       TvWatchlist: {
-        resource: 'account/:id/watchlist/tv',
-        method: 'get'
+        path: 'account/:id/watchlist/tv',
+        verb: 'get'
       },
       WatchlistUpdate: {
-        resource: 'account/:id/watchlist',
-        method: 'post'
+        path: 'account/:id/watchlist',
+        verb: 'post'
       },
       RatedTv: {
-        resource: 'account/:id/rated/tv',
-        method: 'get'
+        path: 'account/:id/rated/tv',
+        verb: 'get'
       },
       RatedTvEpisodes: {
-        resource: 'account/:id/rated/tv/episodes',
-        method: 'get'
+        path: 'account/:id/rated/tv/episodes',
+        verb: 'get'
       },
       FavoriteTv: {
-        resource: 'account/:id/favorite/tv',
-        method: 'get'
+        path: 'account/:id/favorite/tv',
+        verb: 'get'
       }
     },
     misc: {
       LatestMovies: {
-        resource: 'movie/latest',
-        method: 'get'
+        path: 'movie/latest',
+        verb: 'get'
       },
       NowPlayingMovies: {
-        resource: 'movie/now_playing',
-        method: 'get'
+        path: 'movie/now_playing',
+        verb: 'get'
       },
       PopularMovies: {
-        resource: 'movie/popular',
-        method: 'get'
+        path: 'movie/popular',
+        verb: 'get'
       },
       TopRatedMovies: {
-        resource: 'movie/top_rated',
-        method: 'get'
+        path: 'movie/top_rated',
+        verb: 'get'
       },
       UpcomingMovies: {
-        resource: 'movie/upcoming',
-        method: 'get'
+        path: 'movie/upcoming',
+        verb: 'get'
       },
       ChangedMovies: {
-        resource: 'movie/changes',
-        method: 'get'
+        path: 'movie/changes',
+        verb: 'get'
       },
       ChangedTvs: {
-        resource: 'tv/changes',
-        method: 'get'
+        path: 'tv/changes',
+        verb: 'get'
       },
       ChangedPeople: {
-        resource: 'person/changes',
-        method: 'get'
+        path: 'person/changes',
+        verb: 'get'
       },
       LatestTvs: {
-        resource: 'tv/latest',
-        method: 'get'
+        path: 'tv/latest',
+        verb: 'get'
       },
       PopularTvs: {
-        resource: 'tv/popular',
-        method: 'get'
+        path: 'tv/popular',
+        verb: 'get'
       },
       TopRatedTvs: {
-        resource: 'tv/top_rated',
-        method: 'get'
+        path: 'tv/top_rated',
+        verb: 'get'
       }
     }
   }

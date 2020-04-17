@@ -1,5 +1,3 @@
-'use strict'
-
 const request = require('superagent')
 const endpoints = require('./lib/endpoints')
 
