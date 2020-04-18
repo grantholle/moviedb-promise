@@ -41,6 +41,7 @@ export interface AuthenticationToken {
 
 export interface RequestOptions {
   appendToResponse?: string
+  timeout?: number
 }
 
 export interface RequestParams {
@@ -89,4 +90,14 @@ export interface PersonResult {
   name?: string
   popularity?: number
   known_for?: Array<MovieResult|TvResult>
+}
+
+export interface Image {
+  base_url?: string
+  secure_base_url?: string
+  backdrop_sizes?: Array<string>
+  logo_sizes?: Array<string>
+  poster_sizes?: Array<string>
+  profile_sizes?: Array<string>
+  still_sizes?: Array<string>
 }

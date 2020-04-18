@@ -23,7 +23,7 @@
     "url": "https://github.com/grantholle/moviedb-promise/issues"
   },
   "homepage": "https://github.com/grantholle/moviedb-promise#readme",
-  "main": "dist/moviedb.js",
+  "main": "dist/index.js",
   "author": "Grant Holle <https://github.com/grantholle>",
   "contributors": [
     "Irwing Reza <irwing85@gmail.com> (http://irwingreza.com/)",

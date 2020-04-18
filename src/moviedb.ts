@@ -1,5 +1,5 @@
 import axios from 'axios'
-import isEmpty from 'lodash/isEmpty'
+import { isEmpty, isObject, isString } from 'lodash'
 import {
   MovieDbOptions,
   LimitOptions,
@@ -9,9 +9,8 @@ import {
   RequestOptions,
   RequestParams,
 } from './types'
-import './endpoints'
 
-export default class MovieDb {
+export class MovieDb {
   private apiKey: string
   private token: AuthenticationToken
   private limit: LimitOptions
@@ -20,7 +19,13 @@ export default class MovieDb {
   public options: MovieDbOptions
   public sessionId: string
 
-  constructor (apiKey: string, options: MovieDbOptions = { useDefaultLimits: false, baseUrl: 'https://api.themoviedb.org/3/' }) {
+  constructor (
+    apiKey: string,
+    options: MovieDbOptions = {
+      useDefaultLimits: false,
+      baseUrl: 'https://api.themoviedb.org/3/'
+    }
+  ) {
     this.apiKey = apiKey
     this.options = options
 
@@ -44,7 +49,7 @@ export default class MovieDb {
   async requestToken (): Promise<AuthenticationToken> {
     if (!this.token || Date.now() > new Date(this.token.expires_at).getTime()) {
 
-      this.token = await this.makeRequest(HttpMethod.Get, {}, 'authentication/token/new')
+      this.token = await this.makeRequest(HttpMethod.Get, 'authentication/token/new')
     }
 
     return this.token
@@ -93,22 +98,43 @@ export default class MovieDb {
     return this.makeRequest
   }
 
-  /**
-   * Makes the request to the api using the configuration from lib/endpoints
-   *
-   * @param {String} type The http verb
-   * @param {String} endpoint The api endpoint relative to the base url
-   * @param {Object} params The parameters to pass to the api
-   * @param {String|Object} options If a string, then assumed to be append_to_response. If Object, then options object
-   * @param {String} options.append_to_response additional argument for the TMDB api's append_to_response query parameter
-   * @param {timeout} options.timeout superagent timeout object for request
-   */
+  private prepareEndpoint (endpoint: string, params: string|RequestParams = {}) {
+    // Some endpoints have an optional account_id parameter (when there's a session).
+    // If it's not included, assume we want the current user's id,
+    // which is setting it to '{account_id}'
+    if (endpoint.includes(':id') && isEmpty(params) && this.sessionId) {
+      params = {
+        id: '{account_id}'
+      }
+    }
+
+    // Check params to see if params an object
+    // and if there is only one parameter in the endpoint
+    if (isString(params) && (endpoint.match(/:/g) || []).length === 1) {
+      endpoint = endpoint.replace(/:[a-z]*/gi, params)
+    }
+
+    // Iterate the keys of params and replace the endpoint sections
+    if (isObject(params) && !isEmpty(params)) {
+      endpoint = Object.keys(params).reduce((compiled, key) => {
+        return compiled.replace(`:${key}`, params[key])
+      }, endpoint)
+    }
+
+    if (isString(params)) {
+      endpoint += (params.startsWith('?') ? '' : '?') + params
+    }
+
+    return endpoint
+  }
+
   async makeRequest (
     method: HttpMethod,
     endpoint: string,
-    params: RequestParams = {},
+    params: string|RequestParams = {},
     options: RequestOptions = {}
   ): Promise<AuthenticationToken|Response> {
+    console.log('make request')
     if (this.options.useDefaultLimits) {
       if (this.limit.remaining <= 0) {
         // this.requestQueue.push({
@@ -123,31 +149,17 @@ export default class MovieDb {
       this.limit.remaining--
     }
 
-    // Some endpoints have an optional account_id parameter (when there's a session).
-    // If it's not included, assume we want the current user's id,
-    // which is setting it to '{account_id}'
-    if (endpoint.includes(':id') && isEmpty(params) && this.sessionId) {
-      params.id = '{account_id}'
+    const preparedEndpoint = this.prepareEndpoint(endpoint, params)
+
+    if (isString(params)) {
+      params = {}
     }
 
-    // @TODO this needs to be in the functions that are created on the fly
-    // Check params to see if params an object
-    // and if there is only one parameter in the endpoint
-    // if (typeof params !== 'object' && endpoint.split(':').length === 2) {
-    //   const parts = endpoint.split(':')
-    //   const index = parts[1].indexOf('/')
-
-    //   endpoint = parts[0] + params + (index === -1 ? '' : parts[1].substr(index))
-    // }
-
-  //     // Iterate the keys of params and replace the endpoint sections
-  //     if (typeof params === 'object' && params !== null && params !== undefined) {
-  //       Object.keys(params).forEach(key => {
-  //         endpoint = endpoint.replace(`:${key}`, params[key])
-  //       })
-  //     }
-
-  //     type = type.toUpperCase()
+    // Get the params that were needed for the endpoint
+    // to remove from the data/params of the request
+    const omittedProps = (endpoint.match(/:[a-z]/gi) || []).map(prop => prop.substr(1))
+    // const query
+    const request = axios.create({})
   //     let req = request(type, this.baseUrl + endpoint)
 
   //     if (this.apiKey) {
