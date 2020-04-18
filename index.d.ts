@@ -21,6 +21,7 @@ declare class MovieDb {
   collectionTranslations (params: any, options?: any): Promise<any>
   discoverMovie (params: any, options?: any): Promise<any>
   discoverTv (params: any, options?: any): Promise<any>
+  trending (params: any, options?: any): Promise<any>
   movieInfo (params: any, options?: any): Promise<any>
   movieAlternativeTitles (params: any, options?: any): Promise<any>
   movieCredits (params: any, options?: any): Promise<any>
