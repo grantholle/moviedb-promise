@@ -23,7 +23,7 @@
     "url": "https://github.com/grantholle/moviedb-promise/issues"
   },
   "homepage": "https://github.com/grantholle/moviedb-promise#readme",
-  "main": "index.js",
+  "main": "dist/moviedb.js",
   "author": "Grant Holle <https://github.com/grantholle>",
   "contributors": [
     "Irwing Reza <irwing85@gmail.com> (http://irwingreza.com/)",
@@ -38,10 +38,12 @@
   ],
   "dependencies": {},
   "devDependencies": {
+    "@types/lodash": "^4.14.149",
     "@types/node": "^13.11.1",
     "axios": "^0.19.2",
     "chai": "^3.5.0",
     "colors": "^1.3.0",
+    "lodash": "^4.17.15",
     "markdown-table": "^1.1.2",
     "mocha": "^5.2.0",
     "standard": "^10.0.3",

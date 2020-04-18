@@ -1,17 +1,21 @@
+import axios from 'axios'
+import isEmpty from 'lodash/isEmpty'
 import {
   MovieDbOptions,
   LimitOptions,
   HttpMethod,
+  Response,
   AuthenticationToken,
+  RequestOptions,
+  RequestParams,
 } from './types'
-import axios from 'axios'
 import './endpoints'
 
 export default class MovieDb {
   private apiKey: string
   private token: AuthenticationToken
   private limit: LimitOptions
-  private requestQueue
+  private requestQueue: Array<any>
   private requestLimitTimeout
   public options: MovieDbOptions
   public sessionId: string
@@ -30,17 +34,6 @@ export default class MovieDb {
     }
 
     this.checkQueue = this.checkQueue.bind(this)
-
-    // Create the dynamic api methods using the configuration found in lib/endpoints
-    // Object.keys(endpoints.methods).forEach(method => {
-    //   const met = endpoints.methods[method]
-
-    //   Object.keys(met).forEach(m => {
-    //     this[method + m] = async (params = {}, options = {}) => {
-    //       return this.makeRequest(met[m].method, params, met[m].resource, options)
-    //     }
-    //   })
-    // })
   }
 
   /**
@@ -50,7 +43,8 @@ export default class MovieDb {
    */
   async requestToken (): Promise<AuthenticationToken> {
     if (!this.token || Date.now() > new Date(this.token.expires_at).getTime()) {
-      // this.token = await this.makeRequest('get', {}, endpoints.authentication.requestToken)
+
+      this.token = await this.makeRequest(HttpMethod.Get, {}, 'authentication/token/new')
     }
 
     return this.token
@@ -96,52 +90,55 @@ export default class MovieDb {
 
     //   setTimeout(this.checkQueue)
     // }
+    return this.makeRequest
   }
 
   /**
    * Makes the request to the api using the configuration from lib/endpoints
    *
    * @param {String} type The http verb
-   * @param {Object} params The parameters to pass to the api
    * @param {String} endpoint The api endpoint relative to the base url
+   * @param {Object} params The parameters to pass to the api
    * @param {String|Object} options If a string, then assumed to be append_to_response. If Object, then options object
    * @param {String} options.append_to_response additional argument for the TMDB api's append_to_response query parameter
    * @param {timeout} options.timeout superagent timeout object for request
    */
-  async makeRequest (type, params, endpoint, options): Promise<AuthenticationToken|any> {
-  //   const createAndStartRequest = (resolve, reject) => {
-  //     if (this.useDefaultLimits) {
-  //       if (this.limit.remaining <= 0) {
-  //         this.requestQueue.push({
-  //           start: createAndStartRequest,
-  //           resolve,
-  //           reject
-  //         })
+  async makeRequest (
+    method: HttpMethod,
+    endpoint: string,
+    params: RequestParams = {},
+    options: RequestOptions = {}
+  ): Promise<AuthenticationToken|Response> {
+    if (this.options.useDefaultLimits) {
+      if (this.limit.remaining <= 0) {
+        // this.requestQueue.push({
+        //   start: createAndStartRequest,
+        //   resolve,
+        //   reject
+        // })
 
-  //         return this.checkQueue()
-  //       }
+        return this.checkQueue()
+      }
 
-  //       this.limit.remaining--
-  //     }
+      this.limit.remaining--
+    }
 
-  //     // Interpret options
-  //     const { append_to_response: appendToResponse, timeout } = (typeof options === 'string' || options instanceof String) ? { append_to_response: options } : options || ''
+    // Some endpoints have an optional account_id parameter (when there's a session).
+    // If it's not included, assume we want the current user's id,
+    // which is setting it to '{account_id}'
+    if (endpoint.includes(':id') && isEmpty(params) && this.sessionId) {
+      params.id = '{account_id}'
+    }
 
-  //     // Some endpoints have an optional account_id parameter (when there's a session).
-  //     // If it's not included, assume we want the current user's id,
-  //     // which is setting it to '{account_id}'
-  //     if (endpoint.indexOf(':id') !== -1 && params === {} && this.sessionId) {
-  //       params.id = '{account_id}'
-  //     }
+    // @TODO this needs to be in the functions that are created on the fly
+    // Check params to see if params an object
+    // and if there is only one parameter in the endpoint
+    // if (typeof params !== 'object' && endpoint.split(':').length === 2) {
+    //   const parts = endpoint.split(':')
+    //   const index = parts[1].indexOf('/')
 
-  //     // Check params to see if params an object
-  //     // and if there is only one parameter in the endpoint
-  //     if (typeof params !== 'object' && endpoint.split(':').length === 2) {
-  //       const parts = endpoint.split(':')
-  //       const index = parts[1].indexOf('/')
-
-  //       endpoint = parts[0] + params + (index === -1 ? '' : parts[1].substr(index))
-  //     }
+    //   endpoint = parts[0] + params + (index === -1 ? '' : parts[1].substr(index))
+    // }
 
   //     // Iterate the keys of params and replace the endpoint sections
   //     if (typeof params === 'object' && params !== null && params !== undefined) {
@@ -200,8 +197,5 @@ export default class MovieDb {
 
   //       resolve(res.body, res)
   //     })
-  //   }
-
-  //   return new Promise(createAndStartRequest)
   }
 }
