@@ -6,6 +6,18 @@ module.exports = {
     session: 'authentication/session/new'
   },
   methods: {
+    configuration: {
+      '': {
+        path: 'configuration',
+        verb: 'get'
+      }
+    },
+    find: {
+      '': {
+        path: 'find/:id',
+        verb: 'get'
+      }
+    },
     search: {
       Movie: {
         path: 'search/movie',
@@ -61,6 +73,12 @@ module.exports = {
       },
       Tv: {
         path: 'discover/tv',
+        verb: 'get'
+      }
+    },
+    trending: {
+      '': {
+        path: 'trending/:media_type/:time_window',
         verb: 'get'
       }
     },

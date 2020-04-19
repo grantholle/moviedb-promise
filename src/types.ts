@@ -12,8 +12,9 @@ export interface Endpoint {
 }
 
 export interface Request {
-  id: string|number
+  id?: string|number
   language?: string
+  request_token?: string
 }
 
 export interface EndpointGroup {
@@ -21,31 +22,30 @@ export interface EndpointGroup {
   readonly endpoints: Array<Endpoint>
 }
 
-export interface MovieDbOptions {
-  baseUrl: string
-  useDefaultLimits: boolean
-}
-
-export interface LimitOptions {
-  remaining: number
-  reset: number
-}
-
 export interface Response {}
 
-export interface AuthenticationToken {
+export interface AuthenticationToken extends Response {
   success?: boolean
   expires_at?: string
   request_token?: string
 }
 
+export interface RequestParams {
+  id?: string|number
+  language?: string
+}
+
+export interface SessionRequestParams extends RequestParams {
+  request_token: string
+}
+
+export interface SessionResponse extends Response {
+  session_id?: string
+}
+
 export interface RequestOptions {
   appendToResponse?: string
   timeout?: number
-}
-
-export interface RequestParams {
-  id?: string|number
 }
 
 export interface MovieResult {

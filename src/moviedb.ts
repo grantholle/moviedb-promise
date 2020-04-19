@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import {
   isEmpty,
   isObject,
@@ -7,44 +7,24 @@ import {
   omit
 } from 'lodash'
 import {
-  MovieDbOptions,
-  LimitOptions,
   HttpMethod,
   Response,
   AuthenticationToken,
   RequestOptions,
   RequestParams,
+  SessionRequestParams,
+  SessionResponse,
 } from './types'
 
 export class MovieDb {
   private apiKey: string
   private token: AuthenticationToken
-  private limit: LimitOptions
-  private requestQueue: Array<any>
-  private requestLimitTimeout
-  public options: MovieDbOptions
+  public baseUrl: string
   public sessionId: string
 
-  constructor (
-    apiKey: string,
-    options: MovieDbOptions = {
-      useDefaultLimits: false,
-      baseUrl: 'https://api.themoviedb.org/3/'
-    }
-  ) {
+  constructor (apiKey: string, baseUrl: string = 'https://api.themoviedb.org/3/') {
     this.apiKey = apiKey
-    this.options = options
-
-    if (this.options.useDefaultLimits) {
-      this.limit = {
-        remaining: 40,
-        reset: Date.now() + 10 * 1000
-      }
-      this.requestQueue = []
-      this.requestLimitTimeout = undefined
-    }
-
-    this.checkQueue = this.checkQueue.bind(this)
+    this.baseUrl = baseUrl
   }
 
   /**
@@ -54,7 +34,6 @@ export class MovieDb {
    */
   async requestToken (): Promise<AuthenticationToken> {
     if (!this.token || Date.now() > new Date(this.token.expires_at).getTime()) {
-
       this.token = await this.makeRequest(HttpMethod.Get, 'authentication/token/new')
     }
 
@@ -63,50 +42,26 @@ export class MovieDb {
 
   /**
    * Gets the session id
-   *
-   * @returns {Promise}
    */
   async session (): Promise<string> {
-    // const token = await this.requestToken()
+    const token = await this.requestToken()
+    const request: SessionRequestParams = {
+      request_token: token.request_token
+    }
 
-    // const res = await this.makeRequest(HttpMethod.Get, { request_token: token.request_token }, endpoints.authentication.session)
+    const res: SessionResponse = await this.makeRequest(
+      HttpMethod.Get, 'authentication/session/new', request
+    )
 
-    // this.sessionId = res.session_id
+    this.sessionId = res.session_id
+
     return this.sessionId
   }
 
-  private checkQueue (...parameters) {
-    if (this.requestQueue.length === 0) {
-      return
-    }
-
-    clearTimeout(this.requestLimitTimeout)
-
-    let delay = this.limit.reset - Date.now()
-
-    if (delay > 0) {
-      this.requestLimitTimeout = setTimeout(this.checkQueue, delay)
-    } else {
-      this.limit.remaining = 40
-    }
-
-    if (this.limit.remaining > 0) {
-      for (let i = 0; i < this.limit.remaining; i++) {
-        let sendRequest = this.requestQueue.shift()
-
-        if (sendRequest) {
-          this.makeRequest()
-          sendRequest.start(sendRequest.resolve, sendRequest.reject)
-        }
-      }
-
-      setTimeout(this.checkQueue)
-    }
-
-    return this.makeRequest
-  }
-
-  private prepareEndpoint (endpoint: string, params: string|RequestParams = {}) {
+  /**
+   * Compiles the endpoint based on the params
+   */
+  private getEndpoint (endpoint: string, params: RequestParams = {}): string {
     // Check params to see if params an object
     // and if there is only one parameter in the endpoint
     if (isString(params) && (endpoint.match(/:/g) || []).length === 1) {
@@ -127,35 +82,26 @@ export class MovieDb {
     return endpoint
   }
 
-  private makeRequest (
-    method: HttpMethod,
+  /**
+   * Compiles the data/query data to send with the request
+   */
+  private getParams (
     endpoint: string,
     params: string|RequestParams = {},
     options: RequestOptions = {}
-  ): Promise<AuthenticationToken|Response> {
-    console.log('make request')
-
-    if (this.options.useDefaultLimits) {
-      if (this.limit.remaining <= 0) {
-        this.requestQueue.push({ method, endpoint, params, options })
-
-        return this.checkQueue()
-      }
-
-      this.limit.remaining--
-    }
+  ): RequestParams {
+    // Merge default parameters with the ones passed in
+    const compiledParams: RequestParams = merge({
+      api_key: this.apiKey,
+      ...(this.sessionId && { session_id: this.sessionId }),
+      ...(options.appendToResponse && { append_to_response: options.appendToResponse })
+    }, isObject(params) ? params : {})
 
     // Some endpoints have an optional account_id parameter (when there's a session).
     // If it's not included, assume we want the current user's id,
     // which is setting it to '{account_id}'
     if (endpoint.includes(':id') && isEmpty(params) && this.sessionId) {
-      params = {
-        id: '{account_id}'
-      }
-    }
-
-    if (isString(params)) {
-      params = {}
+      compiledParams.id = '{account_id}'
     }
 
     // Get the params that were needed for the endpoint
@@ -164,48 +110,31 @@ export class MovieDb {
       .map(prop => prop.substr(1))
 
     // Prepare the query
-    const query = merge({
-      api_key: this.apiKey,
-      ...(this.sessionId && { session_id: this.sessionId }),
-      ...(options.appendToResponse && { append_to_response: options.appendToResponse })
-    }, omit(params, omittedProps))
+    return omit(compiledParams, omittedProps)
+  }
+
+  /**
+   * Performs the request to the server
+   */
+  private async makeRequest (
+    method: HttpMethod,
+    endpoint: string,
+    params: string|RequestParams = {},
+    options: RequestOptions = {}
+  ): Promise<Response> {
+    const query = this.getParams(endpoint, params, options)
 
     const request = {
       method,
-      baseUrl: this.options.baseUrl,
-      url: this.prepareEndpoint(endpoint, params),
+      baseUrl: this.baseUrl,
+      url: this.getEndpoint(endpoint, query),
       params: query,
       data: query,
       ...(options.timeout && { timeout: options.timeout })
     }
 
-    return axios.request(request).catch(err => {
-      const res = err.response || {}
+    const response: AxiosResponse = await axios.request(request)
 
-      if (this.options.useDefaultLimits && res.status === 429) {
-        // If we exceed the request limit, we won't receive x-ratelimit-reset anymore
-        // this is only a fallback and should never happen
-        if (!this.limit.reset || this.limit.reset < Date.now()) {
-          let retryAfter = parseInt(res.header['retry-after'])
-          this.limit.reset = Date.now() + (retryAfter <= 0 ? 0.5 : retryAfter) * 1000
-        }
-
-        this.requestQueue.push({
-          start: createAndStartRequest,
-          resolve,
-          reject
-        })
-
-        return this.checkQueue()
-      }
-
-      if (this.options.useDefaultLimits) {
-        this.limit.remaining = parseInt(res.header['x-ratelimit-remaining'])
-        this.limit.reset = parseInt(res.header['x-ratelimit-reset']) * 1000
-      }
-
-      Promise.reject(err)
-      // return this.makeRequest(method, endpoint, params, options)
-    })
+    return response.data
   }
 }

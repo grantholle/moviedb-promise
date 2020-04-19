@@ -1,13 +1,10 @@
-import { MovieDbOptions, AuthenticationToken } from './types';
+import { AuthenticationToken } from './types';
 export declare class MovieDb {
     private apiKey;
     private token;
-    private limit;
-    private requestQueue;
-    private requestLimitTimeout;
-    options: MovieDbOptions;
+    baseUrl: string;
     sessionId: string;
-    constructor(apiKey: string, options?: MovieDbOptions);
+    constructor(apiKey: string, baseUrl?: string);
     /**
      * Gets an api token using an api key
      *
@@ -16,12 +13,19 @@ export declare class MovieDb {
     requestToken(): Promise<AuthenticationToken>;
     /**
      * Gets the session id
-     *
-     * @returns {Promise}
      */
     session(): Promise<string>;
-    private checkQueue;
-    private prepareEndpoint;
+    /**
+     * Compiles the endpoint based on the params
+     */
+    private getEndpoint;
+    /**
+     * Compiles the data/query data to send with the request
+     */
+    private getParams;
+    /**
+     * Performs the request to the server
+     */
     private makeRequest;
 }
 //# sourceMappingURL=moviedb.d.ts.map

@@ -3,6 +3,18 @@ export declare namespace authentication {
     export const session: string;
 }
 export declare namespace methods {
+    export const configuration: {
+        '': {
+            path: string;
+            verb: string;
+        };
+    };
+    export const find: {
+        '': {
+            path: string;
+            verb: string;
+        };
+    };
     export namespace search {
         export namespace Movie {
             export const path: string;
@@ -87,6 +99,12 @@ export declare namespace methods {
         }
         export { Tv_1 as Tv };
     }
+    export const trending: {
+        '': {
+            path: string;
+            verb: string;
+        };
+    };
     export namespace movie {
         export namespace Info_1 {
             const path_13: string;
