@@ -1,6 +1,6 @@
 import {
   HttpMethod,
-  EndpointNamespace,
+  EndpointGroup,
   Response,
   Request,
   RequestOptions,
@@ -9,7 +9,7 @@ import {
   PersonResult
 } from '../../types'
 
-const Find: EndpointNamespace = {
+const Find: EndpointGroup = {
   prefix: 'find',
   endpoints: [
     {

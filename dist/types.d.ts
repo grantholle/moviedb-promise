@@ -13,7 +13,7 @@ export interface Request {
     id: string | number;
     language?: string;
 }
-export interface EndpointNamespace {
+export interface EndpointGroup {
     readonly prefix: string;
     readonly endpoints: Array<Endpoint>;
 }

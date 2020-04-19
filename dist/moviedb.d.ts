@@ -1,4 +1,4 @@
-import { MovieDbOptions, HttpMethod, Response, AuthenticationToken, RequestOptions, RequestParams } from './types';
+import { MovieDbOptions, AuthenticationToken } from './types';
 export declare class MovieDb {
     private apiKey;
     private token;
@@ -20,8 +20,8 @@ export declare class MovieDb {
      * @returns {Promise}
      */
     session(): Promise<string>;
-    checkQueue(): Promise<(method: HttpMethod, endpoint: string, params?: string | RequestParams, options?: RequestOptions) => Promise<Response | AuthenticationToken>>;
+    private checkQueue;
     private prepareEndpoint;
-    makeRequest(method: HttpMethod, endpoint: string, params?: string | RequestParams, options?: RequestOptions): Promise<AuthenticationToken | Response>;
+    private makeRequest;
 }
 //# sourceMappingURL=moviedb.d.ts.map

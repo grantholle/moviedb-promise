@@ -1,5 +1,5 @@
-import { EndpointNamespace, Response, Request, RequestOptions, MovieResult, TvResult, PersonResult } from '../../types';
-declare const Find: EndpointNamespace;
+import { EndpointGroup, Response, Request, RequestOptions, MovieResult, TvResult, PersonResult } from '../../types';
+declare const Find: EndpointGroup;
 declare enum ExternalId {
     ImdbId = "imdb_id",
     Freebase_Id = "freebase_mid",

@@ -16,7 +16,7 @@ export interface Request {
   language?: string
 }
 
-export interface EndpointNamespace {
+export interface EndpointGroup {
   readonly prefix: string
   readonly endpoints: Array<Endpoint>
 }
