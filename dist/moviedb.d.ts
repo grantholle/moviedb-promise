@@ -20,6 +20,14 @@ export declare class MovieDb {
      */
     private getEndpoint;
     /**
+     * Normalizes a request into a RequestParams object
+     */
+    private normalizeParams;
+    /**
+     * Normalizes request options
+     */
+    private normalizeOptions;
+    /**
      * Compiles the data/query data to send with the request
      */
     private getParams;

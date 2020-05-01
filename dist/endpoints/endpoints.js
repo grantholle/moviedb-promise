@@ -1,449 +1,593 @@
-'use strict';
-module.exports = {
-    authentication: {
-        requestToken: 'authentication/token/new',
-        session: 'authentication/session/new'
-    },
-    methods: {
-        configuration: {
-            '': {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const types_1 = require("../types");
+const endpoints = [
+    {
+        prefix: 'configuration',
+        endpoints: [
+            {
                 path: 'configuration',
-                verb: 'get'
-            }
-        },
-        find: {
-            '': {
+                verb: types_1.HttpMethod.Get
+            },
+        ]
+    },
+    {
+        prefix: 'find',
+        endpoints: [
+            {
                 path: 'find/:id',
-                verb: 'get'
-            }
-        },
-        search: {
-            Movie: {
+                verb: types_1.HttpMethod.Get
+            },
+        ]
+    },
+    {
+        prefix: 'search',
+        endpoints: [
+            {
+                name: 'Movie',
                 path: 'search/movie',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Tv: {
+            {
+                name: 'Tv',
                 path: 'search/tv',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Multi: {
+            {
+                name: 'Multi',
                 path: 'search/multi',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Collection: {
+            {
+                name: 'Collection',
                 path: 'search/collection',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Person: {
+            {
+                name: 'Person',
                 path: 'search/person',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            List: {
+            {
+                name: 'List',
                 path: 'search/list',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Company: {
+            {
+                name: 'Company',
                 path: 'search/company',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Keyword: {
+            {
+                name: 'Keyword',
                 path: 'search/keyword',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             }
-        },
-        collection: {
-            Info: {
+        ]
+    },
+    {
+        prefix: 'collection',
+        endpoints: [
+            {
+                name: 'Info',
                 path: 'collection/:id',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Images: {
+            {
+                name: 'Images',
                 path: 'collection/:id/images',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Translations: {
+            {
+                name: 'Translations',
                 path: 'collection/:id/translations',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             }
-        },
-        discover: {
-            Movie: {
+        ]
+    },
+    {
+        prefix: 'discover',
+        endpoints: [
+            {
+                name: 'Movie',
                 path: 'discover/movie',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Tv: {
+            {
+                name: 'Tv',
                 path: 'discover/tv',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             }
-        },
-        trending: {
-            '': {
+        ]
+    },
+    {
+        prefix: 'trending',
+        endpoints: [
+            {
                 path: 'trending/:media_type/:time_window',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             }
-        },
-        movie: {
-            Info: {
+        ]
+    },
+    {
+        prefix: 'movie',
+        endpoints: [
+            {
+                name: 'Info',
                 path: 'movie/:id',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            AlternativeTitles: {
+            {
+                name: 'AlternativeTitles',
                 path: 'movie/:id/alternative_titles',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Credits: {
+            {
+                name: 'Credits',
                 path: 'movie/:id/credits',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            ExternalIds: {
+            {
+                name: 'ExternalIds',
                 path: '/movie/:id/external_ids',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Images: {
+            {
+                name: 'Images',
                 path: 'movie/:id/images',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Videos: {
+            {
+                name: 'Videos',
                 path: 'movie/:id/videos',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Keywords: {
+            {
+                name: 'Keywords',
                 path: 'movie/:id/keywords',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Recommendations: {
+            {
+                name: 'Recommendations',
                 path: 'movie/:id/recommendations',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Releases: {
+            {
+                name: 'Releases',
                 path: 'movie/:id/releases',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            ReleaseDates: {
+            {
+                name: 'ReleaseDates',
                 path: 'movie/:id/release_dates',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Trailers: {
+            {
+                name: 'Trailers',
                 path: 'movie/:id/trailers',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Translations: {
+            {
+                name: 'Translations',
                 path: 'movie/:id/translations',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Similar: {
+            {
+                name: 'Similar',
                 path: 'movie/:id/similar',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Reviews: {
+            {
+                name: 'Reviews',
                 path: 'movie/:id/reviews',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Lists: {
+            {
+                name: 'Lists',
                 path: 'movie/:id/lists',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Changes: {
+            {
+                name: 'Changes',
                 path: 'movie/:id/changes',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            RatingUpdate: {
+            {
+                name: 'RatingUpdate',
                 path: 'movie/:id/rating',
-                verb: 'post'
+                verb: types_1.HttpMethod.Post
             }
-        },
-        tv: {
-            Info: {
+        ]
+    },
+    {
+        prefix: 'tv',
+        endpoints: [
+            {
+                name: 'Info',
                 path: 'tv/:id',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            AlternativeTitles: {
+            {
+                name: 'AlternativeTitles',
                 path: 'tv/:id/alternative_titles',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            ContentRatings: {
+            {
+                name: 'ContentRatings',
                 path: 'tv/:id/content_ratings',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Credits: {
+            {
+                name: 'Credits',
                 path: 'tv/:id/credits',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            EpisodeGroups: {
+            {
+                name: 'EpisodeGroups',
                 path: 'tv/:id/episode_groups',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            ExternalIds: {
+            {
+                name: 'ExternalIds',
                 path: 'tv/:id/external_ids',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Images: {
+            {
+                name: 'Images',
                 path: 'tv/:id/images',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Keywords: {
+            {
+                name: 'Keywords',
                 path: 'tv/:id/keywords',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Videos: {
+            {
+                name: 'Videos',
                 path: 'tv/:id/videos',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            ScreenedTheatrically: {
+            {
+                name: 'ScreenedTheatrically',
                 path: 'tv/:id/screened_theatrically',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Reviews: {
+            {
+                name: 'Reviews',
                 path: 'tv/:id/reviews',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Similar: {
+            {
+                name: 'Similar',
                 path: 'tv/:id/similar',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Translations: {
+            {
+                name: 'Translations',
                 path: 'tv/:id/translations',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            SeasonInfo: {
+            {
+                name: 'SeasonInfo',
                 path: 'tv/:id/season/:season_number',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            SeasonCredits: {
+            {
+                name: 'SeasonCredits',
                 path: 'tv/:id/season/:season_number/credits',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            SeasonVideos: {
+            {
+                name: 'SeasonVideos',
                 path: 'tv/:id/season/:season_number/videos',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            SeasonExternalIds: {
+            {
+                name: 'SeasonExternalIds',
                 path: 'tv/:id/season/:season_number/external_ids',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            SeasonImages: {
+            {
+                name: 'SeasonImages',
                 path: 'tv/:id/season/:season_number/images',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            EpisodeInfo: {
+            {
+                name: 'EpisodeInfo',
                 path: 'tv/:id/season/:season_number/episode/:episode_number',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            EpisodeCredits: {
+            {
+                name: 'EpisodeCredits',
                 path: 'tv/:id/season/:season_number/episode/:episode_number/credits',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            EpisodeExternalIds: {
+            {
+                name: 'EpisodeExternalIds',
                 path: 'tv/:id/season/:season_number/episode/:episode_number/external_ids',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            EpisodeImages: {
+            {
+                name: 'EpisodeImages',
                 path: 'tv/:id/season/:season_number/episode/:episode_number/images',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            OnTheAir: {
+            {
+                name: 'OnTheAir',
                 path: 'tv/on_the_air',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            AiringToday: {
+            {
+                name: 'AiringToday',
                 path: 'tv/airing_today',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Recommendations: {
+            {
+                name: 'Recommendations',
                 path: 'tv/:id/recommendations',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Changes: {
+            {
+                name: 'Changes',
                 path: 'tv/:id/changes',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            RatingUpdate: {
+            {
+                name: 'RatingUpdate',
                 path: 'tv/:id/rating',
-                verb: 'post'
+                verb: types_1.HttpMethod.Post
             }
-        },
-        person: {
-            Info: {
+        ]
+    },
+    {
+        prefix: 'person',
+        endpoints: [
+            {
+                name: 'Info',
                 path: 'person/:id',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Changes: {
+            {
+                name: 'Changes',
                 path: 'person/:id/changes',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            MovieCredits: {
+            {
+                name: 'MovieCredits',
                 path: 'person/:id/movie_credits',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            TvCredits: {
+            {
+                name: 'TvCredits',
                 path: 'person/:id/tv_credits',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            CombinedCredits: {
+            {
+                name: 'CombinedCredits',
                 path: 'person/:id/combined_credits',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            ExternalIds: {
+            {
+                name: 'ExternalIds',
                 path: 'person/:id/external_ids',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Images: {
+            {
+                name: 'Images',
                 path: 'person/:id/images',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            TaggedImages: {
+            {
+                name: 'TaggedImages',
                 path: 'person/:id/tagged_images',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Translations: {
+            {
+                name: 'Translations',
                 path: 'person/:id/translations',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Latest: {
+            {
+                name: 'Latest',
                 path: 'person/latest',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Popular: {
+            {
+                name: 'Popular',
                 path: 'person/popular',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             }
-        },
-        credit: {
-            Info: {
+        ]
+    },
+    {
+        prefix: 'credit',
+        endpoints: [
+            {
+                name: 'Info',
                 path: 'credit/:id',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             }
-        },
-        list: {
-            Info: {
+        ]
+    },
+    {
+        prefix: 'list',
+        endpoints: [
+            {
+                name: 'Info',
                 path: 'list/:id',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             }
-        },
-        genre: {
-            MovieList: {
+        ]
+    },
+    {
+        prefix: 'genre',
+        endpoints: [
+            {
+                name: 'MovieList',
                 path: 'genre/movie/list',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            TvList: {
+            {
+                name: 'TvList',
                 path: 'genre/tv/list',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             }
-        },
-        keyword: {
-            Info: {
+        ]
+    },
+    {
+        prefix: 'keyword',
+        endpoints: [
+            {
+                name: 'Info',
                 path: 'keyword/:id',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Movies: {
+            {
+                name: 'Movies',
                 path: 'keyword/:id/movies',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             }
-        },
-        company: {
-            Info: {
+        ]
+    },
+    {
+        prefix: 'company',
+        endpoints: [
+            {
+                name: 'Info',
                 path: 'company/:id',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            AlternativeNames: {
+            {
+                name: 'AlternativeNames',
                 path: 'company/:id/alternative_names',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Images: {
+            {
+                name: 'Images',
                 path: 'company/:id/images',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             }
-        },
-        account: {
-            Info: {
+        ]
+    },
+    {
+        prefix: 'account',
+        endpoints: [
+            {
+                name: 'Info',
                 path: 'account',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            Lists: {
+            {
+                name: 'Lists',
                 path: 'account/:id/lists',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            FavoriteMovies: {
+            {
+                name: 'FavoriteMovies',
                 path: 'account/:id/favorite/movies',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            FavoriteUpdate: {
+            {
+                name: 'FavoriteUpdate',
                 path: 'account/:id/favorite',
-                verb: 'post'
+                verb: types_1.HttpMethod.Post
             },
-            RatedMovies: {
+            {
+                name: 'RatedMovies',
                 path: 'account/:id/rated/movies',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            MovieWatchlist: {
+            {
+                name: 'MovieWatchlist',
                 path: 'account/:id/watchlist/movies',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            TvWatchlist: {
+            {
+                name: 'TvWatchlist',
                 path: 'account/:id/watchlist/tv',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            WatchlistUpdate: {
+            {
+                name: 'WatchlistUpdate',
                 path: 'account/:id/watchlist',
-                verb: 'post'
+                verb: types_1.HttpMethod.Post
             },
-            RatedTv: {
+            {
+                name: 'RatedTv',
                 path: 'account/:id/rated/tv',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            RatedTvEpisodes: {
+            {
+                name: 'RatedTvEpisodes',
                 path: 'account/:id/rated/tv/episodes',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            FavoriteTv: {
+            {
+                name: 'FavoriteTv',
                 path: 'account/:id/favorite/tv',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             }
-        },
-        misc: {
-            LatestMovies: {
+        ]
+    },
+    {
+        prefix: 'misc',
+        endpoints: [
+            {
+                name: 'LatestMovies',
                 path: 'movie/latest',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            NowPlayingMovies: {
+            {
+                name: 'NowPlayingMovies',
                 path: 'movie/now_playing',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            PopularMovies: {
+            {
+                name: 'PopularMovies',
                 path: 'movie/popular',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            TopRatedMovies: {
+            {
+                name: 'TopRatedMovies',
                 path: 'movie/top_rated',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            UpcomingMovies: {
+            {
+                name: 'UpcomingMovies',
                 path: 'movie/upcoming',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            ChangedMovies: {
+            {
+                name: 'ChangedMovies',
                 path: 'movie/changes',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            ChangedTvs: {
+            {
+                name: 'ChangedTvs',
                 path: 'tv/changes',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            ChangedPeople: {
+            {
+                name: 'ChangedPeople',
                 path: 'person/changes',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            LatestTvs: {
+            {
+                name: 'LatestTvs',
                 path: 'tv/latest',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            PopularTvs: {
+            {
+                name: 'PopularTvs',
                 path: 'tv/popular',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             },
-            TopRatedTvs: {
+            {
+                name: 'TopRatedTvs',
                 path: 'tv/top_rated',
-                verb: 'get'
+                verb: types_1.HttpMethod.Get
             }
-        }
+        ]
     }
-};
+];
+exports.default = endpoints;

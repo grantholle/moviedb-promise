@@ -10,7 +10,7 @@ for (const group of endpointGroups) {
 
     MovieDb.prototype[method] = async function (
       params: string|number|RequestParams = {},
-      options: RequestOptions = {}
+      options: string|RequestOptions = {}
     ) {
       return this.makeRequest(endpoint.verb, endpoint.path, params, options)
     }

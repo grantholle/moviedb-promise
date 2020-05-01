@@ -1,11 +1,14 @@
 'use strict'
 
 /* global describe it */
+require('dotenv').config()
 const assert = require('chai').assert
 const apiKey = process.env.MOVIEDB_API_KEY || process.env.npm_config_key
-const MovieDb = require('../index.js')
+const { MovieDb } = require('../dist')
+const endpointGroups = require('../dist/endpoints/endpoints').default
 
 // Include --sesion='{your session id}' to test the watchlist
+// or `MOVIEDB_SESSION_ID` in a .env
 const sessionId = process.env.MOVIEDB_SESSION_ID || process.env.npm_config_session
 
 const haveValidGenericResponse = res => {
@@ -32,8 +35,19 @@ if (!apiKey || apiKey.length === 0) {
 
 const api = new MovieDb(apiKey)
 
-describe('moviedb', function () {
+describe('moviedb-promise', function () {
   this.timeout(30000)
+
+  it('should have all the dynamic functions on the object', async () => {
+    for (const group of endpointGroups) {
+      for (const endpoint of group.endpoints) {
+        const method = group.prefix + (endpoint.name || '')
+
+        const func = typeof api[method]
+        func.should.equal('function')
+      }
+    }
+  })
 
   // basic movie search
   it('should search for Zoolander', async () => {
@@ -71,8 +85,8 @@ describe('moviedb', function () {
     res.should.have.property('season/1/credits')
   })
 
-  it(`specify append_to_response as option`, async () => {
-    const res = await api.tvInfo(4629, { append_to_response: 'season/1,season/1/credits' })
+  it(`specify appendToResponse as option`, async () => {
+    const res = await api.tvInfo(4629, { appendToResponse: 'season/1,season/1/credits' })
     res.should.be.an('object')
     res.should.have.property('name')
     res.should.have.property('season/1')
@@ -81,18 +95,22 @@ describe('moviedb', function () {
 
   it(`specify all options with a short response (1ms) to force timeout`, async () => {
     try {
-      await api.tvInfo(4629, { append_to_response: 'season/1,season/1/credits', timeout: { response: 1, deadline: 2 } })
+      await api.tvInfo(4629, { appendToResponse: 'season/1,season/1/credits', timeout: 1 })
     } catch (error) {
-      if (error.timeout) return
+      if (error.message.includes('timeout of 1ms exceeded')) {
+        return
+      }
     }
     throw new Error('Should have thrown timeout error')
   })
 
   it(`specify only timeout option`, async () => {
     try {
-      await api.tvInfo(4629, { timeout: { response: 1, deadline: 2 } })
+      await api.tvInfo(4629, { timeout: 1 })
     } catch (error) {
-      if (error.timeout) return
+      if (error.message.includes('timeout of 1ms exceeded')) {
+        return
+      }
     }
     throw new Error('Should have thrown timeout error')
   })
@@ -105,33 +123,4 @@ describe('moviedb', function () {
       haveValidGenericResponse(res)
     })
   }
-
-  it('should only request one token', async () => {
-    const customApi = new MovieDb(apiKey, false)
-
-    // request multiple tokens at the same time
-    let promises = new Array(10).fill(0).map(e => customApi.requestToken())
-    promises = await Promise.all(promises)
-
-    promises.map(promise => promise.should.have.property('request_token', promises[0].request_token))
-  })
-
-  it('should not get a rate limit error when a lot of requests are made within 10 seconds with rate limiting', async () => {
-    const requests = 50
-
-    const customApi = new MovieDb(apiKey, true)
-
-    // Requests need to be fired asynchronously
-    let promises = new Array(requests).fill(0).map(customApi.discoverMovie)
-    promises = await Promise.all(promises)
-    promises.forEach(haveValidGenericResponse)
-  })
-
-  it('should not get a rate limit error without using rate limiting', async () => {
-    const requests = 50
-
-    let promises = new Array(requests).fill(null).map(api.discoverMovie)
-    promises = await Promise.all(promises)
-    promises.forEach(haveValidGenericResponse)
-  })
 })
