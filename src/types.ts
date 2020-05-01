@@ -11,15 +11,15 @@ export interface Endpoint {
   readonly name?: string
 }
 
+export interface EndpointGroup {
+  readonly prefix: string
+  readonly endpoints: Array<Endpoint>
+}
+
 export interface Request {
   id?: string|number
   language?: string
   request_token?: string
-}
-
-export interface EndpointGroup {
-  readonly prefix: string
-  readonly endpoints: Array<Endpoint>
 }
 
 export interface Response {}
