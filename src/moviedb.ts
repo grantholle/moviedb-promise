@@ -8,7 +8,6 @@ import {
 } from 'lodash'
 import {
   HttpMethod,
-  Response,
   AuthenticationToken,
   RequestOptions,
   RequestParams,
@@ -22,7 +21,10 @@ export class MovieDb {
   public baseUrl: string
   public sessionId: string
 
-  constructor (apiKey: string, baseUrl: string = 'https://api.themoviedb.org/3/') {
+  constructor (
+    apiKey: string,
+    baseUrl: string = 'https://api.themoviedb.org/3/'
+  ) {
     this.apiKey = apiKey
     this.baseUrl = baseUrl
   }
@@ -43,7 +45,7 @@ export class MovieDb {
   /**
    * Gets the session id
    */
-  async session (): Promise<string> {
+  async retrieveSession (): Promise<string> {
     const token = await this.requestToken()
     const request: SessionRequestParams = {
       request_token: token.request_token
@@ -64,19 +66,21 @@ export class MovieDb {
   private getEndpoint (endpoint: string, params: RequestParams = {}): string {
     // Check params to see if params an object
     // and if there is only one parameter in the endpoint
-    if (isString(params) && (endpoint.match(/:/g) || []).length === 1) {
-      endpoint = endpoint.replace(/:[a-z]*/gi, params)
+    if (!isObject(params) && (endpoint.match(/:/g) || []).length === 1) {
+      return endpoint.replace(/:[a-z]*/gi, params)
     }
 
     // Iterate the keys of params and replace the endpoint sections
     if (isObject(params) && !isEmpty(params)) {
-      endpoint = Object.keys(params).reduce((compiled, key) => {
+      return Object.keys(params).reduce((compiled, key) => {
         return compiled.replace(`:${key}`, params[key])
       }, endpoint)
     }
 
+    // If it is a string at this point
+    // assume it's a raw query string
     if (isString(params)) {
-      endpoint += (params.startsWith('?') ? '' : '?') + params
+      return endpoint + (params.startsWith('?') ? '' : '?') + params
     }
 
     return endpoint
@@ -121,7 +125,7 @@ export class MovieDb {
     endpoint: string,
     params: string|RequestParams = {},
     options: RequestOptions = {}
-  ): Promise<Response> {
+  ): Promise<any> {
     const query = this.getParams(endpoint, params, options)
 
     const request = {
