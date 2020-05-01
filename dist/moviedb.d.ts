@@ -14,7 +14,7 @@ export declare class MovieDb {
     /**
      * Gets the session id
      */
-    session(): Promise<string>;
+    retrieveSession(): Promise<string>;
     /**
      * Compiles the endpoint based on the params
      */
