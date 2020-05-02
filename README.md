@@ -167,6 +167,7 @@ moviedb.searchMovie(parameters).then(...)
 | collectionTranslations  | collection/:id/translations                                       |
 | discoverMovie           | discover/movie                                                    |
 | discoverTv              | discover/tv                                                       |
+| trending                | trending/:media_type/:time_window                                 |
 | movieInfo               | movie/:id                                                         |
 | movieAlternativeTitles  | movie/:id/alternative_titles                                      |
 | movieCredits            | movie/:id/credits                                                 |
