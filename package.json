@@ -1,11 +1,13 @@
 {
   "name": "moviedb-promise",
   "description": "A library for interacting with themoviedb.org API using Promises",
-  "version": "1.5.0",
+  "version": "2.0.0",
   "scripts": {
-    "test": "./node_modules/.bin/mocha --reporter spec",
+    "test": "./node_modules/.bin/mocha ./tests/*.js --reporter spec",
     "lint": "./node_modules/.bin/standard",
-    "table": "node tools/method-table"
+    "table": "node tools/method-table",
+    "types": "node tools/type-definitions",
+    "build": "rm -rf ./dist && ./node_modules/.bin/tsc"
   },
   "repository": {
     "type": "git",
@@ -22,7 +24,7 @@
     "url": "https://github.com/grantholle/moviedb-promise/issues"
   },
   "homepage": "https://github.com/grantholle/moviedb-promise#readme",
-  "main": "index.js",
+  "main": "dist/index.js",
   "author": "Grant Holle <https://github.com/grantholle>",
   "contributors": [
     "Irwing Reza <irwing85@gmail.com> (http://irwingreza.com/)",
@@ -35,14 +37,18 @@
     "Valentin Mocanu <mr_vali@yahoo.ro> (http://rontavstudio.com)",
     "Shaun Lim (http://github.com/ShaunLWM)"
   ],
-  "dependencies": {
-    "superagent": "^3.8.3"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "@types/lodash": "^4.14.149",
+    "@types/node": "^13.11.1",
+    "axios": "^0.19.2",
     "chai": "^3.5.0",
     "colors": "^1.3.0",
+    "dotenv": "^8.2.0",
+    "lodash": "^4.17.15",
     "markdown-table": "^1.1.2",
     "mocha": "^5.2.0",
-    "standard": "^10.0.3"
+    "standard": "^10.0.3",
+    "typescript": "^3.8.3"
   }
 }

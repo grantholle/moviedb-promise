@@ -2,11 +2,20 @@
 
 [![npm](https://img.shields.io/npm/dw/moviedb-promise.svg?style=for-the-badge)](https://www.npmjs.com/package/moviedb-promise)
 
-A Node library that makes the interaction with themoviedb.org V3 API easy.
+A Node library that makes the interaction with themoviedb.org V3 API easy... Now in TypeScript!
 
 This was originally a pull request that went stale, so it's its own package now. The original package developed by [Dan Zajdband](https://github.com/impronunciable) uses callbacks to handle the asynchronous nature of Node, while this package uses native Promises.
 
 The main credit goes to the [original `moviedb` package](https://github.com/impronunciable/moviedb) by Dan Zajdband.
+
+## Changelog for v2
+
+- Source has been ported to TypeScript.
+- [Rate limiting was removed by tmdb](https://github.com/grantholle/moviedb-promise/issues/23). The functionality had remained, but has since been removed in v2. If you wish to add it back, you're welcome to open a PR to discuss its need.
+- The `MovieDb` class has been moved to be a property of the package export. You will need to reference the `MovieDb` property of the export in order to instantiate the class. See usage below for an example.
+- The constructor has been changed to accept only two parameters: an api key and the base url for tmdb.
+- The `session()` function has been renamed to `retrieveSession()`
+- Requests were previously made using [superagent](https://www.npmjs.com/package/superagent) as it was used by the [original `moviedb` package](https://github.com/impronunciable/moviedb). It has been replaced with [axios](https://www.npmjs.com/package/axios) now.
 
 ## Integrations
 
@@ -20,10 +29,10 @@ npm install moviedb-promise --save
 
 ## Usage
 
-Require the module and instantiate the class with your themoviedb.org API KEY.
+Require the module and instantiate the class with your themoviedb.org api key.
 
 ```js
-const MovieDb = require('moviedb-promise')
+const { MovieDb } = require('moviedb-promise')
 const moviedb = new MovieDb('your api key')
 ```
 
@@ -90,7 +99,7 @@ moviedb.requestToken().then(token => {
 }).catch(console.error)
 
 // After that has been authorized, you can get the session id
-moviedb.session().then(sessionId => {
+moviedb.retrieveSession().then(sessionId => {
   // Probably cache this id somewhere to avoid this workflow
   console.log(sessionId)
 
@@ -104,17 +113,6 @@ moviedb.session().then(sessionId => {
   }).catch(console.error)
 }).catch(console.error)
 ```
-
-## Advanced use
-
-The MovieDB constructor accepts 3 parameters:
-
-```js
-const MovieDb = require('moviedb-promise')
-const moviedb = new MovieDb(apiKey, useDefaultLimits, baseURL)
-```
-
-If you want to implement use a request rate limiter, you can set `useDefaultLimits` to `true` when creating the moviedb instance.
 
 ## Available methods
 
@@ -295,7 +293,11 @@ First, thanks for taking the time!
 
 Second, before submitting a pull request, make sure to run `npm run test` to make sure the tests pass and `npm run lint` to fix any code style errors.
 
-If you make any endpoint changes, you can run `npm run table` to generate the markdown table for the readme.
+If you make any endpoint changes, please run `npm run types` to generate the definitions for the dynamic methods, then you can run `npm run table` to generate the markdown table for the readme.
+
+### Something to Consider
+
+I would like to add the types for each function's return value. You can see an example in the `src/endpoints/methods/configuration.ts` file. Since all the documentation has the type information, it's just a matter of copying, pasting and formatting. A lot of work but thing it would add a lot of use to the package.
 
 ## License
 

@@ -1,36 +1,28 @@
-const endpoints = require('../lib/endpoints')
+const endpointGroups = require('../dist/endpoints/endpoints').default
 const fs = require('fs')
 const output = [
-  '// Type definitions for MovieDb',
-  '// Project: moviedb-promise',
-  '// Definitions by: Grant Holle <grantholle.com>',
+  `import { RequestParams, RequestOptions } from './types'`,
   '',
-  `const MovieDb = require('./index')`,
-  '',
-  'export = MovieDb',
-  '',
-  'declare class MovieDb {',
-  `  constructor (apiKey: string, useDefaultLimits: boolean = false, baseUrl: string = 'https://api.themoviedb.org/3/')`
+  '// Module augmentation',
+  `declare module './moviedb' {`,
+  `  interface MovieDb {`
 ]
 
-Object.keys(endpoints.methods).forEach(e => {
-  const method = endpoints.methods[e]
+// Create the typings dynamically
+for (const group of endpointGroups) {
+  for (const endpoint of group.endpoints) {
+    const method = group.prefix + (endpoint.name || '')
 
-  Object.keys(method).forEach(r => {
-    output.push(`  ${e + r} (params: any, options?: any): Promise<any>`)
-  })
-})
+    output.push(`    ${method}(params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any>`)
+  }
+}
 
-Object.keys(endpoints.authentication).forEach(e => {
-  output.push(`  ${e} (): Promise<string>`)
-})
-
-output.push(`}`, '')
+output.push(`  }`, `}`, '')
 
 // Write the type file
-fs.writeFile('../index.d.ts', output.join('\n'), { encoding: 'UTF8' }, err => {
+fs.writeFile('./src/moviedb-interface.ts', output.join('\n'), { encoding: 'UTF8' }, err => {
   if (err) {
-    console.error(err)
+    return console.error(err)
   }
 
   console.log('Finished!')
