@@ -1,6 +1,5 @@
 import axios, { AxiosResponse } from 'axios'
 import {
-  isEmpty,
   isObject,
   isString,
   merge,
