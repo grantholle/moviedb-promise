@@ -7,7 +7,7 @@
     "lint": "./node_modules/.bin/standard",
     "table": "node tools/method-table",
     "types": "node tools/type-definitions",
-    "build": "./node_modules/.bin/tsc"
+    "build": "rm -rf ./dist && ./node_modules/.bin/tsc"
   },
   "repository": {
     "type": "git",
