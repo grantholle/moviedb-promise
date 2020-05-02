@@ -6,6 +6,7 @@
     "test": "./node_modules/.bin/mocha ./tests/*.js --reporter spec",
     "lint": "./node_modules/.bin/standard",
     "table": "node tools/method-table",
+    "types": "node tools/type-definitions",
     "build": "./node_modules/.bin/tsc"
   },
   "repository": {

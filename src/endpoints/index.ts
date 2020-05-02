@@ -2,7 +2,6 @@ import { MovieDb } from '../moviedb'
 import { RequestParams, RequestOptions } from '../types'
 import endpointGroups from './endpoints'
 
-
 // Create the dynamic api methods
 for (const group of endpointGroups) {
   for (const endpoint of group.endpoints) {
