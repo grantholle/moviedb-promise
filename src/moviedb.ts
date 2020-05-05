@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios'
+import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
 import {
   isObject,
   isString,
@@ -151,7 +151,7 @@ export class MovieDb {
     // Prepare the query
     const query = omit(fullQuery, omittedProps)
 
-    const request = {
+    const request: AxiosRequestConfig = {
       method,
       url: this.baseUrl + this.getEndpoint(endpoint, fullQuery),
       ...(method === HttpMethod.Get && { params: query }),
