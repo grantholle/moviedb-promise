@@ -1,9 +1,9 @@
 {
   "name": "moviedb-promise",
   "description": "A library for interacting with themoviedb.org API using Promises",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "scripts": {
-    "test": "./node_modules/.bin/mocha ./tests/*.js --reporter spec",
+    "test": "npm run build && ./node_modules/.bin/mocha ./tests/*.js --reporter spec",
     "lint": "./node_modules/.bin/standard",
     "table": "node tools/method-table",
     "types": "node tools/type-definitions",

@@ -7,7 +7,7 @@ for (const group of endpointGroups) {
   for (const endpoint of group.endpoints) {
     const method = group.prefix + (endpoint.name || '')
 
-    MovieDb.prototype[method] = async function (
+    MovieDb.prototype[method] = function (
       params: string|number|RequestParams = {},
       options: string|RequestOptions = {}
     ) {

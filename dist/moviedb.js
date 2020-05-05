@@ -8,6 +8,8 @@ const lodash_1 = require("lodash");
 const types_1 = require("./types");
 class MovieDb {
     constructor(apiKey, baseUrl = 'https://api.themoviedb.org/3/') {
+        this.requests = [];
+        this.requesting = false;
         this.apiKey = apiKey;
         this.baseUrl = baseUrl;
     }
@@ -33,6 +35,26 @@ class MovieDb {
         const res = await this.makeRequest(types_1.HttpMethod.Get, 'authentication/session/new', request);
         this.sessionId = res.session_id;
         return this.sessionId;
+    }
+    /**
+     * Processes the next request in the request queue
+     */
+    dequeue() {
+        if (this.requesting) {
+            return;
+        }
+        const request = this.requests.shift();
+        if (!request) {
+            return;
+        }
+        this.requesting = true;
+        request.promiseGenerator()
+            .then(request.resolve)
+            .catch(request.reject)
+            .finally(() => {
+            this.requesting = false;
+            this.dequeue();
+        });
     }
     /**
      * Compiles the endpoint based on the params
@@ -88,7 +110,7 @@ class MovieDb {
     /**
      * Performs the request to the server
      */
-    async makeRequest(method, endpoint, params = {}, options = {}) {
+    makeRequest(method, endpoint, params = {}, options = {}) {
         const normalizedParams = this.normalizeParams(endpoint, params);
         const normalizedOptions = this.normalizeOptions(options);
         // Get the full query/data object
@@ -106,8 +128,15 @@ class MovieDb {
             ...(method !== types_1.HttpMethod.Get && { data: query }),
             ...(normalizedOptions.timeout && { timeout: normalizedOptions.timeout })
         };
-        const response = await axios_1.default.request(request);
-        return response.data;
+        // Push the request to the queue
+        return new Promise((resolve, reject) => {
+            this.requests.push({
+                promiseGenerator: () => axios_1.default.request(request).then(res => res.data),
+                resolve,
+                reject
+            });
+            this.dequeue();
+        });
     }
 }
 exports.MovieDb = MovieDb;

@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios'
+import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
 import {
   isObject,
   isString,
@@ -12,11 +12,14 @@ import {
   RequestParams,
   SessionRequestParams,
   SessionResponse,
+  QueueItem,
 } from './types'
 
 export class MovieDb {
   private apiKey: string
   private token: AuthenticationToken
+  private requests: Array<QueueItem> = []
+  private requesting: boolean = false
   public baseUrl: string
   public sessionId: string
 
@@ -57,6 +60,31 @@ export class MovieDb {
     this.sessionId = res.session_id
 
     return this.sessionId
+  }
+
+  /**
+   * Processes the next request in the request queue
+   */
+  private dequeue (): void {
+    if (this.requesting) {
+      return
+    }
+
+    const request = this.requests.shift()
+
+    if (!request) {
+      return
+    }
+
+    this.requesting = true
+
+    request.promiseGenerator()
+      .then(request.resolve)
+      .catch(request.reject)
+      .finally(() => {
+        this.requesting = false
+        this.dequeue()
+      })
   }
 
   /**
@@ -131,7 +159,7 @@ export class MovieDb {
   /**
    * Performs the request to the server
    */
-  private async makeRequest (
+  private makeRequest (
     method: HttpMethod,
     endpoint: string,
     params: string|number|RequestParams = {},
@@ -151,7 +179,7 @@ export class MovieDb {
     // Prepare the query
     const query = omit(fullQuery, omittedProps)
 
-    const request = {
+    const request: AxiosRequestConfig = {
       method,
       url: this.baseUrl + this.getEndpoint(endpoint, fullQuery),
       ...(method === HttpMethod.Get && { params: query }),
@@ -159,8 +187,15 @@ export class MovieDb {
       ...(normalizedOptions.timeout && { timeout: normalizedOptions.timeout })
     }
 
-    const response: AxiosResponse = await axios.request(request)
+    // Push the request to the queue
+    return new Promise((resolve, reject) => {
+      this.requests.push({
+        promiseGenerator: () => axios.request(request).then(res => res.data),
+        resolve,
+        reject
+      })
 
-    return response.data
+      this.dequeue()
+    })
   }
 }
