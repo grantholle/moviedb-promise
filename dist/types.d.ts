@@ -35,6 +35,11 @@ export interface SessionRequestParams extends RequestParams {
 export interface SessionResponse extends Response {
     session_id?: string;
 }
+export interface QueueItem {
+    promiseGenerator: Function;
+    resolve: Function;
+    reject: Function;
+}
 export interface RequestOptions {
     appendToResponse?: string;
     timeout?: number;
