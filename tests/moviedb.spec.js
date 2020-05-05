@@ -33,10 +33,10 @@ if (!apiKey || apiKey.length === 0) {
   throw new Error('Missing API key, please run `npm test --key="{your api key}"`')
 }
 
-const api = new MovieDb(apiKey)
 
 describe('moviedb-promise', function () {
-  this.timeout(30000)
+  this.timeout(1200000)
+  let api = new MovieDb(apiKey)
 
   it('should have all the dynamic functions on the object', async () => {
     for (const group of endpointGroups) {
@@ -112,6 +112,7 @@ describe('moviedb-promise', function () {
         return
       }
     }
+
     throw new Error('Should have thrown timeout error')
   })
 
@@ -123,4 +124,17 @@ describe('moviedb-promise', function () {
       haveValidGenericResponse(res)
     })
   }
+
+  it(`should not receive an ECONNRESET error from axios`, () => {
+    const promises = []
+
+    for (let i = 0; i < 30; i++) {
+      promises.push(api.trending({
+        media_type: 'all',
+        time_window: 'week',
+      }))
+    }
+
+    return Promise.all(promises)
+  })
 })
