@@ -1,7 +1,7 @@
 {
   "name": "moviedb-promise",
   "description": "A library for interacting with themoviedb.org API using Promises",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "scripts": {
     "test": "npm run build && ./node_modules/.bin/mocha ./tests/*.js --reporter spec",
     "lint": "./node_modules/.bin/standard",
@@ -38,11 +38,12 @@
     "Valentin Mocanu <mr_vali@yahoo.ro> (http://rontavstudio.com)",
     "Shaun Lim (http://github.com/ShaunLWM)"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "axios": "^0.19.2"
+  },
   "devDependencies": {
     "@types/lodash": "^4.14.149",
     "@types/node": "^13.11.1",
-    "axios": "^0.19.2",
     "chai": "^3.5.0",
     "colors": "^1.3.0",
     "dotenv": "^8.2.0",
