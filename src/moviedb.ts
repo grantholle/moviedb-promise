@@ -204,7 +204,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'configuration', null, options)
   }
 
-  find (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  find (params?: string|number|types.FindRequest, options?: string|RequestOptions): Promise<types.FindResponse> {
     return this.makeRequest(HttpMethod.Get, 'find/:id', params, options)
   }
 

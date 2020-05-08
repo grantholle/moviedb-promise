@@ -43,7 +43,7 @@ export declare class MovieDb {
      */
     private makeRequest;
     configuration(options?: string | RequestOptions): Promise<types.ConfigurationResponse>;
-    find(params?: string | number | RequestParams, options?: string | RequestOptions): Promise<any>;
+    find(params?: string | number | types.FindRequest, options?: string | RequestOptions): Promise<types.FindResponse>;
     searchMovie(params?: string | number | RequestParams, options?: string | RequestOptions): Promise<any>;
     searchTv(params?: string | number | RequestParams, options?: string | RequestOptions): Promise<any>;
     searchMulti(params?: string | number | RequestParams, options?: string | RequestOptions): Promise<any>;

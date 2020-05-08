@@ -81,8 +81,21 @@ export interface ConfigurationResponse extends Response {
   }
 }
 
+export enum ExternalSource {
+  ImdbId = 'imdb_id',
+  FreebaseMid = 'freebase_mid',
+  FreebaseId = 'freebase_id',
+  TvdbId = 'tvdb_id',
+  TvrageId = 'tvrage_id',
+  FacebookId = 'facebook_id',
+  TwitterId = 'twitter_id',
+  InstagramId = 'instagram_id',
+}
+
 export interface FindRequest extends Request {
   external_id: ExternalId
+  language?: string
+  external_source?: 'imdb_id'|'freebase_mid'|'freebase_id'|'tvdb_id'|'tvrage_id'|'facebook_id'|'twitter_id'|'instagram_id'
 }
 
 export interface FindResponse extends Response {
