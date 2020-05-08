@@ -165,6 +165,7 @@ class MovieDb {
     searchTv(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'search/tv', params, options);
     }
+    // Doesn't exist in documentation, may be deprecated
     searchList(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'search/list', params, options);
     }

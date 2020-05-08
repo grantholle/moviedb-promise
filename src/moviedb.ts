@@ -236,6 +236,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'search/tv', params, options)
   }
 
+  // Doesn't exist in documentation, may be deprecated
   searchList (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
     return this.makeRequest(HttpMethod.Get, 'search/list', params, options)
   }
