@@ -200,8 +200,8 @@ export class MovieDb {
     })
   }
 
-  configuration (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Get, 'configuration', params, options)
+  configuration (options?: string|RequestOptions): Promise<types.ConfigurationResponse> {
+    return this.makeRequest(HttpMethod.Get, 'configuration', null, options)
   }
 
   find (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {

@@ -1,4 +1,5 @@
 import { AuthenticationToken, RequestOptions, RequestParams } from './types';
+import * as types from './request-types';
 export declare class MovieDb {
     private apiKey;
     private token;
@@ -41,7 +42,7 @@ export declare class MovieDb {
      * Performs the request to the server
      */
     private makeRequest;
-    configuration(params?: string | number | RequestParams, options?: string | RequestOptions): Promise<any>;
+    configuration(options?: string | RequestOptions): Promise<types.ConfigurationResponse>;
     find(params?: string | number | RequestParams, options?: string | RequestOptions): Promise<any>;
     searchMovie(params?: string | number | RequestParams, options?: string | RequestOptions): Promise<any>;
     searchTv(params?: string | number | RequestParams, options?: string | RequestOptions): Promise<any>;

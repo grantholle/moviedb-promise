@@ -138,8 +138,8 @@ class MovieDb {
             this.dequeue();
         });
     }
-    configuration(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'configuration', params, options);
+    configuration(options) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'configuration', null, options);
     }
     find(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'find/:id', params, options);
