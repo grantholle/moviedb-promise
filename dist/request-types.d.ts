@@ -124,4 +124,13 @@ export interface SearchKeywordResponse extends SearchResponse {
         name?: string;
     }>;
 }
+export interface SearchMovieRequest extends SearchRequest {
+    include_adult?: boolean;
+    region?: string;
+    year?: number;
+    primary_release_year?: number;
+}
+export interface SearchMovieResponse extends SearchResponse {
+    results?: Array<MovieResult>;
+}
 //# sourceMappingURL=request-types.d.ts.map

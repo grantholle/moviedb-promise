@@ -216,7 +216,11 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'search/collection', params, options)
   }
 
-  searchMovie (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  searchKeyword (params: types.SearchRequest, options?: string|RequestOptions): Promise<types.SearchKeywordResponse> {
+    return this.makeRequest(HttpMethod.Get, 'search/keyword', params, options)
+  }
+
+  searchMovie (params: types.SearchMovieRequest, options?: string|RequestOptions): Promise<types.SearchMovieResponse> {
     return this.makeRequest(HttpMethod.Get, 'search/movie', params, options)
   }
 
@@ -236,9 +240,6 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'search/list', params, options)
   }
 
-  searchKeyword (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Get, 'search/keyword', params, options)
-  }
 
   collectionInfo (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
     return this.makeRequest(HttpMethod.Get, 'collection/:id', params, options)

@@ -150,6 +150,9 @@ class MovieDb {
     searchCollection(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'search/collection', params, options);
     }
+    searchKeyword(params, options) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'search/keyword', params, options);
+    }
     searchMovie(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'search/movie', params, options);
     }
@@ -164,9 +167,6 @@ class MovieDb {
     }
     searchList(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'search/list', params, options);
-    }
-    searchKeyword(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'search/keyword', params, options);
     }
     collectionInfo(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'collection/:id', params, options);
