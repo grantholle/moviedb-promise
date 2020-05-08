@@ -82,7 +82,7 @@ export declare enum ExternalSource {
     InstagramId = "instagram_id"
 }
 export interface FindRequest extends Request {
-    external_id: ExternalId;
+    id: ExternalId;
     language?: string;
     external_source?: 'imdb_id' | 'freebase_mid' | 'freebase_id' | 'tvdb_id' | 'tvrage_id' | 'facebook_id' | 'twitter_id' | 'instagram_id';
 }
@@ -144,6 +144,13 @@ export interface SearchPersonResponse extends SearchResponse {
     results?: Array<PersonResult>;
 }
 export interface SearchTvRequest extends SearchRequest {
+    include_adult?: boolean;
+    first_air_date_year?: number;
+}
+export interface SearchTvResponse extends SearchResponse {
+    results?: Array<TvResult>;
+}
+export interface SearchTvRequest extends RequestParams {
     include_adult?: boolean;
     first_air_date_year?: number;
 }
