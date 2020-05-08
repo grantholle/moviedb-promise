@@ -224,12 +224,12 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'search/movie', params, options)
   }
 
-  searchTv (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Get, 'search/tv', params, options)
+  searchMulti (params: types.SearchMultiRequest, options?: string|RequestOptions): Promise<types.SearchMultiResponse> {
+    return this.makeRequest(HttpMethod.Get, 'search/multi', params, options)
   }
 
-  searchMulti (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Get, 'search/multi', params, options)
+  searchTv (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'search/tv', params, options)
   }
 
   searchPerson (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
@@ -239,7 +239,6 @@ export class MovieDb {
   searchList (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
     return this.makeRequest(HttpMethod.Get, 'search/list', params, options)
   }
-
 
   collectionInfo (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
     return this.makeRequest(HttpMethod.Get, 'collection/:id', params, options)

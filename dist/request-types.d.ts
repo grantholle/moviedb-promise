@@ -133,4 +133,11 @@ export interface SearchMovieRequest extends SearchRequest {
 export interface SearchMovieResponse extends SearchResponse {
     results?: Array<MovieResult>;
 }
+export interface SearchMultiRequest extends SearchRequest {
+    include_adult?: boolean;
+    region?: string;
+}
+export interface SearchMultiResponse extends SearchResponse {
+    results?: Array<MovieResult | TvResult | PersonResult>;
+}
 //# sourceMappingURL=request-types.d.ts.map
