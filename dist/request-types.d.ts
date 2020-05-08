@@ -107,4 +107,15 @@ export interface SearchCompanyResponse extends Response {
     total_pages?: number;
     total_results?: number;
 }
+export interface SearchCollectionResponse extends Response {
+    page?: number;
+    results?: Array<{
+        id?: number;
+        backdrop_path?: string;
+        name?: string;
+        poster_path?: string;
+    }>;
+    total_pages?: number;
+    total_results?: number;
+}
 //# sourceMappingURL=request-types.d.ts.map

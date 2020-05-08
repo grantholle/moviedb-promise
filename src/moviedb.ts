@@ -208,6 +208,14 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'find/:id', params, options)
   }
 
+  searchCompany (params: types.SearchRequest, options?: string|RequestOptions): Promise<types.SearchCompanyResponse> {
+    return this.makeRequest(HttpMethod.Get, 'search/company', params, options)
+  }
+
+  searchCollection (params: types.SearchRequest, options?: string|RequestOptions): Promise<types.SearchCollectionResponse> {
+    return this.makeRequest(HttpMethod.Get, 'search/collection', params, options)
+  }
+
   searchMovie (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
     return this.makeRequest(HttpMethod.Get, 'search/movie', params, options)
   }
@@ -220,20 +228,12 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'search/multi', params, options)
   }
 
-  searchCollection (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Get, 'search/collection', params, options)
-  }
-
   searchPerson (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
     return this.makeRequest(HttpMethod.Get, 'search/person', params, options)
   }
 
   searchList (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
     return this.makeRequest(HttpMethod.Get, 'search/list', params, options)
-  }
-
-  searchCompany (params: types.SearchRequest, options?: string|RequestOptions): Promise<types.SearchCompanyResponse> {
-    return this.makeRequest(HttpMethod.Get, 'search/company', params, options)
   }
 
   searchKeyword (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {

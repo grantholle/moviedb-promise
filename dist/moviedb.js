@@ -144,6 +144,12 @@ class MovieDb {
     find(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'find/:id', params, options);
     }
+    searchCompany(params, options) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'search/company', params, options);
+    }
+    searchCollection(params, options) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'search/collection', params, options);
+    }
     searchMovie(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'search/movie', params, options);
     }
@@ -153,17 +159,11 @@ class MovieDb {
     searchMulti(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'search/multi', params, options);
     }
-    searchCollection(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'search/collection', params, options);
-    }
     searchPerson(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'search/person', params, options);
     }
     searchList(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'search/list', params, options);
-    }
-    searchCompany(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'search/company', params, options);
     }
     searchKeyword(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'search/keyword', params, options);

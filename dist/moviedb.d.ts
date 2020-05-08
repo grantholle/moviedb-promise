@@ -44,13 +44,13 @@ export declare class MovieDb {
     private makeRequest;
     configuration(options?: string | RequestOptions): Promise<types.ConfigurationResponse>;
     find(params?: string | number | types.FindRequest, options?: string | RequestOptions): Promise<types.FindResponse>;
+    searchCompany(params: types.SearchRequest, options?: string | RequestOptions): Promise<types.SearchCompanyResponse>;
+    searchCollection(params: types.SearchRequest, options?: string | RequestOptions): Promise<types.SearchCollectionResponse>;
     searchMovie(params?: string | number | RequestParams, options?: string | RequestOptions): Promise<any>;
     searchTv(params?: string | number | RequestParams, options?: string | RequestOptions): Promise<any>;
     searchMulti(params?: string | number | RequestParams, options?: string | RequestOptions): Promise<any>;
-    searchCollection(params?: string | number | RequestParams, options?: string | RequestOptions): Promise<any>;
     searchPerson(params?: string | number | RequestParams, options?: string | RequestOptions): Promise<any>;
     searchList(params?: string | number | RequestParams, options?: string | RequestOptions): Promise<any>;
-    searchCompany(params: types.SearchRequest, options?: string | RequestOptions): Promise<types.SearchCompanyResponse>;
     searchKeyword(params?: string | number | RequestParams, options?: string | RequestOptions): Promise<any>;
     collectionInfo(params?: string | number | RequestParams, options?: string | RequestOptions): Promise<any>;
     collectionImages(params?: string | number | RequestParams, options?: string | RequestOptions): Promise<any>;
