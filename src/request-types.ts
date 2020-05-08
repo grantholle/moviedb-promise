@@ -111,25 +111,33 @@ export interface SearchRequest extends RequestParams {
   page?: number
 }
 
-export interface SearchCompanyResponse extends Response {
+export interface SearchResponse extends Response {
   page?: number
+  results?: Array<object>
+  total_pages?: number
+  total_results?: number
+}
+
+export interface SearchCompanyResponse extends SearchResponse {
   results?: Array<{
     id?: number
     logo_path?: string
     name?: string
   }>
-  total_pages?: number
-  total_results?: number
 }
 
-export interface SearchCollectionResponse extends Response {
-  page?: number
+export interface SearchCollectionResponse extends SearchResponse {
   results?: Array<{
     id?: number
     backdrop_path?: string
     name?: string
     poster_path?: string
   }>
-  total_pages?: number
-  total_results?: number
+}
+
+export interface SearchKeywordResponse extends SearchResponse {
+  results?: Array<{
+    id?: number
+    name?: string
+  }>
 }
