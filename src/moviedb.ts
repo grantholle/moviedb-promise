@@ -1,4 +1,4 @@
-import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
+import axios, { AxiosRequestConfig } from 'axios'
 import {
   isObject,
   isString,
@@ -14,6 +14,7 @@ import {
   SessionResponse,
   QueueItem,
 } from './types'
+import * as types from './request-types'
 
 export class MovieDb {
   private apiKey: string
@@ -197,5 +198,413 @@ export class MovieDb {
 
       this.dequeue()
     })
+  }
+
+  configuration (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'configuration', params, options)
+  }
+
+  find (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'find/:id', params, options)
+  }
+
+  searchMovie (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'search/movie', params, options)
+  }
+
+  searchTv (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'search/tv', params, options)
+  }
+
+  searchMulti (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'search/multi', params, options)
+  }
+
+  searchCollection (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'search/collection', params, options)
+  }
+
+  searchPerson (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'search/person', params, options)
+  }
+
+  searchList (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'search/list', params, options)
+  }
+
+  searchCompany (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'search/company', params, options)
+  }
+
+  searchKeyword (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'search/keyword', params, options)
+  }
+
+  collectionInfo (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'collection/:id', params, options)
+  }
+
+  collectionImages (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'collection/:id/images', params, options)
+  }
+
+  collectionTranslations (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'collection/:id/translations', params, options)
+  }
+
+  discoverMovie (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'discover/movie', params, options)
+  }
+
+  discoverTv (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'discover/tv', params, options)
+  }
+
+  trending (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'trending/:media_type/:time_window', params, options)
+  }
+
+  movieInfo (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'movie/:id', params, options)
+  }
+
+  movieAlternativeTitles (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'movie/:id/alternative_titles', params, options)
+  }
+
+  movieCredits (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'movie/:id/credits', params, options)
+  }
+
+  movieExternalIds (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, '/movie/:id/external_ids', params, options)
+  }
+
+  movieImages (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'movie/:id/images', params, options)
+  }
+
+  movieVideos (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'movie/:id/videos', params, options)
+  }
+
+  movieKeywords (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'movie/:id/keywords', params, options)
+  }
+
+  movieRecommendations (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'movie/:id/recommendations', params, options)
+  }
+
+  movieReleases (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'movie/:id/releases', params, options)
+  }
+
+  movieReleaseDates (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'movie/:id/release_dates', params, options)
+  }
+
+  movieTrailers (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'movie/:id/trailers', params, options)
+  }
+
+  movieTranslations (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'movie/:id/translations', params, options)
+  }
+
+  movieSimilar (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'movie/:id/similar', params, options)
+  }
+
+  movieReviews (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'movie/:id/reviews', params, options)
+  }
+
+  movieLists (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'movie/:id/lists', params, options)
+  }
+
+  movieChanges (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'movie/:id/changes', params, options)
+  }
+
+  movieRatingUpdate (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Post, 'movie/:id/rating', params, options)
+  }
+
+  tvInfo (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/:id', params, options)
+  }
+
+  tvAlternativeTitles (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/:id/alternative_titles', params, options)
+  }
+
+  tvContentRatings (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/:id/content_ratings', params, options)
+  }
+
+  tvCredits (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/:id/credits', params, options)
+  }
+
+  tvEpisodeGroups (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/:id/episode_groups', params, options)
+  }
+
+  tvExternalIds (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/:id/external_ids', params, options)
+  }
+
+  tvImages (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/:id/images', params, options)
+  }
+
+  tvKeywords (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/:id/keywords', params, options)
+  }
+
+  tvVideos (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/:id/videos', params, options)
+  }
+
+  tvScreenedTheatrically (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/:id/screened_theatrically', params, options)
+  }
+
+  tvReviews (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/:id/reviews', params, options)
+  }
+
+  tvSimilar (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/:id/similar', params, options)
+  }
+
+  tvTranslations (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/:id/translations', params, options)
+  }
+
+  tvSeasonInfo (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number', params, options)
+  }
+
+  tvSeasonCredits (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/credits', params, options)
+  }
+
+  tvSeasonVideos (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/videos', params, options)
+  }
+
+  tvSeasonExternalIds (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/external_ids', params, options)
+  }
+
+  tvSeasonImages (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/images', params, options)
+  }
+
+  tvEpisodeInfo (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number', params, options)
+  }
+
+  tvEpisodeCredits (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number/credits', params, options)
+  }
+
+  tvEpisodeExternalIds (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number/external_ids', params, options)
+  }
+
+  tvEpisodeImages (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number/images', params, options)
+  }
+
+  tvOnTheAir (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/on_the_air', params, options)
+  }
+
+  tvAiringToday (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/airing_today', params, options)
+  }
+
+  tvRecommendations (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/:id/recommendations', params, options)
+  }
+
+  tvChanges (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/:id/changes', params, options)
+  }
+
+  tvRatingUpdate (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Post, 'tv/:id/rating', params, options)
+  }
+
+  personInfo (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'person/:id', params, options)
+  }
+
+  personChanges (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'person/:id/changes', params, options)
+  }
+
+  personMovieCredits (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'person/:id/movie_credits', params, options)
+  }
+
+  personTvCredits (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'person/:id/tv_credits', params, options)
+  }
+
+  personCombinedCredits (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'person/:id/combined_credits', params, options)
+  }
+
+  personExternalIds (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'person/:id/external_ids', params, options)
+  }
+
+  personImages (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'person/:id/images', params, options)
+  }
+
+  personTaggedImages (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'person/:id/tagged_images', params, options)
+  }
+
+  personTranslations (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'person/:id/translations', params, options)
+  }
+
+  personLatest (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'person/latest', params, options)
+  }
+
+  personPopular (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'person/popular', params, options)
+  }
+
+  creditInfo (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'credit/:id', params, options)
+  }
+
+  listInfo (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'list/:id', params, options)
+  }
+
+  genreMovieList (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'genre/movie/list', params, options)
+  }
+
+  genreTvList (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'genre/tv/list', params, options)
+  }
+
+  keywordInfo (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'keyword/:id', params, options)
+  }
+
+  keywordMovies (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'keyword/:id/movies', params, options)
+  }
+
+  companyInfo (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'company/:id', params, options)
+  }
+
+  companyAlternativeNames (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'company/:id/alternative_names', params, options)
+  }
+
+  companyImages (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'company/:id/images', params, options)
+  }
+
+  accountInfo (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'account', params, options)
+  }
+
+  accountLists (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'account/:id/lists', params, options)
+  }
+
+  accountFavoriteMovies (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'account/:id/favorite/movies', params, options)
+  }
+
+  accountFavoriteUpdate (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Post, 'account/:id/favorite', params, options)
+  }
+
+  accountRatedMovies (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'account/:id/rated/movies', params, options)
+  }
+
+  accountMovieWatchlist (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'account/:id/watchlist/movies', params, options)
+  }
+
+  accountTvWatchlist (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'account/:id/watchlist/tv', params, options)
+  }
+
+  accountWatchlistUpdate (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Post, 'account/:id/watchlist', params, options)
+  }
+
+  accountRatedTv (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'account/:id/rated/tv', params, options)
+  }
+
+  accountRatedTvEpisodes (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'account/:id/rated/tv/episodes', params, options)
+  }
+
+  accountFavoriteTv (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'account/:id/favorite/tv', params, options)
+  }
+
+  miscLatestMovies (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'movie/latest', params, options)
+  }
+
+  miscNowPlayingMovies (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'movie/now_playing', params, options)
+  }
+
+  miscPopularMovies (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'movie/popular', params, options)
+  }
+
+  miscTopRatedMovies (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'movie/top_rated', params, options)
+  }
+
+  miscUpcomingMovies (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'movie/upcoming', params, options)
+  }
+
+  miscChangedMovies (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'movie/changes', params, options)
+  }
+
+  miscChangedTvs (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/changes', params, options)
+  }
+
+  miscChangedPeople (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'person/changes', params, options)
+  }
+
+  miscLatestTvs (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/latest', params, options)
+  }
+
+  miscPopularTvs (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/popular', params, options)
+  }
+
+  miscTopRatedTvs (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/top_rated', params, options)
   }
 }

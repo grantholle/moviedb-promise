@@ -1,12 +1,10 @@
-import { HttpMethod, EndpointGroup } from '../types'
-
-const endpoints: Array<EndpointGroup> = [
+module.exports = [
   {
     prefix: 'configuration',
     endpoints: [
       {
         path: 'configuration',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
     ]
   },
@@ -15,7 +13,7 @@ const endpoints: Array<EndpointGroup> = [
     endpoints: [
       {
         path: 'find/:id',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
     ]
   },
@@ -25,42 +23,42 @@ const endpoints: Array<EndpointGroup> = [
       {
         name: 'Movie',
         path: 'search/movie',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Tv',
         path: 'search/tv',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Multi',
         path: 'search/multi',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Collection',
         path: 'search/collection',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Person',
         path: 'search/person',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'List',
         path: 'search/list',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Company',
         path: 'search/company',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Keyword',
         path: 'search/keyword',
-        verb: HttpMethod.Get
+        verb: 'get'
       }
     ]
   },
@@ -70,17 +68,17 @@ const endpoints: Array<EndpointGroup> = [
       {
         name: 'Info',
         path: 'collection/:id',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Images',
         path: 'collection/:id/images',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Translations',
         path: 'collection/:id/translations',
-        verb: HttpMethod.Get
+        verb: 'get'
       }
     ]
   },
@@ -90,12 +88,12 @@ const endpoints: Array<EndpointGroup> = [
       {
         name: 'Movie',
         path: 'discover/movie',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Tv',
         path: 'discover/tv',
-        verb: HttpMethod.Get
+        verb: 'get'
       }
     ]
   },
@@ -104,7 +102,7 @@ const endpoints: Array<EndpointGroup> = [
     endpoints: [
       {
         path: 'trending/:media_type/:time_window',
-        verb: HttpMethod.Get
+        verb: 'get'
       }
     ]
   },
@@ -114,87 +112,87 @@ const endpoints: Array<EndpointGroup> = [
       {
         name: 'Info',
         path: 'movie/:id',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'AlternativeTitles',
         path: 'movie/:id/alternative_titles',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Credits',
         path: 'movie/:id/credits',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'ExternalIds',
         path: '/movie/:id/external_ids',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Images',
         path: 'movie/:id/images',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Videos',
         path: 'movie/:id/videos',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Keywords',
         path: 'movie/:id/keywords',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Recommendations',
         path: 'movie/:id/recommendations',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Releases',
         path: 'movie/:id/releases',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'ReleaseDates',
         path: 'movie/:id/release_dates',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Trailers',
         path: 'movie/:id/trailers',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Translations',
         path: 'movie/:id/translations',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Similar',
         path: 'movie/:id/similar',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Reviews',
         path: 'movie/:id/reviews',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Lists',
         path: 'movie/:id/lists',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Changes',
         path: 'movie/:id/changes',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'RatingUpdate',
         path: 'movie/:id/rating',
-        verb: HttpMethod.Post
+        verb: 'post'
       }
     ]
   },
@@ -204,137 +202,137 @@ const endpoints: Array<EndpointGroup> = [
       {
         name: 'Info',
         path: 'tv/:id',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'AlternativeTitles',
         path: 'tv/:id/alternative_titles',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'ContentRatings',
         path: 'tv/:id/content_ratings',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Credits',
         path: 'tv/:id/credits',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'EpisodeGroups',
         path: 'tv/:id/episode_groups',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'ExternalIds',
         path: 'tv/:id/external_ids',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Images',
         path: 'tv/:id/images',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Keywords',
         path: 'tv/:id/keywords',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Videos',
         path: 'tv/:id/videos',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'ScreenedTheatrically',
         path: 'tv/:id/screened_theatrically',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Reviews',
         path: 'tv/:id/reviews',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Similar',
         path: 'tv/:id/similar',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Translations',
         path: 'tv/:id/translations',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'SeasonInfo',
         path: 'tv/:id/season/:season_number',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'SeasonCredits',
         path: 'tv/:id/season/:season_number/credits',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'SeasonVideos',
         path: 'tv/:id/season/:season_number/videos',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'SeasonExternalIds',
         path: 'tv/:id/season/:season_number/external_ids',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'SeasonImages',
         path: 'tv/:id/season/:season_number/images',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'EpisodeInfo',
         path: 'tv/:id/season/:season_number/episode/:episode_number',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'EpisodeCredits',
         path: 'tv/:id/season/:season_number/episode/:episode_number/credits',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'EpisodeExternalIds',
         path: 'tv/:id/season/:season_number/episode/:episode_number/external_ids',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'EpisodeImages',
         path: 'tv/:id/season/:season_number/episode/:episode_number/images',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'OnTheAir',
         path: 'tv/on_the_air',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'AiringToday',
         path: 'tv/airing_today',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Recommendations',
         path: 'tv/:id/recommendations',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Changes',
         path: 'tv/:id/changes',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'RatingUpdate',
         path: 'tv/:id/rating',
-        verb: HttpMethod.Post
+        verb: 'post'
       }
     ]
   },
@@ -344,57 +342,57 @@ const endpoints: Array<EndpointGroup> = [
       {
         name: 'Info',
         path: 'person/:id',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Changes',
         path: 'person/:id/changes',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'MovieCredits',
         path: 'person/:id/movie_credits',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'TvCredits',
         path: 'person/:id/tv_credits',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'CombinedCredits',
         path: 'person/:id/combined_credits',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'ExternalIds',
         path: 'person/:id/external_ids',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Images',
         path: 'person/:id/images',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'TaggedImages',
         path: 'person/:id/tagged_images',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Translations',
         path: 'person/:id/translations',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Latest',
         path: 'person/latest',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Popular',
         path: 'person/popular',
-        verb: HttpMethod.Get
+        verb: 'get'
       }
     ]
   },
@@ -404,7 +402,7 @@ const endpoints: Array<EndpointGroup> = [
       {
         name: 'Info',
         path: 'credit/:id',
-        verb: HttpMethod.Get
+        verb: 'get'
       }
     ]
   },
@@ -414,7 +412,7 @@ const endpoints: Array<EndpointGroup> = [
       {
         name: 'Info',
         path: 'list/:id',
-        verb: HttpMethod.Get
+        verb: 'get'
       }
     ]
   },
@@ -424,12 +422,12 @@ const endpoints: Array<EndpointGroup> = [
       {
         name: 'MovieList',
         path: 'genre/movie/list',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'TvList',
         path: 'genre/tv/list',
-        verb: HttpMethod.Get
+        verb: 'get'
       }
     ]
   },
@@ -439,12 +437,12 @@ const endpoints: Array<EndpointGroup> = [
       {
         name: 'Info',
         path: 'keyword/:id',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Movies',
         path: 'keyword/:id/movies',
-        verb: HttpMethod.Get
+        verb: 'get'
       }
     ]
   },
@@ -454,17 +452,17 @@ const endpoints: Array<EndpointGroup> = [
       {
         name: 'Info',
         path: 'company/:id',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'AlternativeNames',
         path: 'company/:id/alternative_names',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Images',
         path: 'company/:id/images',
-        verb: HttpMethod.Get
+        verb: 'get'
       }
     ]
   },
@@ -474,57 +472,57 @@ const endpoints: Array<EndpointGroup> = [
       {
         name: 'Info',
         path: 'account',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'Lists',
         path: 'account/:id/lists',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'FavoriteMovies',
         path: 'account/:id/favorite/movies',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'FavoriteUpdate',
         path: 'account/:id/favorite',
-        verb: HttpMethod.Post
+        verb: 'post'
       },
       {
         name: 'RatedMovies',
         path: 'account/:id/rated/movies',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'MovieWatchlist',
         path: 'account/:id/watchlist/movies',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'TvWatchlist',
         path: 'account/:id/watchlist/tv',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'WatchlistUpdate',
         path: 'account/:id/watchlist',
-        verb: HttpMethod.Post
+        verb: 'post'
       },
       {
         name: 'RatedTv',
         path: 'account/:id/rated/tv',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'RatedTvEpisodes',
         path: 'account/:id/rated/tv/episodes',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'FavoriteTv',
         path: 'account/:id/favorite/tv',
-        verb: HttpMethod.Get
+        verb: 'get'
       }
     ]
   },
@@ -534,60 +532,58 @@ const endpoints: Array<EndpointGroup> = [
       {
         name: 'LatestMovies',
         path: 'movie/latest',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'NowPlayingMovies',
         path: 'movie/now_playing',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'PopularMovies',
         path: 'movie/popular',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'TopRatedMovies',
         path: 'movie/top_rated',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'UpcomingMovies',
         path: 'movie/upcoming',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'ChangedMovies',
         path: 'movie/changes',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'ChangedTvs',
         path: 'tv/changes',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'ChangedPeople',
         path: 'person/changes',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'LatestTvs',
         path: 'tv/latest',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'PopularTvs',
         path: 'tv/popular',
-        verb: HttpMethod.Get
+        verb: 'get'
       },
       {
         name: 'TopRatedTvs',
         path: 'tv/top_rated',
-        verb: HttpMethod.Get
+        verb: 'get'
       }
     ]
   }
 ]
-
-export default endpoints

@@ -1,15 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const types_1 = require("../../types");
-const Find = {
-    prefix: 'find',
-    endpoints: [
-        {
-            path: 'find/:id',
-            verb: types_1.HttpMethod.Get
-        }
-    ]
-};
 var ExternalId;
 (function (ExternalId) {
     ExternalId["ImdbId"] = "imdb_id";
@@ -20,5 +10,4 @@ var ExternalId;
     ExternalId["FacebookId"] = "facebook_id";
     ExternalId["TwitterId"] = "twitter_id";
     ExternalId["InstagramId"] = "instagram_id";
-})(ExternalId || (ExternalId = {}));
-exports.default = Find;
+})(ExternalId = exports.ExternalId || (exports.ExternalId = {}));
