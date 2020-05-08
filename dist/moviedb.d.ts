@@ -50,7 +50,7 @@ export declare class MovieDb {
     searchCollection(params?: string | number | RequestParams, options?: string | RequestOptions): Promise<any>;
     searchPerson(params?: string | number | RequestParams, options?: string | RequestOptions): Promise<any>;
     searchList(params?: string | number | RequestParams, options?: string | RequestOptions): Promise<any>;
-    searchCompany(params?: string | number | RequestParams, options?: string | RequestOptions): Promise<any>;
+    searchCompany(params: types.SearchRequest, options?: string | RequestOptions): Promise<types.SearchCompanyResponse>;
     searchKeyword(params?: string | number | RequestParams, options?: string | RequestOptions): Promise<any>;
     collectionInfo(params?: string | number | RequestParams, options?: string | RequestOptions): Promise<any>;
     collectionImages(params?: string | number | RequestParams, options?: string | RequestOptions): Promise<any>;

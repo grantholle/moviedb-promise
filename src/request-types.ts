@@ -1,6 +1,6 @@
 import {
   Response,
-  Request
+  RequestParams
 } from './types'
 
 export interface MovieResult {
@@ -104,4 +104,20 @@ export interface FindResponse extends Response {
   person_results: Array<PersonResult>
   tv_episode_results: Array<object>
   tv_season_results: Array<object>
+}
+
+export interface SearchRequest extends RequestParams {
+  query: string
+  page?: number
+}
+
+export interface SearchCompanyResponse extends Response {
+  page?: number
+  results?: Array<{
+    id?: number
+    logo_path?: string
+    name?: string
+  }>
+  total_pages?: number
+  total_results?: number
 }

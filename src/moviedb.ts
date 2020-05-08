@@ -232,7 +232,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'search/list', params, options)
   }
 
-  searchCompany (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  searchCompany (params: types.SearchRequest, options?: string|RequestOptions): Promise<types.SearchCompanyResponse> {
     return this.makeRequest(HttpMethod.Get, 'search/company', params, options)
   }
 
