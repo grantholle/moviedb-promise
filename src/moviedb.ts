@@ -232,7 +232,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'search/person', params, options)
   }
 
-  searchTv (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  searchTv (params: types.SearchTvRequest, options?: string|RequestOptions): Promise<types.SearchTvResponse> {
     return this.makeRequest(HttpMethod.Get, 'search/tv', params, options)
   }
 

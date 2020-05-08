@@ -165,3 +165,12 @@ export interface SearchMultiResponse extends SearchResponse {
 export interface SearchPersonResponse extends SearchResponse {
   results?: Array<PersonResult>
 }
+
+export interface SearchTvRequest extends SearchRequest {
+  include_adult?: boolean
+  first_air_date_year?: number
+}
+
+export interface SearchTvResponse extends SearchResponse {
+  results?: Array<TvResult>
+}
