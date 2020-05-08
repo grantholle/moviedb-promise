@@ -241,7 +241,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'search/list', params, options)
   }
 
-  collectionInfo (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  collectionInfo (params: string|number|types.CollectionInfoRequest, options?: string|RequestOptions): Promise<types.CollectionInfoResponse> {
     return this.makeRequest(HttpMethod.Get, 'collection/:id', params, options)
   }
 

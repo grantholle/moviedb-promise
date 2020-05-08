@@ -52,7 +52,7 @@ export declare class MovieDb {
     searchPerson(params: types.SearchMultiRequest, options?: string | RequestOptions): Promise<types.SearchPersonResponse>;
     searchTv(params: types.SearchTvRequest, options?: string | RequestOptions): Promise<types.SearchTvResponse>;
     searchList(params?: string | number | RequestParams, options?: string | RequestOptions): Promise<any>;
-    collectionInfo(params?: string | number | RequestParams, options?: string | RequestOptions): Promise<any>;
+    collectionInfo(params: string | number | types.CollectionInfoRequest, options?: string | RequestOptions): Promise<types.CollectionInfoResponse>;
     collectionImages(params?: string | number | RequestParams, options?: string | RequestOptions): Promise<any>;
     collectionTranslations(params?: string | number | RequestParams, options?: string | RequestOptions): Promise<any>;
     discoverMovie(params?: string | number | RequestParams, options?: string | RequestOptions): Promise<any>;

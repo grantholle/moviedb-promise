@@ -174,3 +174,31 @@ export interface SearchTvRequest extends SearchRequest {
 export interface SearchTvResponse extends SearchResponse {
   results?: Array<TvResult>
 }
+
+export interface CollectionInfoRequest extends RequestParams {
+  id: number
+}
+
+export interface CollectionInfoResponse extends Response {
+  id?: number
+  name?: string
+  overview?: string
+  poster_path?: null
+  backdrop_path?: string
+  parts?: Array<{
+    adult?: boolean
+    backdrop_path?: null
+    genre_ids?: number[]
+    id?: number
+    original_language?: string
+    original_title?: string
+    overview?: string
+    release_date?: string
+    poster_path?: string
+    popularity?: number
+    title?: string
+    video?: boolean
+    vote_average?: number
+    vote_count?: number
+  }>
+}
