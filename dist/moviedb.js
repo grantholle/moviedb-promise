@@ -159,11 +159,11 @@ class MovieDb {
     searchMulti(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'search/multi', params, options);
     }
-    searchTv(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'search/tv', params, options);
-    }
     searchPerson(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'search/person', params, options);
+    }
+    searchTv(params, options) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'search/tv', params, options);
     }
     searchList(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'search/list', params, options);

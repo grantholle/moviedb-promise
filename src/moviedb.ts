@@ -228,12 +228,12 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'search/multi', params, options)
   }
 
-  searchTv (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Get, 'search/tv', params, options)
+  searchPerson (params: types.SearchMultiRequest, options?: string|RequestOptions): Promise<types.SearchPersonResponse> {
+    return this.makeRequest(HttpMethod.Get, 'search/person', params, options)
   }
 
-  searchPerson (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Get, 'search/person', params, options)
+  searchTv (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'search/tv', params, options)
   }
 
   searchList (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {

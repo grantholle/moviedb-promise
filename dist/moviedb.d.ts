@@ -49,8 +49,8 @@ export declare class MovieDb {
     searchKeyword(params: types.SearchRequest, options?: string | RequestOptions): Promise<types.SearchKeywordResponse>;
     searchMovie(params: types.SearchMovieRequest, options?: string | RequestOptions): Promise<types.SearchMovieResponse>;
     searchMulti(params: types.SearchMultiRequest, options?: string | RequestOptions): Promise<types.SearchMultiResponse>;
+    searchPerson(params: types.SearchMultiRequest, options?: string | RequestOptions): Promise<types.SearchPersonResponse>;
     searchTv(params?: string | number | RequestParams, options?: string | RequestOptions): Promise<any>;
-    searchPerson(params?: string | number | RequestParams, options?: string | RequestOptions): Promise<any>;
     searchList(params?: string | number | RequestParams, options?: string | RequestOptions): Promise<any>;
     collectionInfo(params?: string | number | RequestParams, options?: string | RequestOptions): Promise<any>;
     collectionImages(params?: string | number | RequestParams, options?: string | RequestOptions): Promise<any>;

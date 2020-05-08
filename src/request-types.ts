@@ -161,3 +161,7 @@ export interface SearchMultiRequest extends SearchRequest {
 export interface SearchMultiResponse extends SearchResponse {
   results?: Array<MovieResult|TvResult|PersonResult>
 }
+
+export interface SearchPersonResponse extends SearchResponse {
+  results?: Array<PersonResult>
+}
