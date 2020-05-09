@@ -365,27 +365,27 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'movie/changes', params, options)
   }
 
-  tvShow (params?: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.ShowResponse> {
+  tvShow (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.ShowResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id', params, options)
   }
 
-  tvAccountStates (params?: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.ShowAccountStatesResponse> {
+  tvAccountStates (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.ShowAccountStatesResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/account_states', params, options)
   }
 
-  tvAlternativeTitles (params?: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.ShowAlternativeTitlesResponse> {
+  tvAlternativeTitles (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.ShowAlternativeTitlesResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/alternative_titles', params, options)
   }
 
-  tvChanges (params?: string|number|types.ShowChangesRequest, options?: string|RequestOptions): Promise<types.ShowChangesResponse> {
+  tvChanges (params: string|number|types.ShowChangesRequest, options?: string|RequestOptions): Promise<types.ShowChangesResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/changes', params, options)
   }
 
-  tvContentRatings (params?: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.ShowContentRatingResponse> {
+  tvContentRatings (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.ShowContentRatingResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/content_ratings', params, options)
   }
 
-  tvCredits (params?: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.TvCreditsResponse> {
+  tvCredits (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.TvCreditsResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/credits', params, options)
   }
 
