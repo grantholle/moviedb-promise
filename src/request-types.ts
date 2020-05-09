@@ -495,3 +495,5 @@ export interface MovieRecommendationsRequest extends IdRequestParams {
 export interface MovieRecommendationsResponse extends PaginatedResponse {
   results?: Array<MovieResult>
 }
+
+export interface SimilarMovieResponse extends PaginatedResponse {}
