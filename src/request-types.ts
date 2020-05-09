@@ -689,3 +689,14 @@ export interface TvCreditsResponse extends MovieCreditsResponse {
   cast?: Array<Cast>
   crew?: Array<Crew>
 }
+
+export interface TvEpisodeGroupsResponse extends Response {
+  results?: Array<{
+    description?: string
+    episode_count?: number
+    group_count?: number
+    id?: string
+    name?: string
+    network?: null|Network
+  }>
+}
