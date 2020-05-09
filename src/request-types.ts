@@ -190,7 +190,7 @@ export interface Crew {
 
 export enum ExternalId {
   ImdbId = 'imdb_id',
-  Freebase_Id = 'freebase_mid',
+  Freebase_Mid = 'freebase_mid',
   FreebaseId = 'freebase_id',
   TvdbId = 'tvdb_id',
   TvrageId = 'tvrage_id',
@@ -221,17 +221,6 @@ export interface MovieList {
   list_type?: string
   name?: string
   poster_path?: null|string
-}
-
-export enum ExternalSource {
-  ImdbId = 'imdb_id',
-  FreebaseMid = 'freebase_mid',
-  FreebaseId = 'freebase_id',
-  TvdbId = 'tvdb_id',
-  TvrageId = 'tvrage_id',
-  FacebookId = 'facebook_id',
-  TwitterId = 'twitter_id',
-  InstagramId = 'instagram_id',
 }
 
 export interface FindRequest extends Request {
@@ -699,4 +688,16 @@ export interface TvEpisodeGroupsResponse extends Response {
     name?: string
     network?: null|Network
   }>
+}
+
+export interface TvExternalIdsResponse extends Response {
+  imdb_id?: string|null
+  freebase_mid?: string|null
+  freebase_id?: string|null
+  tvdb_id?: number|null
+  tvrage_id?: number|null
+  facebook_id?: string|null
+  instagram_id?: string|null
+  twitter_id?: string|null
+  id?: number
 }

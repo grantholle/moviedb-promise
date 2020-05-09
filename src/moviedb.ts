@@ -393,7 +393,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/episode_groups', params, options)
   }
 
-  tvExternalIds (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  tvExternalIds (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.TvExternalIdsResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/external_ids', params, options)
   }
 
