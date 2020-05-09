@@ -357,7 +357,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'movie/top_rated', params, options)
   }
 
-  miscUpcomingMovies (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  upcomingMovies (params: types.UpcomingMoviesRequest, options?: string|RequestOptions): Promise<types.UpcomingMoviesResponse> {
     return this.makeRequest(HttpMethod.Get, 'movie/upcoming', params, options)
   }
 

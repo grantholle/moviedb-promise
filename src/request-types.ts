@@ -557,3 +557,16 @@ export interface PopularMoviesResponse extends DiscoverMovieResponse {}
 export interface TopRatedMoviesRequest extends MovieNowPlayingRequest {}
 
 export interface TopRatedMoviesResponse extends DiscoverMovieResponse {}
+
+export interface UpcomingMoviesRequest extends MovieNowPlayingRequest {
+  page?: number
+  region?: string
+}
+
+export interface UpcomingMoviesResponse extends MovieNowPlayingResponse {
+  results?: Array<MovieResult>
+  dates?: {
+    maximum?: string
+    minimum?: string
+  }
+}
