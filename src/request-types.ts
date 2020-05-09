@@ -644,3 +644,10 @@ export interface ShowResponse extends Response {
   vote_average?: number
   vote_count?: number
 }
+
+export interface ShowAccountStatesResponse extends Response {
+  id?: number
+  favorite?: boolean
+  rated?: object|boolean
+  watchlist?: boolean
+}
