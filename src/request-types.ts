@@ -675,3 +675,11 @@ export interface ShowChangesResponse extends Response {
     type?: string
   }>
 }
+
+export interface ShowContentRatingResponse extends Response {
+  results?: Array<{
+    iso_3166_1?: string
+    rating?: string
+  }>
+  id?: number
+}

@@ -381,7 +381,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/changes', params, options)
   }
 
-  tvContentRatings (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  tvContentRatings (params?: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.ShowContentRatingResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/content_ratings', params, options)
   }
 
