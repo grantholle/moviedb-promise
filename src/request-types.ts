@@ -724,3 +724,13 @@ export interface TvRecommendationsResponse extends PaginatedResponse {
 export interface TvReviewsResponse extends PaginatedResponse {
   results?: Array<Review>
 }
+
+export interface TvScreenTheatricallyResponse extends Response {
+  id?: number
+  results?: Array<{
+    id?: number
+    episode_number?: number
+    season_number?: number
+  }>
+}
+
