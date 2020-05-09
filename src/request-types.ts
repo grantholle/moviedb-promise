@@ -527,3 +527,12 @@ export interface MovieListsRequest extends MovieRecommendationsRequest {}
 export interface MovieListsResponse extends PaginatedResponse {
   results?: Array<MovieList>
 }
+
+export interface MovieRatingRequest extends IdRequestParams {
+  value: number
+}
+
+export interface PostResponse extends Response {
+  status_code?: number
+  status_message?: string
+}

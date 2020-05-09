@@ -333,16 +333,16 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'movie/:id/lists', params, options)
   }
 
+  movieRatingUpdate (params: types.MovieRatingRequest, options?: string|RequestOptions): Promise<types.PostResponse> {
+    return this.makeRequest(HttpMethod.Post, 'movie/:id/rating', params, options)
+  }
+
   movieReleases (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
     return this.makeRequest(HttpMethod.Get, 'movie/:id/releases', params, options)
   }
 
   movieTrailers (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
     return this.makeRequest(HttpMethod.Get, 'movie/:id/trailers', params, options)
-  }
-
-  movieRatingUpdate (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Post, 'movie/:id/rating', params, options)
   }
 
   tvInfo (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
