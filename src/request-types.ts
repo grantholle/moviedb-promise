@@ -90,6 +90,14 @@ export interface Keyword {
   name?: string
 }
 
+export interface ReleaseDate {
+  certification?: string
+  iso_639_1?: string
+  release_date?: string
+  type?: number
+  note?: string
+}
+
 export enum ExternalId {
   ImdbId = 'imdb_id',
   Freebase_Id = 'freebase_mid',
@@ -450,4 +458,12 @@ export interface MovieImagesResponse extends Response {
 export interface MovieKeywordResponse extends Response {
   id?: number
   keywords?: Array<Keyword>
+}
+
+export interface MovieReleaseDatesResponse extends Response {
+  id?: number
+  results?: Array<{
+    iso_3166_1?: string
+    release_dates?: Array<ReleaseDate>
+  }>
 }
