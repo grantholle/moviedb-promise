@@ -365,15 +365,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'movie/changes', params, options)
   }
 
-  movieReleases (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Get, 'movie/:id/releases', params, options)
-  }
-
-  movieTrailers (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Get, 'movie/:id/trailers', params, options)
-  }
-
-  tvInfo (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  tvShow (params?: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.ShowResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id', params, options)
   }
 

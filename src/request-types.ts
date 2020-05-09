@@ -128,6 +128,66 @@ export interface Review {
   url?: string
 }
 
+export interface SimpleEpisode {
+  air_date?: string
+  episode_number?: number
+  id?: number
+  name?: string
+  overview?: string
+  production_code?: string
+  season_number?: number
+  show_id?: number
+  still_path?: string
+  vote_average?: number
+  vote_count?: number
+}
+
+export interface Network {
+  name?: string
+  id?: number
+  logo_path?: string
+  origin_country?: string
+}
+
+export interface SimpleSeason {
+  air_date?: string
+  episode_count?: number
+  id?: number
+  name?: string
+  overview?: string
+  poster_path?: string
+  season_number?: number
+}
+
+export interface SimplePerson {
+  id?: number
+  credit_id?: string
+  name?: string
+  gender?: number
+  profile_path?: string
+}
+
+export interface Cast {
+  cast_id?: number
+  character?: string
+  credit_id?: string
+  gender?: number|null
+  id?: number
+  name?: string
+  order?: number
+  profile_path?: string|null
+}
+
+export interface Crew {
+  credit_id?: string
+  department?: string
+  gender?: number|null
+  id?: number
+  job?: string
+  name?: string
+  profile_path?: string|null
+}
+
 export enum ExternalId {
   ImdbId = 'imdb_id',
   Freebase_Id = 'freebase_mid',
@@ -447,25 +507,8 @@ export interface MovieChangesResponse extends Response {
 
 export interface MovieCreditsResponse extends Response {
   id?: number
-  cast?: Array<{
-    cast_id?: number
-    character?: string
-    credit_id?: string
-    gender?: number|null
-    id?: number
-    name?: string
-    order?: number
-    profile_path?: string|null
-  }>
-  crew?: Array<{
-    credit_id?: string
-    department?: string
-    gender?: number|null
-    id?: number
-    job?: string
-    name?: string
-    profile_path?: string|null
-  }>
+  cast?: Array<Cast>
+  crew?: Array<Crew>
 }
 
 export interface MovieExternalIdsResponse extends Response {
@@ -569,4 +612,35 @@ export interface UpcomingMoviesResponse extends MovieNowPlayingResponse {
     maximum?: string
     minimum?: string
   }
+}
+
+export interface ShowResponse extends Response {
+  backdrop_path?: string|null
+  created_by?: Array<SimplePerson>
+  episode_run_time?: number[]
+  first_air_date?: string
+  genres?: Array<Genre>
+  homepage?: string
+  id?: number
+  in_production?: boolean
+  languages?: string[]
+  last_air_date?: string
+  last_episode_to_air?: SimpleEpisode
+  name?: string
+  next_episode_to_air?: null
+  networks?: Array<Network>
+  number_of_episodes?: number
+  number_of_seasons?: number
+  origin_country?: string[]
+  original_language?: string
+  original_name?: string
+  overview?: string
+  popularity?: number
+  poster_path?: string|null
+  production_companies?: Array<ProductionCompany>
+  seasons?: Array<SimpleSeason>
+  status?: string
+  type?: string
+  vote_average?: number
+  vote_count?: number
 }
