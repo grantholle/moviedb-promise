@@ -553,3 +553,7 @@ export interface MovieNowPlayingResponse extends PaginatedResponse {
 export interface PopularMoviesRequest extends MovieNowPlayingRequest {}
 
 export interface PopularMoviesResponse extends DiscoverMovieResponse {}
+
+export interface TopRatedMoviesRequest extends MovieNowPlayingRequest {}
+
+export interface TopRatedMoviesResponse extends DiscoverMovieResponse {}

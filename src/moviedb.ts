@@ -345,27 +345,15 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'movie/latest', isString(params) ? { language: params } : params, options)
   }
 
-  miscLatestMovies (params?: string|RequestParams, options?: string|RequestOptions): Promise<types.MovieResponse> {
-    return this.movieLatest(params, options)
-  }
-
   movieNowPlaying (params?: types.MovieNowPlayingRequest, options?: string|RequestOptions): Promise<types.MovieNowPlayingResponse> {
     return this.makeRequest(HttpMethod.Get, 'movie/now_playing', params, options)
-  }
-
-  miscNowPlayingMovies (params?: types.MovieNowPlayingRequest, options?: string|RequestOptions): Promise<types.MovieNowPlayingResponse> {
-    return this.movieNowPlaying(params, options)
   }
 
   moviePopular (params?: types.PopularMoviesRequest, options?: string|RequestOptions): Promise<types.PopularMoviesResponse> {
     return this.makeRequest(HttpMethod.Get, 'movie/popular', params, options)
   }
 
-  miscPopularMovies (params?: types.PopularMoviesRequest, options?: string|RequestOptions): Promise<types.PopularMoviesResponse> {
-    return this.moviePopular(params, options)
-  }
-
-  miscTopRatedMovies (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  movieTopRated (params?: types.TopRatedMoviesRequest, options?: string|RequestOptions): Promise<types.TopRatedMoviesResponse> {
     return this.makeRequest(HttpMethod.Get, 'movie/top_rated', params, options)
   }
 
