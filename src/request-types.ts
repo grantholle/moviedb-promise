@@ -376,3 +376,23 @@ export interface MovieAlternativeTitlesResponse extends Response {
     type?: string
   }>
 }
+
+export interface MovieChangesRequest extends IdRequestParams {
+  start_date?: string
+  end_date?: string
+  page?: number
+}
+
+export interface MovieChangesResponse extends Response {
+  changes?: Array<{
+    key?: string
+    items?: Array<{
+      id?: string
+      action?: string
+      time?: string
+      iso_639_1?: string
+      value?: string
+      original_value?: string
+    }>
+  }>
+}
