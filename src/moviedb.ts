@@ -261,7 +261,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'collection/:id/translations', params, options)
   }
 
-  discoverMovie (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  discoverMovie (params?: types.DiscoverMovieRequest, options?: string|RequestOptions): Promise<types.DiscoverMovieResponse> {
     return this.makeRequest(HttpMethod.Get, 'discover/movie', params, options)
   }
 
