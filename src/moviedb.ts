@@ -313,6 +313,10 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'movie/:id/videos', params, options)
   }
 
+  movieTranslations (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.MovieTranslationsResponse> {
+    return this.makeRequest(HttpMethod.Get, 'movie/:id/translations', params, options)
+  }
+
   movieRecommendations (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
     return this.makeRequest(HttpMethod.Get, 'movie/:id/recommendations', params, options)
   }
@@ -323,10 +327,6 @@ export class MovieDb {
 
   movieTrailers (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
     return this.makeRequest(HttpMethod.Get, 'movie/:id/trailers', params, options)
-  }
-
-  movieTranslations (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Get, 'movie/:id/translations', params, options)
   }
 
   movieSimilar (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {

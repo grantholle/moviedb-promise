@@ -109,6 +109,18 @@ export interface Video {
   type?: 'Trailer'|'Teaser'|'Clip'|'Featurette'|'Behind the Scenes'|'Bloopers'
 }
 
+export interface Translation {
+  iso_3166_1?: string
+  iso_639_1?: string
+  name?: string
+  english_name?: string
+  data?: {
+    title?: string
+    overview?: string
+    homepage?: string
+  }
+}
+
 export enum ExternalId {
   ImdbId = 'imdb_id',
   Freebase_Id = 'freebase_mid',
@@ -269,17 +281,7 @@ export interface CollectionImagesResponse extends Response {
 
 export interface CollectionTranslationsResponse extends Response {
   id?: number
-  translations?: Array<{
-    iso_3166_1?: string
-    iso_639_1?: string
-    name?: string
-    english_name?: string
-    data?: {
-      title?: string
-      overview?: string
-      homepage?: string
-    }
-  }>
+  translations?: Array<Translation>
 }
 
 export interface DiscoverMovieRequest extends RequestParams {
@@ -483,3 +485,5 @@ export interface MovieVideosResponse extends Response {
   id?: number
   results?: Array<Video>
 }
+
+export interface MovieTranslationsResponse extends CollectionTranslationsResponse {}
