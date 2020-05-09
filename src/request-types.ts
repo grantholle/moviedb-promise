@@ -651,3 +651,12 @@ export interface ShowAccountStatesResponse extends Response {
   rated?: object|boolean
   watchlist?: boolean
 }
+
+export interface ShowAlternativeTitlesResponse extends Response {
+  id?: number
+  results?: Array<{
+    title?: string
+    iso_3166_1?: string
+    type?: string
+  }>
+}
