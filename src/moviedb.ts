@@ -200,6 +200,14 @@ export class MovieDb {
     })
   }
 
+  private parseSearchParams (params: string|types.SearchRequest): types.SearchRequest {
+    if (isString(params)) {
+      return { query: params }
+    }
+
+    return params
+  }
+
   configuration (options?: string|RequestOptions): Promise<types.ConfigurationResponse> {
     return this.makeRequest(HttpMethod.Get, 'configuration', null, options)
   }
@@ -208,32 +216,32 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'find/:id', params, options)
   }
 
-  searchCompany (params: types.SearchRequest, options?: string|RequestOptions): Promise<types.SearchCompanyResponse> {
-    return this.makeRequest(HttpMethod.Get, 'search/company', params, options)
+  searchCompany (params: string|types.SearchRequest, options?: string|RequestOptions): Promise<types.SearchCompanyResponse> {
+    return this.makeRequest(HttpMethod.Get, 'search/company', this.parseSearchParams(params), options)
   }
 
   searchCollection (params: types.SearchRequest, options?: string|RequestOptions): Promise<types.SearchCollectionResponse> {
-    return this.makeRequest(HttpMethod.Get, 'search/collection', params, options)
+    return this.makeRequest(HttpMethod.Get, 'search/collection', this.parseSearchParams(params), options)
   }
 
   searchKeyword (params: types.SearchRequest, options?: string|RequestOptions): Promise<types.SearchKeywordResponse> {
-    return this.makeRequest(HttpMethod.Get, 'search/keyword', params, options)
+    return this.makeRequest(HttpMethod.Get, 'search/keyword', this.parseSearchParams(params), options)
   }
 
   searchMovie (params: types.SearchMovieRequest, options?: string|RequestOptions): Promise<types.SearchMovieResponse> {
-    return this.makeRequest(HttpMethod.Get, 'search/movie', params, options)
+    return this.makeRequest(HttpMethod.Get, 'search/movie', this.parseSearchParams(params), options)
   }
 
   searchMulti (params: types.SearchMultiRequest, options?: string|RequestOptions): Promise<types.SearchMultiResponse> {
-    return this.makeRequest(HttpMethod.Get, 'search/multi', params, options)
+    return this.makeRequest(HttpMethod.Get, 'search/multi', this.parseSearchParams(params), options)
   }
 
   searchPerson (params: types.SearchMultiRequest, options?: string|RequestOptions): Promise<types.SearchPersonResponse> {
-    return this.makeRequest(HttpMethod.Get, 'search/person', params, options)
+    return this.makeRequest(HttpMethod.Get, 'search/person', this.parseSearchParams(params), options)
   }
 
   searchTv (params: types.SearchTvRequest, options?: string|RequestOptions): Promise<types.SearchTvResponse> {
-    return this.makeRequest(HttpMethod.Get, 'search/tv', params, options)
+    return this.makeRequest(HttpMethod.Get, 'search/tv', this.parseSearchParams(params), options)
   }
 
   // Doesn't exist in documentation, may be deprecated

@@ -138,6 +138,12 @@ class MovieDb {
             this.dequeue();
         });
     }
+    parseSearchParams(params) {
+        if (lodash_1.isString(params)) {
+            return { query: params };
+        }
+        return params;
+    }
     configuration(options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'configuration', null, options);
     }
@@ -145,25 +151,25 @@ class MovieDb {
         return this.makeRequest(types_1.HttpMethod.Get, 'find/:id', params, options);
     }
     searchCompany(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'search/company', params, options);
+        return this.makeRequest(types_1.HttpMethod.Get, 'search/company', this.parseSearchParams(params), options);
     }
     searchCollection(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'search/collection', params, options);
+        return this.makeRequest(types_1.HttpMethod.Get, 'search/collection', this.parseSearchParams(params), options);
     }
     searchKeyword(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'search/keyword', params, options);
+        return this.makeRequest(types_1.HttpMethod.Get, 'search/keyword', this.parseSearchParams(params), options);
     }
     searchMovie(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'search/movie', params, options);
+        return this.makeRequest(types_1.HttpMethod.Get, 'search/movie', this.parseSearchParams(params), options);
     }
     searchMulti(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'search/multi', params, options);
+        return this.makeRequest(types_1.HttpMethod.Get, 'search/multi', this.parseSearchParams(params), options);
     }
     searchPerson(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'search/person', params, options);
+        return this.makeRequest(types_1.HttpMethod.Get, 'search/person', this.parseSearchParams(params), options);
     }
     searchTv(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'search/tv', params, options);
+        return this.makeRequest(types_1.HttpMethod.Get, 'search/tv', this.parseSearchParams(params), options);
     }
     // Doesn't exist in documentation, may be deprecated
     searchList(params, options) {

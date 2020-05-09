@@ -42,9 +42,10 @@ export declare class MovieDb {
      * Performs the request to the server
      */
     private makeRequest;
+    private parseSearchParams;
     configuration(options?: string | RequestOptions): Promise<types.ConfigurationResponse>;
     find(params?: string | number | types.FindRequest, options?: string | RequestOptions): Promise<types.FindResponse>;
-    searchCompany(params: types.SearchRequest, options?: string | RequestOptions): Promise<types.SearchCompanyResponse>;
+    searchCompany(params: string | types.SearchRequest, options?: string | RequestOptions): Promise<types.SearchCompanyResponse>;
     searchCollection(params: types.SearchRequest, options?: string | RequestOptions): Promise<types.SearchCollectionResponse>;
     searchKeyword(params: types.SearchRequest, options?: string | RequestOptions): Promise<types.SearchKeywordResponse>;
     searchMovie(params: types.SearchMovieRequest, options?: string | RequestOptions): Promise<types.SearchMovieResponse>;
