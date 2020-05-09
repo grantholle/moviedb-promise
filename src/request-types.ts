@@ -65,6 +65,26 @@ export interface Image {
   still_sizes?: Array<string>
 }
 
+export interface Backdrop {
+  aspect_ratio?: number
+  file_path?: string
+  height?: number
+  iso_639_1?: null
+  vote_average?: number
+  vote_count?: number
+  width?: number
+}
+
+export interface Poster {
+  aspect_ratio?: number
+  file_path?: string
+  height?: number
+  iso_639_1?: string
+  vote_average?: number
+  vote_count?: number
+  width?: number
+}
+
 export enum ExternalId {
   ImdbId = 'imdb_id',
   Freebase_Id = 'freebase_mid',
@@ -219,24 +239,8 @@ export interface CollectionInfoResponse extends Response {
 
 export interface CollectionImagesResponse extends Response {
   id?: number
-  backdrops?: Array<{
-    aspect_ratio?: number
-    file_path?: string
-    height?: number
-    iso_639_1?: null
-    vote_average?: number
-    vote_count?: number
-    width?: number
-  }>
-  posters?: Array<{
-    aspect_ratio?: number
-    file_path?: string
-    height?: number
-    iso_639_1?: string
-    vote_average?: number
-    vote_count?: number
-    width?: number
-  }>
+  backdrops?: Array<Backdrop>
+  posters?: Array<Poster>
 }
 
 export interface CollectionTranslationsResponse extends Response {
@@ -427,3 +431,14 @@ export interface MovieExternalIdsResponse extends Response {
   twitter_id?: string|null
   id?: number
 }
+
+export interface MovieImagesRequest extends IdRequestParams {
+  include_image_language?: string
+}
+
+export interface MovieImagesResponse extends Response {
+  id?: number
+  backdrops?: Array<Backdrop>
+  posters?: Array<Poster>
+}
+

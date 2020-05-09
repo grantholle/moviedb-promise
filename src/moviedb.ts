@@ -297,7 +297,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, '/movie/:id/external_ids', params, options)
   }
 
-  movieImages (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  movieImages (params: string|number|types.MovieImagesRequest, options?: string|RequestOptions): Promise<types.MovieImagesResponse> {
     return this.makeRequest(HttpMethod.Get, 'movie/:id/images', params, options)
   }
 
