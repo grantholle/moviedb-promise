@@ -7,7 +7,7 @@ import {
   ProductionCompany
 } from './types'
 
-export interface HasIdRequestParams extends RequestParams {
+export interface IdRequestParams extends RequestParams {
   id: string|number
 }
 
