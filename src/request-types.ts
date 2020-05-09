@@ -701,3 +701,9 @@ export interface TvExternalIdsResponse extends Response {
   twitter_id?: string|null
   id?: number
 }
+
+export interface TvImagesResponse extends Response {
+  backdrops?: Array<Backdrop>
+  id?: number
+  posters?: Array<Poster>
+}
