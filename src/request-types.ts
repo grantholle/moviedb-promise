@@ -712,3 +712,11 @@ export interface TvKeywordsResponse extends Response {
   id?: number
   results?: Array<Keyword>
 }
+
+export interface TvRecommendationsRequest extends IdRequestParams {
+  page?: number
+}
+
+export interface TvRecommendationsResponse extends PaginatedResponse {
+  results?: Array<TvResult>
+}
