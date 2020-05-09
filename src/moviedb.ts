@@ -281,7 +281,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'movie/:id/account_states', params, options)
   }
 
-  movieAlternativeTitles (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  movieAlternativeTitles (params: string|number|types.MovieAlternativeTitlesRequest, options?: string|RequestOptions): Promise<types.MovieAlternativeTitlesResponse> {
     return this.makeRequest(HttpMethod.Get, 'movie/:id/alternative_titles', params, options)
   }
 

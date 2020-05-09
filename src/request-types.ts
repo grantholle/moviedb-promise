@@ -363,3 +363,16 @@ export interface MovieAccountStateResponse extends Response {
   rated?: object|boolean
   watchlist?: boolean
 }
+
+export interface MovieAlternativeTitlesRequest extends IdRequestParams {
+  country?: string
+}
+
+export interface MovieAlternativeTitlesResponse extends Response {
+  id?: number
+  titles?: Array<{
+    iso_3166_1?: string
+    title?: string
+    type?: string
+  }>
+}
