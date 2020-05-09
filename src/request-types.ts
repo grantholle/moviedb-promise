@@ -536,3 +536,16 @@ export interface PostResponse extends Response {
   status_code?: number
   status_message?: string
 }
+
+export interface MovieNowPlayingRequest extends RequestParams {
+  page?: number
+  region?: string
+}
+
+export interface MovieNowPlayingResponse extends PaginatedResponse {
+  results?: Array<MovieResult>
+  dates?: {
+    maximum?: string
+    minimum?: string
+  }
+}
