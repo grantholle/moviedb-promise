@@ -683,3 +683,9 @@ export interface ShowContentRatingResponse extends Response {
   }>
   id?: number
 }
+
+export interface TvCreditsResponse extends MovieCreditsResponse {
+  id?: number
+  cast?: Array<Cast>
+  crew?: Array<Crew>
+}
