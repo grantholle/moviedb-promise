@@ -487,3 +487,11 @@ export interface MovieVideosResponse extends Response {
 }
 
 export interface MovieTranslationsResponse extends CollectionTranslationsResponse {}
+
+export interface MovieRecommendationsRequest extends IdRequestParams {
+  page?: string
+}
+
+export interface MovieRecommendationsResponse extends PaginatedResponse {
+  results?: Array<MovieResult>
+}

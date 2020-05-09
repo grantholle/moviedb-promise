@@ -317,7 +317,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'movie/:id/translations', params, options)
   }
 
-  movieRecommendations (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  movieRecommendations (params: string|number|types.MovieRecommendationsRequest, options?: string|RequestOptions): Promise<types.MovieRecommendationsResponse> {
     return this.makeRequest(HttpMethod.Get, 'movie/:id/recommendations', params, options)
   }
 
