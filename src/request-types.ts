@@ -707,3 +707,8 @@ export interface TvImagesResponse extends Response {
   id?: number
   posters?: Array<Poster>
 }
+
+export interface TvKeywordsResponse extends Response {
+  id?: number
+  results?: Array<Keyword>
+}
