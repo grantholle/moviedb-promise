@@ -5,7 +5,6 @@ require('dotenv').config()
 const assert = require('chai').assert
 const apiKey = process.env.MOVIEDB_API_KEY || process.env.npm_config_key
 const { MovieDb } = require('../dist')
-const endpointGroups = require('../dist/endpoints/endpoints').default
 
 // Include --sesion='{your session id}' to test the watchlist
 // or `MOVIEDB_SESSION_ID` in a .env
@@ -37,17 +36,6 @@ if (!apiKey || apiKey.length === 0) {
 describe('moviedb-promise', function () {
   this.timeout(1200000)
   let api = new MovieDb(apiKey)
-
-  it('should have all the dynamic functions on the object', async () => {
-    for (const group of endpointGroups) {
-      for (const endpoint of group.endpoints) {
-        const method = group.prefix + (endpoint.name || '')
-
-        const func = typeof api[method]
-        func.should.equal('function')
-      }
-    }
-  })
 
   // basic movie search
   it('should search for Zoolander', async () => {
@@ -136,5 +124,10 @@ describe('moviedb-promise', function () {
     }
 
     return Promise.all(promises)
+  })
+
+  it(`should allow strings to perform search requests`, async () => {
+    const res = await api.searchMovie('Zoolander')
+    haveValidGenericResponse(res)
   })
 })
