@@ -357,8 +357,12 @@ export class MovieDb {
     return this.movieNowPlaying(params, options)
   }
 
-  miscPopularMovies (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  moviePopular (params?: types.PopularMoviesRequest, options?: string|RequestOptions): Promise<types.PopularMoviesResponse> {
     return this.makeRequest(HttpMethod.Get, 'movie/popular', params, options)
+  }
+
+  miscPopularMovies (params?: types.PopularMoviesRequest, options?: string|RequestOptions): Promise<types.PopularMoviesResponse> {
+    return this.moviePopular(params, options)
   }
 
   miscTopRatedMovies (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {

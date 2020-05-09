@@ -549,3 +549,7 @@ export interface MovieNowPlayingResponse extends PaginatedResponse {
     minimum?: string
   }
 }
+
+export interface PopularMoviesRequest extends MovieNowPlayingRequest {}
+
+export interface PopularMoviesResponse extends DiscoverMovieResponse {}
