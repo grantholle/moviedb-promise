@@ -417,12 +417,12 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/screened_theatrically', params, options)
   }
 
-  tvVideos (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Get, 'tv/:id/videos', params, options)
+  tvSimilar (params: string|number|types.PagedRequestParams, options?: string|RequestOptions): Promise<types.TvSimilarShowsResponse> {
+    return this.makeRequest(HttpMethod.Get, 'tv/:id/similar', params, options)
   }
 
-  tvSimilar (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Get, 'tv/:id/similar', params, options)
+  tvVideos (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/:id/videos', params, options)
   }
 
   tvTranslations (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {

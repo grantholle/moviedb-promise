@@ -734,3 +734,7 @@ export interface TvScreenTheatricallyResponse extends Response {
   }>
 }
 
+export interface TvSimilarShowsResponse extends PaginatedResponse {
+  results?: Array<TvResult>
+}
+
