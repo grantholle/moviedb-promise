@@ -301,12 +301,12 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'movie/:id/images', params, options)
   }
 
-  movieVideos (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Get, 'movie/:id/videos', params, options)
+  movieKeywords (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.MovieKeywordResponse> {
+    return this.makeRequest(HttpMethod.Get, 'movie/:id/keywords', params, options)
   }
 
-  movieKeywords (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Get, 'movie/:id/keywords', params, options)
+  movieVideos (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'movie/:id/videos', params, options)
   }
 
   movieRecommendations (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {

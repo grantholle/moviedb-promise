@@ -85,6 +85,11 @@ export interface Poster {
   width?: number
 }
 
+export interface Keyword {
+  id?: number
+  name?: string
+}
+
 export enum ExternalId {
   ImdbId = 'imdb_id',
   Freebase_Id = 'freebase_mid',
@@ -442,3 +447,7 @@ export interface MovieImagesResponse extends Response {
   posters?: Array<Poster>
 }
 
+export interface MovieKeywordResponse extends Response {
+  id?: number
+  keywords?: Array<Keyword>
+}
