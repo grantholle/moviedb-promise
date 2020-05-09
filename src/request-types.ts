@@ -121,6 +121,13 @@ export interface Translation {
   }
 }
 
+export interface Review {
+  id?: string
+  author?: string
+  content?: string
+  url?: string
+}
+
 export enum ExternalId {
   ImdbId = 'imdb_id',
   Freebase_Id = 'freebase_mid',
@@ -496,4 +503,11 @@ export interface MovieRecommendationsResponse extends PaginatedResponse {
   results?: Array<MovieResult>
 }
 
-export interface SimilarMovieResponse extends PaginatedResponse {}
+export interface SimilarMovieResponse extends MovieRecommendationsResponse {}
+
+export interface MovieReviewsRequest extends MovieRecommendationsRequest {}
+
+export interface MovieReviewsResponse extends PaginatedResponse {
+  results?: Array<Review>
+}
+
