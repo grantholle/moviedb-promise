@@ -98,6 +98,17 @@ export interface ReleaseDate {
   note?: string
 }
 
+export interface Video {
+  id?: string
+  iso_639_1?: string
+  iso_3166_1?: string
+  key?: string
+  name?: string
+  site?: string
+  size?: 360|480|720|1080
+  type?: 'Trailer'|'Teaser'|'Clip'|'Featurette'|'Behind the Scenes'|'Bloopers'
+}
+
 export enum ExternalId {
   ImdbId = 'imdb_id',
   Freebase_Id = 'freebase_mid',
@@ -466,4 +477,9 @@ export interface MovieReleaseDatesResponse extends Response {
     iso_3166_1?: string
     release_dates?: Array<ReleaseDate>
   }>
+}
+
+export interface MovieVideosResponse extends Response {
+  id?: number
+  results?: Array<Video>
 }

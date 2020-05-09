@@ -309,7 +309,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'movie/:id/release_dates', params, options)
   }
 
-  movieVideos (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  movieVideos (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.MovieVideosResponse> {
     return this.makeRequest(HttpMethod.Get, 'movie/:id/videos', params, options)
   }
 
