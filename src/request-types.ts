@@ -311,3 +311,12 @@ export interface DiscoverTvRequest extends RequestParams {
 export interface DiscoverTvResponse extends PaginatedResponse {
   results?: Array<TvResult>
 }
+
+export interface TrendingRequest extends RequestParams {
+  media_type: 'all'|'movie'|'tv'|'person'
+  time_window: 'day'|'week'
+}
+
+export interface TrendingResponse extends PaginatedResponse {
+  results?: Array<MovieResult|TvResult|PersonResult>
+}

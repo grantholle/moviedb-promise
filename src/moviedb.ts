@@ -269,7 +269,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'discover/tv', params, options)
   }
 
-  trending (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  trending (params: types.TrendingRequest, options?: string|RequestOptions): Promise<types.TrendingResponse> {
     return this.makeRequest(HttpMethod.Get, 'trending/:media_type/:time_window', params, options)
   }
 
