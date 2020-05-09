@@ -289,7 +289,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'movie/:id/changes', params, options)
   }
 
-  movieCredits (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  movieCredits (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.MovieCreditsResponse> {
     return this.makeRequest(HttpMethod.Get, 'movie/:id/credits', params, options)
   }
 
