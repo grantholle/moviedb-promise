@@ -377,6 +377,10 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/alternative_titles', params, options)
   }
 
+  tvChanges (params?: string|number|types.ShowChangesRequest, options?: string|RequestOptions): Promise<types.ShowChangesResponse> {
+    return this.makeRequest(HttpMethod.Get, 'tv/:id/changes', params, options)
+  }
+
   tvContentRatings (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/content_ratings', params, options)
   }
@@ -467,10 +471,6 @@ export class MovieDb {
 
   tvRecommendations (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/recommendations', params, options)
-  }
-
-  tvChanges (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Get, 'tv/:id/changes', params, options)
   }
 
   tvRatingUpdate (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {

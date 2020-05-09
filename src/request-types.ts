@@ -660,3 +660,18 @@ export interface ShowAlternativeTitlesResponse extends Response {
     type?: string
   }>
 }
+
+export interface ShowChangesRequest extends RequestParams {
+  start_date?: string
+  end_date?: string
+  page?: number
+}
+
+export interface ShowChangesResponse extends Response {
+  id?: number
+  results?: Array<{
+    title?: string
+    iso_3166_1?: string
+    type?: string
+  }>
+}
