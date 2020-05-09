@@ -273,8 +273,12 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'trending/:media_type/:time_window', params, options)
   }
 
-  movieInfo (params: string|number|RequestParams, options?: string|RequestOptions): Promise<types.MovieResponse> {
+  movieInfo (params: string|number|types.HasIdRequestParams, options?: string|RequestOptions): Promise<types.MovieResponse> {
     return this.makeRequest(HttpMethod.Get, 'movie/:id', params, options)
+  }
+
+  movieAccountStates (params: string|number|types.HasIdRequestParams, options?: string|RequestOptions): Promise<types.MovieAccountStateResponse> {
+    return this.makeRequest(HttpMethod.Get, 'movie/:id/account_states', params, options)
   }
 
   movieAlternativeTitles (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {

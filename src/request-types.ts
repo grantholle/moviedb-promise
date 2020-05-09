@@ -7,6 +7,10 @@ import {
   ProductionCompany
 } from './types'
 
+export interface HasIdRequestParams extends RequestParams {
+  id: string|number
+}
+
 export interface MovieResult {
   poster_path?: string
   adult?: boolean
@@ -351,4 +355,11 @@ export interface MovieResponse extends Response {
   video?: boolean
   vote_average?: number
   vote_count?: number
+}
+
+export interface MovieAccountStateResponse extends Response {
+  id?: number
+  favorite?: boolean
+  rated?: object|boolean
+  watchlist?: boolean
 }
