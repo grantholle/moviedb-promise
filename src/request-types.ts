@@ -152,6 +152,17 @@ export interface ConfigurationResponse extends Response {
   }
 }
 
+export interface MovieList {
+  description?: string
+  favorite_count?: number
+  id?: number
+  item_count?: number
+  iso_639_1?: string
+  list_type?: string
+  name?: string
+  poster_path?: null|string
+}
+
 export enum ExternalSource {
   ImdbId = 'imdb_id',
   FreebaseMid = 'freebase_mid',
@@ -511,3 +522,8 @@ export interface MovieReviewsResponse extends PaginatedResponse {
   results?: Array<Review>
 }
 
+export interface MovieListsRequest extends MovieRecommendationsRequest {}
+
+export interface MovieListsResponse extends PaginatedResponse {
+  results?: Array<MovieList>
+}
