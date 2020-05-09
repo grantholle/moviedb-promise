@@ -341,6 +341,34 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Delete, 'movie/:id/rating', params, options)
   }
 
+  movieLatest (params?: string|RequestParams, options?: string|RequestOptions): Promise<types.MovieResponse> {
+    return this.makeRequest(HttpMethod.Get, 'movie/latest', isString(params) ? { language: params } : params, options)
+  }
+
+  miscLatestMovies (params?: string|RequestParams, options?: string|RequestOptions): Promise<types.MovieResponse> {
+    return this.movieLatest(params, options)
+  }
+
+  miscNowPlayingMovies (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'movie/now_playing', params, options)
+  }
+
+  miscPopularMovies (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'movie/popular', params, options)
+  }
+
+  miscTopRatedMovies (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'movie/top_rated', params, options)
+  }
+
+  miscUpcomingMovies (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'movie/upcoming', params, options)
+  }
+
+  miscChangedMovies (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'movie/changes', params, options)
+  }
+
   movieReleases (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
     return this.makeRequest(HttpMethod.Get, 'movie/:id/releases', params, options)
   }
@@ -579,30 +607,6 @@ export class MovieDb {
 
   accountFavoriteTv (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
     return this.makeRequest(HttpMethod.Get, 'account/:id/favorite/tv', params, options)
-  }
-
-  miscLatestMovies (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Get, 'movie/latest', params, options)
-  }
-
-  miscNowPlayingMovies (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Get, 'movie/now_playing', params, options)
-  }
-
-  miscPopularMovies (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Get, 'movie/popular', params, options)
-  }
-
-  miscTopRatedMovies (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Get, 'movie/top_rated', params, options)
-  }
-
-  miscUpcomingMovies (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Get, 'movie/upcoming', params, options)
-  }
-
-  miscChangedMovies (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Get, 'movie/changes', params, options)
   }
 
   miscChangedTvs (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
