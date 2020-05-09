@@ -273,7 +273,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'trending/:media_type/:time_window', params, options)
   }
 
-  movieInfo (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  movieInfo (params: string|number|RequestParams, options?: string|RequestOptions): Promise<types.MovieResponse> {
     return this.makeRequest(HttpMethod.Get, 'movie/:id', params, options)
   }
 

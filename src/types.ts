@@ -53,3 +53,25 @@ export interface RequestOptions {
   appendToResponse?: string
   timeout?: number
 }
+
+export interface Genre {
+  id?: number
+  name?: string
+}
+
+export interface ProductionCompany {
+  name?: string
+  id?: number
+  logo_path?: string
+  origin_country?: string
+}
+
+export interface ProductionCountry {
+  name?: string
+  iso_3166_1?: string
+}
+
+export interface SpokenLanguage {
+  iso_639_1?: string
+  name?: string
+}
