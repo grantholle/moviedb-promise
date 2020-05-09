@@ -419,3 +419,11 @@ export interface MovieCreditsResponse extends Response {
     profile_path?: string|null
   }>
 }
+
+export interface MovieExternalIdsResponse extends Response {
+  imdb_id?: string|null
+  facebook_id?: string|null
+  instagram_id?: string|null
+  twitter_id?: string|null
+  id?: number
+}
