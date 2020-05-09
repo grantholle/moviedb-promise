@@ -265,7 +265,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'discover/movie', params, options)
   }
 
-  discoverTv (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  discoverTv (params?: types.DiscoverTvRequest, options?: string|RequestOptions): Promise<types.DiscoverTvResponse> {
     return this.makeRequest(HttpMethod.Get, 'discover/tv', params, options)
   }
 
