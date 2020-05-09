@@ -249,15 +249,15 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'search/list', params, options)
   }
 
-  collectionInfo (params: string|number|types.CollectionInfoRequest, options?: string|RequestOptions): Promise<types.CollectionInfoResponse> {
+  collectionInfo (params: string|number|types.CollectionRequest, options?: string|RequestOptions): Promise<types.CollectionInfoResponse> {
     return this.makeRequest(HttpMethod.Get, 'collection/:id', params, options)
   }
 
-  collectionImages (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  collectionImages (params: string|number|types.CollectionRequest, options?: string|RequestOptions): Promise<types.CollectionImagesResponse> {
     return this.makeRequest(HttpMethod.Get, 'collection/:id/images', params, options)
   }
 
-  collectionTranslations (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  collectionTranslations (params: string|number|types.CollectionRequest, options?: string|RequestOptions): Promise<types.CollectionTranslationsResponse> {
     return this.makeRequest(HttpMethod.Get, 'collection/:id/translations', params, options)
   }
 
