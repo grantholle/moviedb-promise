@@ -11,6 +11,10 @@ export interface IdRequestParams extends RequestParams {
   id: string|number
 }
 
+export interface PagedRequestParams extends IdRequestParams {
+  page?: number
+}
+
 export interface MovieResult {
   poster_path?: string
   adult?: boolean
@@ -713,10 +717,10 @@ export interface TvKeywordsResponse extends Response {
   results?: Array<Keyword>
 }
 
-export interface TvRecommendationsRequest extends IdRequestParams {
-  page?: number
-}
-
 export interface TvRecommendationsResponse extends PaginatedResponse {
   results?: Array<TvResult>
+}
+
+export interface TvReviewsResponse extends PaginatedResponse {
+  results?: Array<Review>
 }

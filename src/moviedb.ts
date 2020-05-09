@@ -405,8 +405,12 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/keywords', params, options)
   }
 
-  tvRecommendations (params: string|number|types.TvRecommendationsRequest, options?: string|RequestOptions): Promise<types.TvRecommendationsResponse> {
+  tvRecommendations (params: string|number|types.PagedRequestParams, options?: string|RequestOptions): Promise<types.TvRecommendationsResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/recommendations', params, options)
+  }
+
+  tvReviews (params: string|number|types.PagedRequestParams, options?: string|RequestOptions): Promise<types.TvReviewsResponse> {
+    return this.makeRequest(HttpMethod.Get, 'tv/:id/reviews', params, options)
   }
 
   tvVideos (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
@@ -415,10 +419,6 @@ export class MovieDb {
 
   tvScreenedTheatrically (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/screened_theatrically', params, options)
-  }
-
-  tvReviews (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Get, 'tv/:id/reviews', params, options)
   }
 
   tvSimilar (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
