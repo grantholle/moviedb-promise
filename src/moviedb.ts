@@ -617,7 +617,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'keyword/:id/movies', params, options)
   }
 
-  companyInfo (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  companyInfo (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.Company> {
     return this.makeRequest(HttpMethod.Get, 'company/:id', params, options)
   }
 

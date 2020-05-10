@@ -159,6 +159,17 @@ export interface Review {
   url?: string
 }
 
+export interface Company {
+  description?: string
+  headquarters?: string
+  homepage?: string
+  id?: number
+  logo_path?: string
+  name?: string
+  origin_country?: string
+  parent_company?: null|object
+}
+
 export interface SimpleEpisode {
   air_date?: string
   episode_number?: number
