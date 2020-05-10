@@ -1183,3 +1183,7 @@ export interface CreateListResponse extends Response {
   status_code?: number
   list_id?: number
 }
+
+export interface CreateListItemParams extends IdRequestParams {
+  media_id: number
+}
