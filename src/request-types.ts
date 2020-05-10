@@ -1170,3 +1170,16 @@ export interface ListsStatusResponse extends Response {
   id?: string
   item_present?: boolean
 }
+
+export interface CreateListParams extends RequestParams {
+  name?: string
+  description?: string
+  language?: string
+}
+
+export interface CreateListResponse extends Response {
+  status_message?: string
+  success?: boolean
+  status_code?: number
+  list_id?: number
+}

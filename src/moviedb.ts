@@ -581,6 +581,10 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'list/:id/item_status', params, options)
   }
 
+  createList (params: types.CreateListParams, options?: string|RequestOptions): Promise<types.CreateListResponse> {
+    return this.makeRequest(HttpMethod.Post, 'list', params, options)
+  }
+
   genreMovieList (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
     return this.makeRequest(HttpMethod.Get, 'genre/movie/list', params, options)
   }
