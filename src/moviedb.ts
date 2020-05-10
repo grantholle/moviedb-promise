@@ -505,7 +505,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number/external_ids', params, options)
   }
 
-  tvEpisodeImages (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  tvEpisodeImages (params: types.EpisodeRequest, options?: string|RequestOptions): Promise<types.EpisodeImagesResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number/images', params, options)
   }
 
