@@ -493,6 +493,10 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, '/tv/episode/:id/changes', params, options)
   }
 
+  tvEpisodeAccountStates (params: types.EpisodeRequest, options?: string|RequestOptions): Promise<types.EpisodeAccountStatesResponse> {
+    return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number/account_states', params, options)
+  }
+
   tvEpisodeCredits (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number/credits', params, options)
   }
