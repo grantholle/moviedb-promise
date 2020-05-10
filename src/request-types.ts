@@ -1266,3 +1266,7 @@ export interface AccountListsResponse extends PaginatedResponse {
     poster_path?: null
   }>
 }
+
+export interface FavoriteMoviesRequest extends PagedRequestParams {
+  sort_by?: 'created_at.asc'|'created_at.desc'
+}

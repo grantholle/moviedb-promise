@@ -637,8 +637,12 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'account/:id/lists', params, options)
   }
 
-  accountFavoriteMovies (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  accountFavoriteMovies (params?: string|number|types.FavoriteMoviesRequest, options?: string|RequestOptions): Promise<types.SearchMovieResponse> {
     return this.makeRequest(HttpMethod.Get, 'account/:id/favorite/movies', params, options)
+  }
+
+  accountFavoriteTv (params?: string|number|types.FavoriteMoviesRequest, options?: string|RequestOptions): Promise<types.SearchTvResponse> {
+    return this.makeRequest(HttpMethod.Get, 'account/:id/favorite/tv', params, options)
   }
 
   accountFavoriteUpdate (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
@@ -667,10 +671,6 @@ export class MovieDb {
 
   accountRatedTvEpisodes (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
     return this.makeRequest(HttpMethod.Get, 'account/:id/rated/tv/episodes', params, options)
-  }
-
-  accountFavoriteTv (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Get, 'account/:id/favorite/tv', params, options)
   }
 
   miscChangedTvs (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
