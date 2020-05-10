@@ -743,3 +743,7 @@ export interface TvTranslationsResponse extends Response {
   translations?: Array<Translation>
 }
 
+export interface TvVideosResponse extends Response {
+  id?: number
+  results?: Array<Video>
+}
