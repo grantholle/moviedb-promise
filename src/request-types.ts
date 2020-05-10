@@ -717,7 +717,7 @@ export interface TvKeywordsResponse extends Response {
   results?: Array<Keyword>
 }
 
-export interface TvRecommendationsResponse extends PaginatedResponse {
+export interface TvResultsResponse extends PaginatedResponse {
   results?: Array<TvResult>
 }
 

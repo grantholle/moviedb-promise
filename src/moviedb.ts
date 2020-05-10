@@ -405,7 +405,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/keywords', params, options)
   }
 
-  tvRecommendations (params: string|number|types.PagedRequestParams, options?: string|RequestOptions): Promise<types.TvRecommendationsResponse> {
+  tvRecommendations (params: string|number|types.PagedRequestParams, options?: string|RequestOptions): Promise<types.TvResultsResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/recommendations', params, options)
   }
 
@@ -441,6 +441,10 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'tv/latest', params, options)
   }
 
+  tvAiringToday (params?: types.PagedRequestParams, options?: string|RequestOptions): Promise<types.TvResultsResponse> {
+    return this.makeRequest(HttpMethod.Get, 'tv/airing_today', params, options)
+  }
+
   miscPopularTvs (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
     return this.makeRequest(HttpMethod.Get, 'tv/popular', params, options)
   }
@@ -451,10 +455,6 @@ export class MovieDb {
 
   tvOnTheAir (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
     return this.makeRequest(HttpMethod.Get, 'tv/on_the_air', params, options)
-  }
-
-  tvAiringToday (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Get, 'tv/airing_today', params, options)
   }
 
   tvSeasonInfo (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
