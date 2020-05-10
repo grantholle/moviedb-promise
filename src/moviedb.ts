@@ -473,12 +473,12 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/credits', params, options)
   }
 
-  tvSeasonVideos (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/videos', params, options)
+  tvSeasonExternalIds (params: types.TvSeasonRequest, options?: string|RequestOptions): Promise<types.TvSeasonExternalIdsResponse> {
+    return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/external_ids', params, options)
   }
 
-  tvSeasonExternalIds (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/external_ids', params, options)
+  tvSeasonVideos (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/videos', params, options)
   }
 
   tvSeasonImages (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
