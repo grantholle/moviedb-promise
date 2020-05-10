@@ -192,6 +192,21 @@ export interface Crew {
   profile_path?: string|null
 }
 
+export interface Episode {
+  air_date?: string
+  crew?: Array<Crew>
+  episode_number?: number
+  guest_stars?: object[]
+  name?: string
+  overview?: string
+  id?: number
+  production_code?: string|null
+  season_number?: number
+  still_path?: string|null
+  vote_average?: number
+  vote_count?: number
+}
+
 export enum ExternalId {
   ImdbId = 'imdb_id',
   Freebase_Mid = 'freebase_mid',
@@ -746,4 +761,19 @@ export interface TvTranslationsResponse extends Response {
 export interface TvVideosResponse extends Response {
   id?: number
   results?: Array<Video>
+}
+
+export interface TvSeasonRequest extends IdRequestParams {
+  season_number: number
+}
+
+export interface TvSeasonResponse extends Response {
+  _id?: string
+  air_date?: string
+  episodes?: Array<Episode>
+  name?: string
+  overview?: string
+  id?: number
+  poster_path?: string|null
+  season_number?: number
 }

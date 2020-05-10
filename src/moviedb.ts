@@ -457,7 +457,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'tv/top_rated', params, options)
   }
 
-  tvSeasonInfo (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  tvSeasonInfo (params: types.TvSeasonRequest, options?: string|RequestOptions): Promise<types.TvSeasonResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number', params, options)
   }
 
