@@ -669,7 +669,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'account/:id/watchlist/tv', params, options)
   }
 
-  accountWatchlistUpdate (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  accountWatchlistUpdate (params: types.AccountWatchlistRequest, options?: string|RequestOptions): Promise<types.PostResponse> {
     return this.makeRequest(HttpMethod.Post, 'account/:id/watchlist', params, options)
   }
 

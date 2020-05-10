@@ -1274,3 +1274,9 @@ export interface MarkAsFavoriteRequest extends IdRequestParams {
   media_id: number
   favorite: boolean
 }
+
+export interface AccountWatchlistRequest extends IdRequestParams {
+  media_type: 'movie'|'tv'
+  media_id: number
+  watchlist: boolean
+}
