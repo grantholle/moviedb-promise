@@ -453,7 +453,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'tv/popular', params, options)
   }
 
-  miscTopRatedTvs (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  tvTopRated (params?: types.PagedRequestParams, options?: string|RequestOptions): Promise<types.TvResultsResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/top_rated', params, options)
   }
 
