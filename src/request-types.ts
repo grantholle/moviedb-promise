@@ -872,3 +872,7 @@ export interface EpisodeTranslationsResponse extends Response {
     }
   }>
 }
+
+export interface EpisodeRatingRequest extends EpisodeRequest {
+  value: number
+}

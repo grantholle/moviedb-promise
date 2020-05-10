@@ -517,6 +517,10 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Post, 'tv/:id/season/:season_number/episode/:episode_number/rating', params, options)
   }
 
+  tvEpisodeRatingDelete (params: types.EpisodeRequest, options?: string|RequestOptions): Promise<types.PostResponse> {
+    return this.makeRequest(HttpMethod.Delete, 'tv/:id/season/:season_number/episode/:episode_number/rating', params, options)
+  }
+
   personInfo (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
     return this.makeRequest(HttpMethod.Get, 'person/:id', params, options)
   }
