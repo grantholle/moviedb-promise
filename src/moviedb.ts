@@ -613,7 +613,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'keyword/:id', params, options)
   }
 
-  keywordMovies (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  keywordMovies (params: string|number|types.KeywordMoviesParams, options?: string|RequestOptions): Promise<types.SearchMovieResponse> {
     return this.makeRequest(HttpMethod.Get, 'keyword/:id/movies', params, options)
   }
 

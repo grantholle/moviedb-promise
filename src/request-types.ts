@@ -1200,3 +1200,7 @@ export interface KeywordResponse extends Response {
   id?: number
   name?: string
 }
+
+export interface KeywordMoviesParams extends IdRequestParams {
+  include_adult?: boolean
+}
