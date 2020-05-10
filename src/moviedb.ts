@@ -437,6 +437,18 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Delete, 'tv/:id/rating', params, options)
   }
 
+  tvLatest (params?: RequestParams, options?: string|RequestOptions): Promise<types.ShowResponse> {
+    return this.makeRequest(HttpMethod.Get, 'tv/latest', params, options)
+  }
+
+  miscPopularTvs (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/popular', params, options)
+  }
+
+  miscTopRatedTvs (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/top_rated', params, options)
+  }
+
   tvOnTheAir (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
     return this.makeRequest(HttpMethod.Get, 'tv/on_the_air', params, options)
   }
@@ -611,17 +623,5 @@ export class MovieDb {
 
   miscChangedPeople (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
     return this.makeRequest(HttpMethod.Get, 'person/changes', params, options)
-  }
-
-  miscLatestTvs (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Get, 'tv/latest', params, options)
-  }
-
-  miscPopularTvs (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Get, 'tv/popular', params, options)
-  }
-
-  miscTopRatedTvs (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Get, 'tv/top_rated', params, options)
   }
 }
