@@ -858,3 +858,17 @@ export interface EpisodeImagesResponse extends Response {
     width?: number
   }>
 }
+
+export interface EpisodeTranslationsResponse extends Response {
+  id?: number
+  translations?: Array<{
+    iso_3166_1?: string
+    iso_639_1?: string
+    name?: string
+    english_name?: string
+    data?: {
+      name?: string
+      overview?: string
+    }
+  }>
+}
