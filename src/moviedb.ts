@@ -708,4 +708,8 @@ export class MovieDb {
   tvCertifications (options?: string|RequestOptions): Promise<types.CertificationsResponse> {
     return this.makeRequest(HttpMethod.Get, 'certification/tv/list', null, options)
   }
+
+  networkInfo (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.NetworkResponse> {
+    return this.makeRequest(HttpMethod.Get, 'network/:id', params, options)
+  }
 }

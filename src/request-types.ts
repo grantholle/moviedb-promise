@@ -1330,3 +1330,11 @@ export interface CertificationsResponse extends Response {
 }
 
 export type CountriesResponse = Array<Country>
+
+export interface NetworkResponse extends Response {
+  headquarters?: string
+  homepage?: string
+  id?: number
+  name?: string
+  origin_country?: string
+}
