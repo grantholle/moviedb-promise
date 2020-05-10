@@ -649,7 +649,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Post, 'account/:id/favorite', params, options)
   }
 
-  accountRatedMovies (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  accountRatedMovies (params?: string|number|types.FavoriteMoviesRequest, options?: string|RequestOptions): Promise<types.SearchMovieResponse> {
     return this.makeRequest(HttpMethod.Get, 'account/:id/rated/movies', params, options)
   }
 
