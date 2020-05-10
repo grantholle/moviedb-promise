@@ -193,6 +193,7 @@ export interface SimpleEpisode {
   still_path?: string
   vote_average?: number
   vote_count?: number
+  rating?: number
 }
 
 export interface Network {
@@ -325,14 +326,7 @@ export interface SearchRequest extends RequestParams {
   page?: number
 }
 
-export interface SearchResponse extends Response {
-  page?: number
-  results?: Array<object>
-  total_pages?: number
-  total_results?: number
-}
-
-export interface SearchCompanyResponse extends SearchResponse {
+export interface SearchCompanyResponse extends PaginatedResponse {
   results?: Array<{
     id?: number
     logo_path?: string
@@ -340,7 +334,7 @@ export interface SearchCompanyResponse extends SearchResponse {
   }>
 }
 
-export interface SearchCollectionResponse extends SearchResponse {
+export interface SearchCollectionResponse extends PaginatedResponse {
   results?: Array<{
     id?: number
     backdrop_path?: string
@@ -349,7 +343,7 @@ export interface SearchCollectionResponse extends SearchResponse {
   }>
 }
 
-export interface SearchKeywordResponse extends SearchResponse {
+export interface SearchKeywordResponse extends PaginatedResponse {
   results?: Array<{
     id?: number
     name?: string
@@ -363,7 +357,7 @@ export interface SearchMovieRequest extends SearchRequest {
   primary_release_year?: number
 }
 
-export interface MovieResultsResponse extends SearchResponse {
+export interface MovieResultsResponse extends PaginatedResponse {
   results?: Array<MovieResult>
 }
 
@@ -372,11 +366,11 @@ export interface SearchMultiRequest extends SearchRequest {
   region?: string
 }
 
-export interface SearchMultiResponse extends SearchResponse {
+export interface SearchMultiResponse extends PaginatedResponse {
   results?: Array<MovieResult|TvResult|PersonResult>
 }
 
-export interface SearchPersonResponse extends SearchResponse {
+export interface SearchPersonResponse extends PaginatedResponse {
   results?: Array<PersonResult>
 }
 
@@ -385,8 +379,12 @@ export interface SearchTvRequest extends SearchRequest {
   first_air_date_year?: number
 }
 
-export interface TvResultsResponse extends SearchResponse {
+export interface TvResultsResponse extends PaginatedResponse {
   results?: Array<TvResult>
+}
+
+export interface EpisodeResultsResponse extends PaginatedResponse {
+  results?: Array<SimpleEpisode>
 }
 
 export interface CollectionRequest extends RequestParams {
