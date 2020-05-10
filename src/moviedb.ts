@@ -521,6 +521,10 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Delete, 'tv/:id/season/:season_number/episode/:episode_number/rating', params, options)
   }
 
+  tvEpisodeVideos (params: types.EpisodeRequest, options?: string|RequestOptions): Promise<types.EpisodeVideosResponse> {
+    return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number/translations', params, options)
+  }
+
   personInfo (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
     return this.makeRequest(HttpMethod.Get, 'person/:id', params, options)
   }
