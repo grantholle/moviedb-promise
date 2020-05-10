@@ -196,7 +196,7 @@ export interface Episode {
   air_date?: string
   crew?: Array<Crew>
   episode_number?: number
-  guest_stars?: object[]
+  guest_stars?: GuestStar[]
   name?: string
   overview?: string
   id?: number
@@ -240,6 +240,15 @@ export interface MovieList {
   list_type?: string
   name?: string
   poster_path?: null|string
+}
+
+export interface GuestStar {
+  id?: number
+  name?: string
+  credit_id?: string
+  character?: string
+  order?: number
+  profile_path?: string|null
 }
 
 export interface FindRequest extends Request {
@@ -802,7 +811,13 @@ export interface TvSeasonExternalIdsResponse extends Response {
   tvrage_id?: null|number
   id?: number
 }
+
 export interface TvSeasonImagesResponse extends Response {
   id?: number
   posters?: Array<Poster>
 }
+
+export interface EpisodeRequest extends TvSeasonRequest {
+  episode_number: number
+}
+
