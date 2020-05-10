@@ -738,3 +738,8 @@ export interface TvSimilarShowsResponse extends PaginatedResponse {
   results?: Array<TvResult>
 }
 
+export interface TvTranslationsResponse extends Response {
+  id?: number
+  translations?: Array<Translation>
+}
+
