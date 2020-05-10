@@ -247,6 +247,12 @@ export interface Country {
   english_name?: string
 }
 
+export interface Language {
+  iso_639_1?: string
+  english_name?: string
+  name?: string
+}
+
 export interface Job {
   department?: string
   jobs?: string[]
