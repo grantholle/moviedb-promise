@@ -196,8 +196,14 @@ class MovieDb {
     movieInfo(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id', params, options);
     }
+    movieAccountStates(params, options) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/account_states', params, options);
+    }
     movieAlternativeTitles(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/alternative_titles', params, options);
+    }
+    movieChanges(params, options) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/changes', params, options);
     }
     movieCredits(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/credits', params, options);
@@ -208,26 +214,20 @@ class MovieDb {
     movieImages(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/images', params, options);
     }
-    movieVideos(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/videos', params, options);
-    }
     movieKeywords(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/keywords', params, options);
-    }
-    movieRecommendations(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/recommendations', params, options);
-    }
-    movieReleases(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/releases', params, options);
     }
     movieReleaseDates(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/release_dates', params, options);
     }
-    movieTrailers(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/trailers', params, options);
+    movieVideos(params, options) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/videos', params, options);
     }
     movieTranslations(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/translations', params, options);
+    }
+    movieRecommendations(params, options) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/recommendations', params, options);
     }
     movieSimilar(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/similar', params, options);
@@ -238,17 +238,41 @@ class MovieDb {
     movieLists(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/lists', params, options);
     }
-    movieChanges(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/changes', params, options);
-    }
     movieRatingUpdate(params, options) {
         return this.makeRequest(types_1.HttpMethod.Post, 'movie/:id/rating', params, options);
     }
-    tvInfo(params, options) {
+    movieRatingDelete(params, options) {
+        return this.makeRequest(types_1.HttpMethod.Delete, 'movie/:id/rating', params, options);
+    }
+    movieLatest(params, options) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'movie/latest', lodash_1.isString(params) ? { language: params } : params, options);
+    }
+    movieNowPlaying(params, options) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'movie/now_playing', params, options);
+    }
+    moviePopular(params, options) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'movie/popular', params, options);
+    }
+    movieTopRated(params, options) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'movie/top_rated', params, options);
+    }
+    upcomingMovies(params, options) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'movie/upcoming', params, options);
+    }
+    miscChangedMovies(params, options) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'movie/changes', params, options);
+    }
+    tvShow(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id', params, options);
+    }
+    tvAccountStates(params, options) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/account_states', params, options);
     }
     tvAlternativeTitles(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/alternative_titles', params, options);
+    }
+    tvChanges(params, options) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/changes', params, options);
     }
     tvContentRatings(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/content_ratings', params, options);
@@ -268,20 +292,44 @@ class MovieDb {
     tvKeywords(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/keywords', params, options);
     }
-    tvVideos(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/videos', params, options);
-    }
-    tvScreenedTheatrically(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/screened_theatrically', params, options);
+    tvRecommendations(params, options) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/recommendations', params, options);
     }
     tvReviews(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/reviews', params, options);
+    }
+    tvScreenedTheatrically(params, options) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/screened_theatrically', params, options);
     }
     tvSimilar(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/similar', params, options);
     }
     tvTranslations(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/translations', params, options);
+    }
+    tvVideos(params, options) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/videos', params, options);
+    }
+    tvRatingUpdate(params, options) {
+        return this.makeRequest(types_1.HttpMethod.Post, 'tv/:id/rating', params, options);
+    }
+    tvRatingDelete(params, options) {
+        return this.makeRequest(types_1.HttpMethod.Delete, 'tv/:id/rating', params, options);
+    }
+    tvLatest(params, options) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/latest', params, options);
+    }
+    tvAiringToday(params, options) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/airing_today', params, options);
+    }
+    tvOnTheAir(params, options) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/on_the_air', params, options);
+    }
+    tvPopular(params, options) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/popular', params, options);
+    }
+    tvTopRated(params, options) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/top_rated', params, options);
     }
     tvSeasonInfo(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/season/:season_number', params, options);
@@ -309,21 +357,6 @@ class MovieDb {
     }
     tvEpisodeImages(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number/images', params, options);
-    }
-    tvOnTheAir(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/on_the_air', params, options);
-    }
-    tvAiringToday(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/airing_today', params, options);
-    }
-    tvRecommendations(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/recommendations', params, options);
-    }
-    tvChanges(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/changes', params, options);
-    }
-    tvRatingUpdate(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Post, 'tv/:id/rating', params, options);
     }
     personInfo(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'person/:id', params, options);
@@ -418,38 +451,11 @@ class MovieDb {
     accountFavoriteTv(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'account/:id/favorite/tv', params, options);
     }
-    miscLatestMovies(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'movie/latest', params, options);
-    }
-    miscNowPlayingMovies(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'movie/now_playing', params, options);
-    }
-    miscPopularMovies(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'movie/popular', params, options);
-    }
-    miscTopRatedMovies(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'movie/top_rated', params, options);
-    }
-    miscUpcomingMovies(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'movie/upcoming', params, options);
-    }
-    miscChangedMovies(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'movie/changes', params, options);
-    }
     miscChangedTvs(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'tv/changes', params, options);
     }
     miscChangedPeople(params, options) {
         return this.makeRequest(types_1.HttpMethod.Get, 'person/changes', params, options);
-    }
-    miscLatestTvs(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/latest', params, options);
-    }
-    miscPopularTvs(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/popular', params, options);
-    }
-    miscTopRatedTvs(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/top_rated', params, options);
     }
 }
 exports.MovieDb = MovieDb;
