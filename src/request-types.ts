@@ -1148,3 +1148,25 @@ export interface CreditDetailsResponse extends Response {
     id?: number
   }
 }
+
+export interface ListsDetailResponse extends Response {
+  created_by?: string
+  description?: string
+  favorite_count?: number
+  id?: string
+  items?: Array<MovieResult>
+  item_count?: number
+  iso_639_1?: string
+  name?: string
+  poster_path?: string|null
+}
+
+export interface ListStatusParams extends RequestParams {
+  id: string|number
+  movie_id: number
+}
+
+export interface ListsStatusResponse extends Response {
+  id?: string
+  item_present?: boolean
+}
