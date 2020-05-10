@@ -605,7 +605,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'genre/movie/list', params, options)
   }
 
-  genreTvList (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  genreTvList (params?: RequestParams, options?: string|RequestOptions): Promise<types.GenresResponse> {
     return this.makeRequest(HttpMethod.Get, 'genre/tv/list', params, options)
   }
 
