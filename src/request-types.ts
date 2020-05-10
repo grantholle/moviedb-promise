@@ -253,6 +253,11 @@ export interface Language {
   name?: string
 }
 
+export interface Timezone {
+  iso_3166_1?: string
+  zones?: string[]
+}
+
 export interface Job {
   department?: string
   jobs?: string[]
