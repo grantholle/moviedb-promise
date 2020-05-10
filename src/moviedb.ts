@@ -533,11 +533,11 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'person/:id/changes', params, options)
   }
 
-  personMovieCredits (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  personMovieCredits (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.PersonMovieCreditsResponse> {
     return this.makeRequest(HttpMethod.Get, 'person/:id/movie_credits', params, options)
   }
 
-  personTvCredits (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  personTvCredits (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.PersonTvCreditsResponse> {
     return this.makeRequest(HttpMethod.Get, 'person/:id/tv_credits', params, options)
   }
 
