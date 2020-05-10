@@ -213,7 +213,11 @@ export class MovieDb {
   }
 
   countries (options?: string|RequestOptions): Promise<types.CountriesResponse> {
-    return this.makeRequest(HttpMethod.Get, 'configuration', null, options)
+    return this.makeRequest(HttpMethod.Get, 'configuration/countries', null, options)
+  }
+
+  jobs (options?: string|RequestOptions): Promise<Array<types.Job>> {
+    return this.makeRequest(HttpMethod.Get, 'configuration/jobs', null, options)
   }
 
   find (params?: string|number|types.FindRequest, options?: string|RequestOptions): Promise<types.FindResponse> {

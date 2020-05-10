@@ -247,6 +247,11 @@ export interface Country {
   english_name?: string
 }
 
+export interface Job {
+  department?: string
+  jobs?: string[]
+}
+
 export interface Episode {
   air_date?: string
   crew?: Array<Crew>
