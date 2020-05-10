@@ -96,6 +96,16 @@ export interface Backdrop {
   width?: number
 }
 
+export interface Profile {
+  aspect_ratio?: number
+  file_path?: string
+  height?: number
+  iso_639_1?: null
+  vote_average?: number
+  vote_count?: number
+  width?: number
+}
+
 export interface Poster {
   aspect_ratio?: number
   file_path?: string
@@ -1068,4 +1078,9 @@ export interface PersonExternalIdsResponse extends Response {
   twitter_id?: null|string
   id: number
   instagram_id?: string|null
+}
+
+export interface PersonImagesResponse extends Response {
+  id?: number
+  profiles?: Array<Profile>
 }
