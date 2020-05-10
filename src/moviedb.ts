@@ -665,7 +665,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'account/:id/watchlist/movies', params, options)
   }
 
-  accountTvWatchlist (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  accountTvWatchlist (params?: string|number|types.AccountMediaRequest, options?: string|RequestOptions): Promise<types.TvResultsResponse> {
     return this.makeRequest(HttpMethod.Get, 'account/:id/watchlist/tv', params, options)
   }
 
