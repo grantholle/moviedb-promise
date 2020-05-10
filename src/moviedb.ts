@@ -561,7 +561,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'person/:id/translations', params, options)
   }
 
-  personLatest (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  personLatest (params?: RequestParams, options?: string|RequestOptions): Promise<types.Person> {
     return this.makeRequest(HttpMethod.Get, 'person/latest', params, options)
   }
 
