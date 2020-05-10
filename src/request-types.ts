@@ -1113,3 +1113,14 @@ export interface PersonTranslationsResponse extends PaginatedResponse {
     english_name?: string
   }>
 }
+
+export interface PersonPopularResponse extends PaginatedResponse {
+  results?: Array<{
+    profile_path?: string
+    adult?: boolean
+    id?: number
+    known_for?: MovieResult|TvResult
+    name?: string
+    popularity?: number
+  }>
+}

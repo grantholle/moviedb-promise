@@ -565,7 +565,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'person/latest', params, options)
   }
 
-  personPopular (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  personPopular (params?: types.PagedRequestParams, options?: string|RequestOptions): Promise<types.PersonPopularResponse> {
     return this.makeRequest(HttpMethod.Get, 'person/popular', params, options)
   }
 
