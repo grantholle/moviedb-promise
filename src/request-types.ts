@@ -555,6 +555,13 @@ export interface ChangesRequest extends IdRequestParams {
   page?: number
 }
 
+export interface ChangesResponse extends PaginatedResponse {
+  results?: Array<{
+    id?: number
+    adult?: boolean|null
+  }>
+}
+
 export interface MovieChangesResponse extends Response {
   changes?: Array<{
     key?: string

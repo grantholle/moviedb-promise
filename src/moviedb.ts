@@ -361,10 +361,6 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'movie/upcoming', params, options)
   }
 
-  miscChangedMovies (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Get, 'movie/changes', params, options)
-  }
-
   tvShow (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.ShowResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id', params, options)
   }
@@ -673,11 +669,15 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Post, 'account/:id/watchlist', params, options)
   }
 
-  miscChangedTvs (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  changedMovies (params?: types.ChangesRequest, options?: string|RequestOptions): Promise<types.ChangesResponse> {
+    return this.makeRequest(HttpMethod.Get, 'movie/changes', params, options)
+  }
+
+  changedTvs (params?: types.ChangesRequest, options?: string|RequestOptions): Promise<types.ChangesResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/changes', params, options)
   }
 
-  miscChangedPeople (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  changedPeople (params?: types.ChangesRequest, options?: string|RequestOptions): Promise<types.ChangesResponse> {
     return this.makeRequest(HttpMethod.Get, 'person/changes', params, options)
   }
 }
