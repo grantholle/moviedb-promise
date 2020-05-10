@@ -550,7 +550,7 @@ export interface MovieReleaseDatesResponse extends Response {
   }>
 }
 
-export interface MovieVideosResponse extends Response {
+export interface VideosResponse extends Response {
   id?: number
   results?: Array<Video>
 }
@@ -750,11 +750,6 @@ export interface TvSimilarShowsResponse extends PaginatedResponse {
 export interface TvTranslationsResponse extends Response {
   id?: number
   translations?: Array<Translation>
-}
-
-export interface TvVideosResponse extends Response {
-  id?: number
-  results?: Array<Video>
 }
 
 export interface TvSeasonRequest extends IdRequestParams {

@@ -309,7 +309,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'movie/:id/release_dates', params, options)
   }
 
-  movieVideos (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.MovieVideosResponse> {
+  movieVideos (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.VideosResponse> {
     return this.makeRequest(HttpMethod.Get, 'movie/:id/videos', params, options)
   }
 
@@ -425,7 +425,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/translations', params, options)
   }
 
-  tvVideos (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.TvVideosResponse> {
+  tvVideos (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.VideosResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/videos', params, options)
   }
 
@@ -481,7 +481,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/images', params, options)
   }
 
-  tvSeasonVideos (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  tvSeasonVideos (params: types.TvSeasonRequest, options?: string|RequestOptions): Promise<types.VideosResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/videos', params, options)
   }
 
