@@ -621,7 +621,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'company/:id', params, options)
   }
 
-  companyAlternativeNames (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  companyAlternativeNames (params: string|number|RequestParams, options?: string|RequestOptions): Promise<types.CompanyAlternativeNamesResponse> {
     return this.makeRequest(HttpMethod.Get, 'company/:id/alternative_names', params, options)
   }
 

@@ -1215,3 +1215,11 @@ export interface KeywordResponse extends Response {
 export interface KeywordMoviesParams extends IdRequestParams {
   include_adult?: boolean
 }
+
+export interface CompanyAlternativeNamesResponse extends Response {
+  id?: number
+  results?: Array<{
+    name?: string
+    type?: string
+  }>
+}
