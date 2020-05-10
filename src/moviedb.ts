@@ -597,6 +597,10 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Post, 'list/:id/clear', params, options)
   }
 
+  deleteList (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.PostResponse> {
+    return this.makeRequest(HttpMethod.Delete, 'list/:id', params, options)
+  }
+
   genreMovieList (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
     return this.makeRequest(HttpMethod.Get, 'genre/movie/list', params, options)
   }
