@@ -445,16 +445,16 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'tv/airing_today', params, options)
   }
 
+  tvOnTheAir (params?: types.PagedRequestParams, options?: string|RequestOptions): Promise<types.TvResultsResponse> {
+    return this.makeRequest(HttpMethod.Get, 'tv/on_the_air', params, options)
+  }
+
   miscPopularTvs (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
     return this.makeRequest(HttpMethod.Get, 'tv/popular', params, options)
   }
 
   miscTopRatedTvs (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
     return this.makeRequest(HttpMethod.Get, 'tv/top_rated', params, options)
-  }
-
-  tvOnTheAir (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Get, 'tv/on_the_air', params, options)
   }
 
   tvSeasonInfo (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
