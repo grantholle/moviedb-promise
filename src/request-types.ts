@@ -1100,3 +1100,16 @@ export interface PersonTaggedImagesResponse extends PaginatedResponse {
     media?: MovieResult|TvResult
   }>
 }
+
+export interface PersonTranslationsResponse extends PaginatedResponse {
+  id?: number
+  translations?: Array<{
+    iso_639_1?: string
+    iso_3166_1?: string
+    name?: string
+    data?: {
+      biography?: string
+    }
+    english_name?: string
+  }>
+}
