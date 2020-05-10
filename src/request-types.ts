@@ -907,3 +907,19 @@ export interface EpisodeVideosResponse extends Response {
     type?: 'Trailer'|'Teaser'|'Clip'|'Featurette'|'Opening Credits'|'Behind the Scenes'|'Bloopers'|'Recap'
   }>
 }
+
+export interface PersonChangesResponse extends Response {
+  changes: Array<{
+    key?: string
+    items?: Array<{
+      id?: string
+      action?: string
+      time?: string
+      original_value?: {
+        profile?: {
+          file_path?: string
+        }
+      }
+    }>
+  }>
+}

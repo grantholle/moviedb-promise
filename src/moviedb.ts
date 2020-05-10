@@ -529,7 +529,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'person/:id', params, options)
   }
 
-  personChanges (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  personChanges (params: string|number|types.ChangesRequest, options?: string|RequestOptions): Promise<types.PersonChangesResponse> {
     return this.makeRequest(HttpMethod.Get, 'person/:id/changes', params, options)
   }
 
