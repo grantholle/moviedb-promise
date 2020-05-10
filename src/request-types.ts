@@ -1239,3 +1239,17 @@ export interface CompanyImagesResponse extends Response {
   id?: number
   logos?: Array<Logo>
 }
+
+export interface AccountInfoResponse extends Response {
+  id?: number
+  avatar?: {
+    gravatar?: {
+      hash?: string
+    }
+  }
+  iso_639_1?: string
+  iso_3166_1?: string
+  name?: string
+  include_adult?: boolean
+  username?: string
+}

@@ -629,8 +629,8 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'company/:id/images', params, options)
   }
 
-  accountInfo (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Get, 'account', params, options)
+  accountInfo (options?: string|RequestOptions): Promise<types.AccountInfoResponse> {
+    return this.makeRequest(HttpMethod.Get, 'account', null, options)
   }
 
   accountLists (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
