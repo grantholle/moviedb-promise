@@ -86,6 +86,17 @@ export interface Image {
   still_sizes?: Array<string>
 }
 
+export interface Logo {
+  aspect_ratio?: number
+  file_path?: string
+  height?: number
+  id?: string
+  file_type?: '.svg'|'.png'
+  vote_average?: number
+  vote_count?: number
+  width?: number
+}
+
 export interface Backdrop {
   aspect_ratio?: number
   file_path?: string
@@ -1222,4 +1233,9 @@ export interface CompanyAlternativeNamesResponse extends Response {
     name?: string
     type?: string
   }>
+}
+
+export interface CompanyImagesResponse extends Response {
+  id?: number
+  logos?: Array<Logo>
 }
