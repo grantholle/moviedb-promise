@@ -545,7 +545,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'person/:id/combined_credits', params, options)
   }
 
-  personExternalIds (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  personExternalIds (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.PersonExternalIdsResponse> {
     return this.makeRequest(HttpMethod.Get, 'person/:id/external_ids', params, options)
   }
 
