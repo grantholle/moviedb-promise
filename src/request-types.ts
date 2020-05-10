@@ -59,6 +59,23 @@ export interface PersonResult {
   known_for?: Array<MovieResult|TvResult>
 }
 
+export interface Person {
+  birthday?: string|null
+  known_for_department?: string
+  deathday?: null|string
+  id?: number
+  name?: string
+  also_known_as?: string[]
+  gender?: number
+  biography?: string
+  popularity?: number
+  place_of_birth?: string|null
+  profile_path?: string|null
+  adult?: boolean
+  imdb_id?: string
+  homepage?: null|string
+}
+
 export interface Image {
   base_url?: string
   secure_base_url?: string

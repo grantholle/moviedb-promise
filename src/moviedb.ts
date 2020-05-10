@@ -525,7 +525,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number/translations', params, options)
   }
 
-  personInfo (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  personInfo (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.Person> {
     return this.makeRequest(HttpMethod.Get, 'person/:id', params, options)
   }
 
