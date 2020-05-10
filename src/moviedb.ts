@@ -645,7 +645,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'account/:id/favorite/tv', params, options)
   }
 
-  accountFavoriteUpdate (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  accountFavoriteUpdate (params: types.MarkAsFavoriteRequest, options?: string|RequestOptions): Promise<types.PostResponse> {
     return this.makeRequest(HttpMethod.Post, 'account/:id/favorite', params, options)
   }
 

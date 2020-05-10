@@ -1270,3 +1270,9 @@ export interface AccountListsResponse extends PaginatedResponse {
 export interface FavoriteMoviesRequest extends PagedRequestParams {
   sort_by?: 'created_at.asc'|'created_at.desc'
 }
+
+export interface MarkAsFavoriteRequest extends IdRequestParams {
+  media_type: 'movie'|'tv'
+  media_id: number
+  favorite: boolean
+}
