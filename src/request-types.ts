@@ -1253,3 +1253,16 @@ export interface AccountInfoResponse extends Response {
   include_adult?: boolean
   username?: string
 }
+
+export interface AccountListsResponse extends PaginatedResponse {
+  results?: Array<{
+    description?: string
+    favorite_count?: number
+    id?: number
+    item_count?: number
+    iso_639_1?: string
+    list_type?: string
+    name?: string
+    poster_path?: null
+  }>
+}

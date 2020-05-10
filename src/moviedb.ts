@@ -633,7 +633,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'account', null, options)
   }
 
-  accountLists (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  accountLists (params: string|number|types.PagedRequestParams, options?: string|RequestOptions): Promise<types.AccountListsResponse> {
     return this.makeRequest(HttpMethod.Get, 'account/:id/lists', params, options)
   }
 
