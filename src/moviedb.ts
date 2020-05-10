@@ -712,4 +712,8 @@ export class MovieDb {
   networkInfo (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.NetworkResponse> {
     return this.makeRequest(HttpMethod.Get, 'network/:id', params, options)
   }
+
+  networkAlternativeNames (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.CompanyAlternativeNamesResponse> {
+    return this.makeRequest(HttpMethod.Get, 'network/:id/alternative_names', params, options)
+  }
 }
