@@ -242,6 +242,11 @@ export interface Crew {
   profile_path?: string|null
 }
 
+export interface Country {
+  iso_3166_1?: string
+  english_name?: string
+}
+
 export interface Episode {
   air_date?: string
   crew?: Array<Crew>
@@ -1307,3 +1312,5 @@ export interface CertificationsResponse extends Response {
     IN?: Certification
   }
 }
+
+export type CountriesResponse = Array<Country>
