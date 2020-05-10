@@ -680,4 +680,8 @@ export class MovieDb {
   changedPeople (params?: types.ChangesRequest, options?: string|RequestOptions): Promise<types.ChangesResponse> {
     return this.makeRequest(HttpMethod.Get, 'person/changes', params, options)
   }
+
+  movieCertifications (options?: string|RequestOptions): Promise<types.MovieCertificationsResponse> {
+    return this.makeRequest(HttpMethod.Get, 'person/changes', null, options)
+  }
 }
