@@ -363,7 +363,7 @@ export interface SearchMovieRequest extends SearchRequest {
   primary_release_year?: number
 }
 
-export interface SearchMovieResponse extends SearchResponse {
+export interface MovieResultsResponse extends SearchResponse {
   results?: Array<MovieResult>
 }
 
@@ -385,7 +385,7 @@ export interface SearchTvRequest extends SearchRequest {
   first_air_date_year?: number
 }
 
-export interface SearchTvResponse extends SearchResponse {
+export interface TvResultsResponse extends SearchResponse {
   results?: Array<TvResult>
 }
 
@@ -1267,7 +1267,7 @@ export interface AccountListsResponse extends PaginatedResponse {
   }>
 }
 
-export interface FavoriteMoviesRequest extends PagedRequestParams {
+export interface AccountMediaRequest extends PagedRequestParams {
   sort_by?: 'created_at.asc'|'created_at.desc'
 }
 
