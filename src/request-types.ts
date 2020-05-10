@@ -1191,3 +1191,7 @@ export interface CreateListItemParams extends IdRequestParams {
 export interface ClearListParams extends IdRequestParams {
   confirm: boolean
 }
+
+export interface GenresResponse extends Response {
+  genres?: Array<Genre>
+}
