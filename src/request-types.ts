@@ -788,3 +788,14 @@ export interface TvSeasonChangesResponse extends Response {
     }>
   }>
 }
+
+export interface TvSeasonAccountStatesResponse extends Response {
+  id?: number
+  results?: Array<{
+    id?: number
+    episode_number?: number
+    rated?: boolean|{
+      value?: number
+    }
+  }>
+}

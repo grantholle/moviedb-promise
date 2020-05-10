@@ -465,6 +465,10 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'tv/season/:id/changes', params, options)
   }
 
+  tvSeasonAccountStates (params: types.TvSeasonRequest, options?: string|RequestOptions): Promise<types.TvSeasonAccountStatesResponse> {
+    return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/account_states', params, options)
+  }
+
   tvSeasonCredits (params: types.TvSeasonRequest, options?: string|RequestOptions): Promise<any> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/credits', params, options)
   }
