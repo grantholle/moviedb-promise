@@ -469,7 +469,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/account_states', params, options)
   }
 
-  tvSeasonCredits (params: types.TvSeasonRequest, options?: string|RequestOptions): Promise<any> {
+  tvSeasonCredits (params: types.TvSeasonRequest, options?: string|RequestOptions): Promise<types.TvCreditsResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/credits', params, options)
   }
 
