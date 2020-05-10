@@ -720,4 +720,8 @@ export class MovieDb {
   networkImages (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.CompanyImagesResponse> {
     return this.makeRequest(HttpMethod.Get, 'network/:id/images', params, options)
   }
+
+  review (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.Review> {
+    return this.makeRequest(HttpMethod.Get, 'review/:id', params, options)
+  }
 }
