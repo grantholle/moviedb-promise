@@ -501,7 +501,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number/credits', params, options)
   }
 
-  tvEpisodeExternalIds (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  tvEpisodeExternalIds (params: types.EpisodeRequest, options?: string|RequestOptions): Promise<types.EpisodeExternalIdsResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number/external_ids', params, options)
   }
 
