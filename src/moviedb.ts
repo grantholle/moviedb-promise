@@ -716,4 +716,8 @@ export class MovieDb {
   networkAlternativeNames (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.CompanyAlternativeNamesResponse> {
     return this.makeRequest(HttpMethod.Get, 'network/:id/alternative_names', params, options)
   }
+
+  networkImages (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.CompanyImagesResponse> {
+    return this.makeRequest(HttpMethod.Get, 'network/:id/images', params, options)
+  }
 }
