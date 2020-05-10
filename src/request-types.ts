@@ -564,7 +564,7 @@ export interface MovieListsResponse extends PaginatedResponse {
   results?: Array<MovieList>
 }
 
-export interface MovieRatingRequest extends IdRequestParams {
+export interface RatingRequest extends IdRequestParams {
   value: number
 }
 

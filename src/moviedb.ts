@@ -333,11 +333,11 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'movie/:id/lists', params, options)
   }
 
-  movieRatingUpdate (params: types.MovieRatingRequest, options?: string|RequestOptions): Promise<types.PostResponse> {
+  movieRatingUpdate (params: types.RatingRequest, options?: string|RequestOptions): Promise<types.PostResponse> {
     return this.makeRequest(HttpMethod.Post, 'movie/:id/rating', params, options)
   }
 
-  movieRatingDelete (params: types.MovieRatingRequest, options?: string|RequestOptions): Promise<types.PostResponse> {
+  movieRatingDelete (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.PostResponse> {
     return this.makeRequest(HttpMethod.Delete, 'movie/:id/rating', params, options)
   }
 
