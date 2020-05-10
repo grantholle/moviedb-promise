@@ -194,6 +194,7 @@ export interface SimpleEpisode {
   vote_average?: number
   vote_count?: number
   rating?: number
+  order?: number
 }
 
 export interface Network {
@@ -1348,4 +1349,21 @@ export interface Review {
   media_title?: string
   media_type?: string
   url?: string
+}
+
+export interface EpisodeGroupResponse extends Response {
+  id?: string
+  name?: string
+  description?: string
+  episode_count?: number
+  group_count?: number
+  groups?: Array<{
+    id?: string
+    name?: string
+    order?: number
+    locked?: boolean
+    episodes?: Array<SimpleEpisode>
+  }>
+  network?: Network
+  type?: number
 }

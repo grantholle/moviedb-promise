@@ -724,4 +724,8 @@ export class MovieDb {
   review (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.Review> {
     return this.makeRequest(HttpMethod.Get, 'review/:id', params, options)
   }
+
+  episodeGroup (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.EpisodeGroupResponse> {
+    return this.makeRequest(HttpMethod.Get, 'tv/episode_group/:id', params, options)
+  }
 }
