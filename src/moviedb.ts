@@ -429,6 +429,22 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/videos', params, options)
   }
 
+  tvRatingUpdate (params: types.RatingRequest, options?: string|RequestOptions): Promise<types.PostResponse> {
+    return this.makeRequest(HttpMethod.Post, 'tv/:id/rating', params, options)
+  }
+
+  tvRatingDelete (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.PostResponse> {
+    return this.makeRequest(HttpMethod.Delete, 'tv/:id/rating', params, options)
+  }
+
+  tvOnTheAir (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/on_the_air', params, options)
+  }
+
+  tvAiringToday (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+    return this.makeRequest(HttpMethod.Get, 'tv/airing_today', params, options)
+  }
+
   tvSeasonInfo (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number', params, options)
   }
@@ -463,18 +479,6 @@ export class MovieDb {
 
   tvEpisodeImages (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number/images', params, options)
-  }
-
-  tvOnTheAir (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Get, 'tv/on_the_air', params, options)
-  }
-
-  tvAiringToday (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Get, 'tv/airing_today', params, options)
-  }
-
-  tvRatingUpdate (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
-    return this.makeRequest(HttpMethod.Post, 'tv/:id/rating', params, options)
   }
 
   personInfo (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
