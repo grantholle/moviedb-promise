@@ -821,3 +821,15 @@ export interface EpisodeRequest extends TvSeasonRequest {
   episode_number: number
 }
 
+export interface EpisodeChangesResponse extends Response {
+  changes?: Array<{
+    key?: string
+    items?: Array<{
+      id: string
+      action: string
+      time: string
+      value: string
+      iso_639_1: string
+    }>
+  }>
+}
