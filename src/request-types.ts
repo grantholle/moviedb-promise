@@ -1195,3 +1195,8 @@ export interface ClearListParams extends IdRequestParams {
 export interface GenresResponse extends Response {
   genres?: Array<Genre>
 }
+
+export interface KeywordResponse extends Response {
+  id?: number
+  name?: string
+}
