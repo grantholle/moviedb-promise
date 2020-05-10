@@ -807,3 +807,7 @@ export interface TvSeasonExternalIdsResponse extends Response {
   tvrage_id?: null|number
   id?: number
 }
+export interface TvSeasonImagesResponse extends Response {
+  id?: number
+  posters?: Array<Poster>
+}
