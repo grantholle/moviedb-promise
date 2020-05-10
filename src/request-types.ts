@@ -1084,3 +1084,19 @@ export interface PersonImagesResponse extends Response {
   id?: number
   profiles?: Array<Profile>
 }
+
+export interface PersonTaggedImagesResponse extends PaginatedResponse {
+  id?: number
+  results?: Array<{
+    aspect_ratio?: number
+    file_path?: string
+    height?: number
+    id?: string
+    iso_639_1?: null|string
+    vote_average?: number
+    vote_count?: number
+    width?: number
+    image_type?: string
+    media?: MovieResult|TvResult
+  }>
+}

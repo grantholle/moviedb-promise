@@ -553,7 +553,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'person/:id/images', params, options)
   }
 
-  personTaggedImages (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  personTaggedImages (params: string|number|types.PagedRequestParams, options?: string|RequestOptions): Promise<types.PersonTaggedImagesResponse> {
     return this.makeRequest(HttpMethod.Get, 'person/:id/tagged_images', params, options)
   }
 
