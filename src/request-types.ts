@@ -522,7 +522,7 @@ export interface MovieChangesResponse extends Response {
   }>
 }
 
-export interface MovieCreditsResponse extends Response {
+export interface CreditsResponse extends Response {
   id?: number
   cast?: Array<Cast>
   crew?: Array<Crew>
@@ -695,12 +695,6 @@ export interface ShowContentRatingResponse extends Response {
   id?: number
 }
 
-export interface TvCreditsResponse extends MovieCreditsResponse {
-  id?: number
-  cast?: Array<Cast>
-  crew?: Array<Crew>
-}
-
 export interface TvEpisodeGroupsResponse extends Response {
   results?: Array<{
     description?: string
@@ -837,4 +831,8 @@ export interface EpisodeChangesResponse extends Response {
 export interface EpisodeAccountStatesResponse extends Response {
   id?: number
   rated?: object|boolean
+}
+
+export interface EpisodeCreditsResponse extends CreditsResponse {
+  guest_stars?: Array<GuestStar>
 }

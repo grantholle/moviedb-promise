@@ -289,7 +289,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'movie/:id/changes', params, options)
   }
 
-  movieCredits (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.MovieCreditsResponse> {
+  movieCredits (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.CreditsResponse> {
     return this.makeRequest(HttpMethod.Get, 'movie/:id/credits', params, options)
   }
 
@@ -385,7 +385,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/content_ratings', params, options)
   }
 
-  tvCredits (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.TvCreditsResponse> {
+  tvCredits (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.CreditsResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/credits', params, options)
   }
 
@@ -469,7 +469,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/account_states', params, options)
   }
 
-  tvSeasonCredits (params: types.TvSeasonRequest, options?: string|RequestOptions): Promise<types.TvCreditsResponse> {
+  tvSeasonCredits (params: types.TvSeasonRequest, options?: string|RequestOptions): Promise<types.CreditsResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/credits', params, options)
   }
 
@@ -497,7 +497,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number/account_states', params, options)
   }
 
-  tvEpisodeCredits (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  tvEpisodeCredits (params: types.EpisodeRequest, options?: string|RequestOptions): Promise<types.EpisodeCreditsResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number/credits', params, options)
   }
 
