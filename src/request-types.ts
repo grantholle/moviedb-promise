@@ -493,7 +493,7 @@ export interface MovieAlternativeTitlesResponse extends Response {
   }>
 }
 
-export interface MovieChangesRequest extends IdRequestParams {
+export interface ChangesRequest extends IdRequestParams {
   start_date?: string
   end_date?: string
   page?: number
@@ -669,12 +669,6 @@ export interface ShowAlternativeTitlesResponse extends Response {
   }>
 }
 
-export interface ShowChangesRequest extends RequestParams {
-  start_date?: string
-  end_date?: string
-  page?: number
-}
-
 export interface ShowChangesResponse extends Response {
   id?: number
   results?: Array<{
@@ -776,4 +770,21 @@ export interface TvSeasonResponse extends Response {
   id?: number
   poster_path?: string|null
   season_number?: number
+}
+
+export interface TvSeasonChangesResponse extends Response {
+  changes?: Array<{
+    key?: string
+    items?: Array<{
+      id?: string
+      action?: string
+      time?: string
+      value?: string|{
+        episode_id?: number
+        episode_number?: number
+      }
+      iso_639_1?: string
+      original_value?: string
+    }>
+  }>
 }

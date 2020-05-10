@@ -285,7 +285,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'movie/:id/alternative_titles', params, options)
   }
 
-  movieChanges (params: string|number|types.MovieChangesRequest, options?: string|RequestOptions): Promise<types.MovieChangesResponse> {
+  movieChanges (params: string|number|types.ChangesRequest, options?: string|RequestOptions): Promise<types.MovieChangesResponse> {
     return this.makeRequest(HttpMethod.Get, 'movie/:id/changes', params, options)
   }
 
@@ -377,7 +377,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/alternative_titles', params, options)
   }
 
-  tvChanges (params: string|number|types.ShowChangesRequest, options?: string|RequestOptions): Promise<types.ShowChangesResponse> {
+  tvChanges (params: string|number|types.ChangesRequest, options?: string|RequestOptions): Promise<types.ShowChangesResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/changes', params, options)
   }
 
@@ -461,7 +461,11 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number', params, options)
   }
 
-  tvSeasonCredits (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  tvSeasonChanges (params: types.ChangesRequest, options?: string|RequestOptions): Promise<types.TvSeasonChangesResponse> {
+    return this.makeRequest(HttpMethod.Get, 'tv/season/:id/changes', params, options)
+  }
+
+  tvSeasonCredits (params: types.TvSeasonRequest, options?: string|RequestOptions): Promise<any> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/credits', params, options)
   }
 
