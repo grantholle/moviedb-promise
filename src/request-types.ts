@@ -1124,3 +1124,27 @@ export interface PersonPopularResponse extends PaginatedResponse {
     popularity?: number
   }>
 }
+
+export interface CreditDetailsResponse extends Response {
+  credit_type?: string
+  department?: string
+  job?: string
+  media?: {
+    id?: number
+    name?: string
+    original_name?: string
+    character?: string
+    episodes?: Array<SimpleEpisode>
+    seasons?: Array<{
+      air_date?: string
+      poster_path?: string
+      season_number?: number
+    }>
+  }
+  media_type?: string
+  id?: string
+  person?: {
+    name?: string
+    id?: number
+  }
+}

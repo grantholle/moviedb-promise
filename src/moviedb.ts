@@ -569,7 +569,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'person/popular', params, options)
   }
 
-  creditInfo (params?: string|number|RequestParams, options?: string|RequestOptions): Promise<any> {
+  creditInfo (params?: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.CreditDetailsResponse> {
     return this.makeRequest(HttpMethod.Get, 'credit/:id', params, options)
   }
 
