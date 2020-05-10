@@ -224,6 +224,10 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'configuration/languages', null, options)
   }
 
+  primaryTranslations (options?: string|RequestOptions): Promise<Array<string>> {
+    return this.makeRequest(HttpMethod.Get, 'configuration/primary_translations', null, options)
+  }
+
   find (params?: string|number|types.FindRequest, options?: string|RequestOptions): Promise<types.FindResponse> {
     return this.makeRequest(HttpMethod.Get, 'find/:id', params, options)
   }
