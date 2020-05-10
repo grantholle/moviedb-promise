@@ -1187,3 +1187,7 @@ export interface CreateListResponse extends Response {
 export interface CreateListItemParams extends IdRequestParams {
   media_id: number
 }
+
+export interface ClearListParams extends IdRequestParams {
+  confirm: boolean
+}
