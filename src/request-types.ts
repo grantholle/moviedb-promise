@@ -1294,7 +1294,7 @@ export interface Certification {
   order?: number
 }
 
-export interface MovieCertificationsResponse extends Response {
+export interface CertificationsResponse extends Response {
   certifications?: {
     US?: Certification
     CA?: Certification

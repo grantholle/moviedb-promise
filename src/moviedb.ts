@@ -681,7 +681,11 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'person/changes', params, options)
   }
 
-  movieCertifications (options?: string|RequestOptions): Promise<types.MovieCertificationsResponse> {
-    return this.makeRequest(HttpMethod.Get, 'person/changes', null, options)
+  movieCertifications (options?: string|RequestOptions): Promise<types.CertificationsResponse> {
+    return this.makeRequest(HttpMethod.Get, 'certification/movie/list', null, options)
+  }
+
+  tvCertifications (options?: string|RequestOptions): Promise<types.CertificationsResponse> {
+    return this.makeRequest(HttpMethod.Get, 'certification/tv/list', null, options)
   }
 }
