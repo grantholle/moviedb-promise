@@ -381,7 +381,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'movie/upcoming', params, options)
   }
 
-  tvShow (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.ShowResponse> {
+  tvInfo (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.ShowResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id', params, options)
   }
 
