@@ -92,12 +92,11 @@ class MovieDb {
     /**
      * Compiles the data/query data to send with the request
      */
-    getParams(endpoint, params = {}, options = {}) {
+    getParams(endpoint, params = {}) {
         // Merge default parameters with the ones passed in
         const compiledParams = lodash_1.merge({
             api_key: this.apiKey,
-            ...(this.sessionId && { session_id: this.sessionId }),
-            ...(options.appendToResponse && { append_to_response: options.appendToResponse })
+            ...(this.sessionId && { session_id: this.sessionId })
         }, params);
         // Some endpoints have an optional account_id parameter (when there's a session).
         // If it's not included, assume we want the current user's id,
@@ -110,11 +109,10 @@ class MovieDb {
     /**
      * Performs the request to the server
      */
-    makeRequest(method, endpoint, params = {}, options = {}) {
+    makeRequest(method, endpoint, params = {}, axiosConfig = {}) {
         const normalizedParams = this.normalizeParams(endpoint, params);
-        const normalizedOptions = this.normalizeOptions(options);
         // Get the full query/data object
-        const fullQuery = this.getParams(endpoint, normalizedParams, normalizedOptions);
+        const fullQuery = this.getParams(endpoint, normalizedParams);
         // Get the params that are needed for the endpoint
         // to remove from the data/params of the request
         const omittedProps = (endpoint.match(/:[a-z]*/gi) || [])
@@ -126,7 +124,7 @@ class MovieDb {
             url: this.baseUrl + this.getEndpoint(endpoint, fullQuery),
             ...(method === types_1.HttpMethod.Get && { params: query }),
             ...(method !== types_1.HttpMethod.Get && { data: query }),
-            ...(normalizedOptions.timeout && { timeout: normalizedOptions.timeout })
+            ...axiosConfig
         };
         // Push the request to the queue
         return new Promise((resolve, reject) => {
@@ -144,318 +142,396 @@ class MovieDb {
         }
         return params;
     }
-    configuration(options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'configuration', null, options);
+    configuration(axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'configuration', null, axiosConfig);
     }
-    find(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'find/:id', params, options);
+    countries(axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'configuration/countries', null, axiosConfig);
     }
-    searchCompany(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'search/company', this.parseSearchParams(params), options);
+    jobs(axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'configuration/jobs', null, axiosConfig);
     }
-    searchCollection(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'search/collection', this.parseSearchParams(params), options);
+    languages(axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'configuration/languages', null, axiosConfig);
     }
-    searchKeyword(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'search/keyword', this.parseSearchParams(params), options);
+    primaryTranslations(axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'configuration/primary_translations', null, axiosConfig);
     }
-    searchMovie(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'search/movie', this.parseSearchParams(params), options);
+    timezones(axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'configuration/timezones', null, axiosConfig);
     }
-    searchMulti(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'search/multi', this.parseSearchParams(params), options);
+    find(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'find/:id', params, axiosConfig);
     }
-    searchPerson(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'search/person', this.parseSearchParams(params), options);
+    searchCompany(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'search/company', this.parseSearchParams(params), axiosConfig);
     }
-    searchTv(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'search/tv', this.parseSearchParams(params), options);
+    searchCollection(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'search/collection', this.parseSearchParams(params), axiosConfig);
+    }
+    searchKeyword(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'search/keyword', this.parseSearchParams(params), axiosConfig);
+    }
+    searchMovie(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'search/movie', this.parseSearchParams(params), axiosConfig);
+    }
+    searchMulti(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'search/multi', this.parseSearchParams(params), axiosConfig);
+    }
+    searchPerson(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'search/person', this.parseSearchParams(params), axiosConfig);
+    }
+    searchTv(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'search/tv', this.parseSearchParams(params), axiosConfig);
     }
     // Doesn't exist in documentation, may be deprecated
-    searchList(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'search/list', params, options);
+    searchList(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'search/list', params, axiosConfig);
     }
-    collectionInfo(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'collection/:id', params, options);
+    collectionInfo(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'collection/:id', params, axiosConfig);
     }
-    collectionImages(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'collection/:id/images', params, options);
+    collectionImages(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'collection/:id/images', params, axiosConfig);
     }
-    collectionTranslations(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'collection/:id/translations', params, options);
+    collectionTranslations(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'collection/:id/translations', params, axiosConfig);
     }
-    discoverMovie(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'discover/movie', params, options);
+    discoverMovie(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'discover/movie', params, axiosConfig);
     }
-    discoverTv(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'discover/tv', params, options);
+    discoverTv(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'discover/tv', params, axiosConfig);
     }
-    trending(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'trending/:media_type/:time_window', params, options);
+    trending(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'trending/:media_type/:time_window', params, axiosConfig);
     }
-    movieInfo(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id', params, options);
+    movieInfo(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id', params, axiosConfig);
     }
-    movieAccountStates(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/account_states', params, options);
+    movieAccountStates(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/account_states', params, axiosConfig);
     }
-    movieAlternativeTitles(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/alternative_titles', params, options);
+    movieAlternativeTitles(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/alternative_titles', params, axiosConfig);
     }
-    movieChanges(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/changes', params, options);
+    movieChanges(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/changes', params, axiosConfig);
     }
-    movieCredits(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/credits', params, options);
+    movieCredits(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/credits', params, axiosConfig);
     }
-    movieExternalIds(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, '/movie/:id/external_ids', params, options);
+    movieExternalIds(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, '/movie/:id/external_ids', params, axiosConfig);
     }
-    movieImages(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/images', params, options);
+    movieImages(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/images', params, axiosConfig);
     }
-    movieKeywords(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/keywords', params, options);
+    movieKeywords(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/keywords', params, axiosConfig);
     }
-    movieReleaseDates(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/release_dates', params, options);
+    movieReleaseDates(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/release_dates', params, axiosConfig);
     }
-    movieVideos(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/videos', params, options);
+    movieVideos(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/videos', params, axiosConfig);
     }
-    movieTranslations(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/translations', params, options);
+    movieTranslations(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/translations', params, axiosConfig);
     }
-    movieRecommendations(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/recommendations', params, options);
+    movieRecommendations(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/recommendations', params, axiosConfig);
     }
-    movieSimilar(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/similar', params, options);
+    movieSimilar(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/similar', params, axiosConfig);
     }
-    movieReviews(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/reviews', params, options);
+    movieReviews(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/reviews', params, axiosConfig);
     }
-    movieLists(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/lists', params, options);
+    movieLists(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/lists', params, axiosConfig);
     }
-    movieRatingUpdate(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Post, 'movie/:id/rating', params, options);
+    movieRatingUpdate(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Post, 'movie/:id/rating', params, axiosConfig);
     }
-    movieRatingDelete(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Delete, 'movie/:id/rating', params, options);
+    movieRatingDelete(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Delete, 'movie/:id/rating', params, axiosConfig);
     }
-    movieLatest(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'movie/latest', lodash_1.isString(params) ? { language: params } : params, options);
+    movieLatest(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'movie/latest', lodash_1.isString(params) ? { language: params } : params, axiosConfig);
     }
-    movieNowPlaying(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'movie/now_playing', params, options);
+    movieNowPlaying(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'movie/now_playing', params, axiosConfig);
     }
-    moviePopular(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'movie/popular', params, options);
+    moviePopular(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'movie/popular', params, axiosConfig);
     }
-    movieTopRated(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'movie/top_rated', params, options);
+    movieTopRated(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'movie/top_rated', params, axiosConfig);
     }
-    upcomingMovies(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'movie/upcoming', params, options);
+    upcomingMovies(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'movie/upcoming', params, axiosConfig);
     }
-    miscChangedMovies(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'movie/changes', params, options);
+    tvInfo(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id', params, axiosConfig);
     }
-    tvShow(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id', params, options);
+    tvAccountStates(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/account_states', params, axiosConfig);
     }
-    tvAccountStates(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/account_states', params, options);
+    tvAlternativeTitles(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/alternative_titles', params, axiosConfig);
     }
-    tvAlternativeTitles(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/alternative_titles', params, options);
+    tvChanges(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/changes', params, axiosConfig);
     }
-    tvChanges(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/changes', params, options);
+    tvContentRatings(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/content_ratings', params, axiosConfig);
     }
-    tvContentRatings(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/content_ratings', params, options);
+    tvCredits(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/credits', params, axiosConfig);
     }
-    tvCredits(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/credits', params, options);
+    episodeGroups(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/episode_groups', params, axiosConfig);
     }
-    tvEpisodeGroups(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/episode_groups', params, options);
+    tvExternalIds(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/external_ids', params, axiosConfig);
     }
-    tvExternalIds(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/external_ids', params, options);
+    tvImages(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/images', params, axiosConfig);
     }
-    tvImages(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/images', params, options);
+    tvKeywords(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/keywords', params, axiosConfig);
     }
-    tvKeywords(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/keywords', params, options);
+    tvRecommendations(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/recommendations', params, axiosConfig);
     }
-    tvRecommendations(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/recommendations', params, options);
+    tvReviews(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/reviews', params, axiosConfig);
     }
-    tvReviews(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/reviews', params, options);
+    tvScreenedTheatrically(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/screened_theatrically', params, axiosConfig);
     }
-    tvScreenedTheatrically(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/screened_theatrically', params, options);
+    tvSimilar(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/similar', params, axiosConfig);
     }
-    tvSimilar(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/similar', params, options);
+    tvTranslations(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/translations', params, axiosConfig);
     }
-    tvTranslations(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/translations', params, options);
+    tvVideos(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/videos', params, axiosConfig);
     }
-    tvVideos(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/videos', params, options);
+    tvRatingUpdate(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Post, 'tv/:id/rating', params, axiosConfig);
     }
-    tvRatingUpdate(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Post, 'tv/:id/rating', params, options);
+    tvRatingDelete(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Delete, 'tv/:id/rating', params, axiosConfig);
     }
-    tvRatingDelete(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Delete, 'tv/:id/rating', params, options);
+    tvLatest(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/latest', params, axiosConfig);
     }
-    tvLatest(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/latest', params, options);
+    tvAiringToday(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/airing_today', params, axiosConfig);
     }
-    tvAiringToday(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/airing_today', params, options);
+    tvOnTheAir(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/on_the_air', params, axiosConfig);
     }
-    tvOnTheAir(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/on_the_air', params, options);
+    tvPopular(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/popular', params, axiosConfig);
     }
-    tvPopular(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/popular', params, options);
+    tvTopRated(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/top_rated', params, axiosConfig);
     }
-    tvTopRated(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/top_rated', params, options);
+    seasonInfo(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/season/:season_number', params, axiosConfig);
     }
-    tvSeasonInfo(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/season/:season_number', params, options);
+    seasonChanges(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/season/:id/changes', params, axiosConfig);
     }
-    tvSeasonCredits(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/season/:season_number/credits', params, options);
+    seasonAccountStates(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/season/:season_number/account_states', params, axiosConfig);
     }
-    tvSeasonVideos(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/season/:season_number/videos', params, options);
+    seasonCredits(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/season/:season_number/credits', params, axiosConfig);
     }
-    tvSeasonExternalIds(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/season/:season_number/external_ids', params, options);
+    seasonExternalIds(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/season/:season_number/external_ids', params, axiosConfig);
     }
-    tvSeasonImages(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/season/:season_number/images', params, options);
+    seasonImages(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/season/:season_number/images', params, axiosConfig);
     }
-    tvEpisodeInfo(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number', params, options);
+    seasonVideos(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/season/:season_number/videos', params, axiosConfig);
     }
-    tvEpisodeCredits(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number/credits', params, options);
+    episodeInfo(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number', params, axiosConfig);
     }
-    tvEpisodeExternalIds(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number/external_ids', params, options);
+    episodeChanges(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, '/tv/episode/:id/changes', params, axiosConfig);
     }
-    tvEpisodeImages(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number/images', params, options);
+    episodeAccountStates(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number/account_states', params, axiosConfig);
     }
-    personInfo(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'person/:id', params, options);
+    episodeCredits(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number/credits', params, axiosConfig);
     }
-    personChanges(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'person/:id/changes', params, options);
+    episodeExternalIds(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number/external_ids', params, axiosConfig);
     }
-    personMovieCredits(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'person/:id/movie_credits', params, options);
+    episodeImages(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number/images', params, axiosConfig);
     }
-    personTvCredits(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'person/:id/tv_credits', params, options);
+    episodeTranslations(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number/translations', params, axiosConfig);
     }
-    personCombinedCredits(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'person/:id/combined_credits', params, options);
+    episodeRatingUpdate(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Post, 'tv/:id/season/:season_number/episode/:episode_number/rating', params, axiosConfig);
     }
-    personExternalIds(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'person/:id/external_ids', params, options);
+    episodeRatingDelete(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Delete, 'tv/:id/season/:season_number/episode/:episode_number/rating', params, axiosConfig);
     }
-    personImages(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'person/:id/images', params, options);
+    episodeVideos(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number/translations', params, axiosConfig);
     }
-    personTaggedImages(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'person/:id/tagged_images', params, options);
+    personInfo(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'person/:id', params, axiosConfig);
     }
-    personTranslations(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'person/:id/translations', params, options);
+    personChanges(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'person/:id/changes', params, axiosConfig);
     }
-    personLatest(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'person/latest', params, options);
+    personMovieCredits(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'person/:id/movie_credits', params, axiosConfig);
     }
-    personPopular(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'person/popular', params, options);
+    personTvCredits(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'person/:id/tv_credits', params, axiosConfig);
     }
-    creditInfo(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'credit/:id', params, options);
+    personCombinedCredits(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'person/:id/combined_credits', params, axiosConfig);
     }
-    listInfo(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'list/:id', params, options);
+    personExternalIds(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'person/:id/external_ids', params, axiosConfig);
     }
-    genreMovieList(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'genre/movie/list', params, options);
+    personImages(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'person/:id/images', params, axiosConfig);
     }
-    genreTvList(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'genre/tv/list', params, options);
+    personTaggedImages(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'person/:id/tagged_images', params, axiosConfig);
     }
-    keywordInfo(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'keyword/:id', params, options);
+    personTranslations(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'person/:id/translations', params, axiosConfig);
     }
-    keywordMovies(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'keyword/:id/movies', params, options);
+    personLatest(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'person/latest', params, axiosConfig);
     }
-    companyInfo(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'company/:id', params, options);
+    personPopular(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'person/popular', params, axiosConfig);
     }
-    companyAlternativeNames(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'company/:id/alternative_names', params, options);
+    creditInfo(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'credit/:id', params, axiosConfig);
     }
-    companyImages(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'company/:id/images', params, options);
+    listInfo(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'list/:id', params, axiosConfig);
     }
-    accountInfo(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'account', params, options);
+    listStatus(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'list/:id/item_status', params, axiosConfig);
     }
-    accountLists(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'account/:id/lists', params, options);
+    createList(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Post, 'list', params, axiosConfig);
     }
-    accountFavoriteMovies(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'account/:id/favorite/movies', params, options);
+    createListItem(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Post, 'list/:id/add_item', params, axiosConfig);
     }
-    accountFavoriteUpdate(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Post, 'account/:id/favorite', params, options);
+    removeListItem(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Post, 'list/:id/remove_item', params, axiosConfig);
     }
-    accountRatedMovies(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'account/:id/rated/movies', params, options);
+    clearList(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Post, 'list/:id/clear', params, axiosConfig);
     }
-    accountMovieWatchlist(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'account/:id/watchlist/movies', params, options);
+    deleteList(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Delete, 'list/:id', params, axiosConfig);
     }
-    accountTvWatchlist(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'account/:id/watchlist/tv', params, options);
+    genreMovieList(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'genre/movie/list', params, axiosConfig);
     }
-    accountWatchlistUpdate(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Post, 'account/:id/watchlist', params, options);
+    genreTvList(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'genre/tv/list', params, axiosConfig);
     }
-    accountRatedTv(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'account/:id/rated/tv', params, options);
+    keywordInfo(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'keyword/:id', params, axiosConfig);
     }
-    accountRatedTvEpisodes(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'account/:id/rated/tv/episodes', params, options);
+    keywordMovies(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'keyword/:id/movies', params, axiosConfig);
     }
-    accountFavoriteTv(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'account/:id/favorite/tv', params, options);
+    companyInfo(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'company/:id', params, axiosConfig);
     }
-    miscChangedTvs(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'tv/changes', params, options);
+    companyAlternativeNames(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'company/:id/alternative_names', params, axiosConfig);
     }
-    miscChangedPeople(params, options) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'person/changes', params, options);
+    companyImages(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'company/:id/images', params, axiosConfig);
+    }
+    accountInfo(axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'account', null, axiosConfig);
+    }
+    accountLists(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'account/:id/lists', params, axiosConfig);
+    }
+    accountFavoriteMovies(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'account/:id/favorite/movies', params, axiosConfig);
+    }
+    accountFavoriteTv(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'account/:id/favorite/tv', params, axiosConfig);
+    }
+    accountFavoriteUpdate(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Post, 'account/:id/favorite', params, axiosConfig);
+    }
+    accountRatedMovies(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'account/:id/rated/movies', params, axiosConfig);
+    }
+    accountRatedTv(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'account/:id/rated/tv', params, axiosConfig);
+    }
+    accountRatedTvEpisodes(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'account/:id/rated/tv/episodes', params, axiosConfig);
+    }
+    accountMovieWatchlist(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'account/:id/watchlist/movies', params, axiosConfig);
+    }
+    accountTvWatchlist(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'account/:id/watchlist/tv', params, axiosConfig);
+    }
+    accountWatchlistUpdate(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Post, 'account/:id/watchlist', params, axiosConfig);
+    }
+    changedMovies(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'movie/changes', params, axiosConfig);
+    }
+    changedTvs(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/changes', params, axiosConfig);
+    }
+    changedPeople(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'person/changes', params, axiosConfig);
+    }
+    movieCertifications(axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'certification/movie/list', null, axiosConfig);
+    }
+    tvCertifications(axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'certification/tv/list', null, axiosConfig);
+    }
+    networkInfo(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'network/:id', params, axiosConfig);
+    }
+    networkAlternativeNames(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'network/:id/alternative_names', params, axiosConfig);
+    }
+    networkImages(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'network/:id/images', params, axiosConfig);
+    }
+    review(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'review/:id', params, axiosConfig);
+    }
+    episodeGroup(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/episode_group/:id', params, axiosConfig);
     }
 }
 exports.MovieDb = MovieDb;

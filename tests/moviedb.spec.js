@@ -66,15 +66,7 @@ describe('moviedb-promise', function () {
   })
 
   it(`should get tv, season 1, season 1 episodes and credit details for Stargate SG-1`, async () => {
-    const res = await api.tvInfo(4629, 'season/1,season/1/credits')
-    res.should.be.an('object')
-    res.should.have.property('name')
-    res.should.have.property('season/1')
-    res.should.have.property('season/1/credits')
-  })
-
-  it(`specify appendToResponse as option`, async () => {
-    const res = await api.tvInfo(4629, { appendToResponse: 'season/1,season/1/credits' })
+    const res = await api.tvInfo({ id: 4629, append_to_response: 'season/1,season/1/credits' })
     res.should.be.an('object')
     res.should.have.property('name')
     res.should.have.property('season/1')
@@ -83,7 +75,7 @@ describe('moviedb-promise', function () {
 
   it(`specify all options with a short response (1ms) to force timeout`, async () => {
     try {
-      await api.tvInfo(4629, { appendToResponse: 'season/1,season/1/credits', timeout: 1 })
+      await api.tvInfo({ id: 4629, appendToResponse: 'season/1,season/1/credits' }, { timeout: 1 })
     } catch (error) {
       if (error.message.includes('timeout of 1ms exceeded')) {
         return
