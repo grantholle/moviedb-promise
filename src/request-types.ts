@@ -11,6 +11,12 @@ export interface IdRequestParams extends RequestParams {
   id: string|number
 }
 
+export interface AppendToResponseRequest {
+  append_to_response?: string
+}
+
+export interface IdAppendToResponseRequest extends IdRequestParams, AppendToResponseRequest {}
+
 export interface PagedRequestParams extends IdRequestParams {
   page?: number
 }
@@ -831,7 +837,7 @@ export interface TvTranslationsResponse extends Response {
   translations?: Array<Translation>
 }
 
-export interface TvSeasonRequest extends IdRequestParams {
+export interface TvSeasonRequest extends IdAppendToResponseRequest {
   season_number: number
 }
 

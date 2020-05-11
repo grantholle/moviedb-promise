@@ -293,7 +293,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'trending/:media_type/:time_window', params, options)
   }
 
-  movieInfo (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.MovieResponse> {
+  movieInfo (params: string|number|types.IdAppendToResponseRequest, options?: string|RequestOptions): Promise<types.MovieResponse> {
     return this.makeRequest(HttpMethod.Get, 'movie/:id', params, options)
   }
 
@@ -381,7 +381,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'movie/upcoming', params, options)
   }
 
-  tvInfo (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.ShowResponse> {
+  tvInfo (params: string|number|types.IdAppendToResponseRequest, options?: string|RequestOptions): Promise<types.ShowResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id', params, options)
   }
 
@@ -405,7 +405,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/credits', params, options)
   }
 
-  tvEpisodeGroups (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.TvEpisodeGroupsResponse> {
+  episodeGroups (params: string|number|types.IdRequestParams, options?: string|RequestOptions): Promise<types.TvEpisodeGroupsResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/episode_groups', params, options)
   }
 
@@ -473,71 +473,71 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'tv/top_rated', params, options)
   }
 
-  tvSeasonInfo (params: types.TvSeasonRequest, options?: string|RequestOptions): Promise<types.TvSeasonResponse> {
+  seasonInfo (params: types.TvSeasonRequest, options?: string|RequestOptions): Promise<types.TvSeasonResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number', params, options)
   }
 
-  tvSeasonChanges (params: types.ChangesRequest, options?: string|RequestOptions): Promise<types.TvSeasonChangesResponse> {
+  seasonChanges (params: types.ChangesRequest, options?: string|RequestOptions): Promise<types.TvSeasonChangesResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/season/:id/changes', params, options)
   }
 
-  tvSeasonAccountStates (params: types.TvSeasonRequest, options?: string|RequestOptions): Promise<types.TvSeasonAccountStatesResponse> {
+  seasonAccountStates (params: types.TvSeasonRequest, options?: string|RequestOptions): Promise<types.TvSeasonAccountStatesResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/account_states', params, options)
   }
 
-  tvSeasonCredits (params: types.TvSeasonRequest, options?: string|RequestOptions): Promise<types.CreditsResponse> {
+  seasonCredits (params: types.TvSeasonRequest, options?: string|RequestOptions): Promise<types.CreditsResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/credits', params, options)
   }
 
-  tvSeasonExternalIds (params: types.TvSeasonRequest, options?: string|RequestOptions): Promise<types.TvSeasonExternalIdsResponse> {
+  seasonExternalIds (params: types.TvSeasonRequest, options?: string|RequestOptions): Promise<types.TvSeasonExternalIdsResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/external_ids', params, options)
   }
 
-  tvSeasonImages (params: types.TvSeasonRequest, options?: string|RequestOptions): Promise<types.TvSeasonImagesResponse> {
+  seasonImages (params: types.TvSeasonRequest, options?: string|RequestOptions): Promise<types.TvSeasonImagesResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/images', params, options)
   }
 
-  tvSeasonVideos (params: types.TvSeasonRequest, options?: string|RequestOptions): Promise<types.VideosResponse> {
+  seasonVideos (params: types.TvSeasonRequest, options?: string|RequestOptions): Promise<types.VideosResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/videos', params, options)
   }
 
-  tvEpisodeInfo (params: types.EpisodeRequest, options?: string|RequestOptions): Promise<types.Episode> {
+  episodeInfo (params: types.EpisodeRequest, options?: string|RequestOptions): Promise<types.Episode> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number', params, options)
   }
 
-  tvEpisodeChanges (params: string|number|types.ChangesRequest, options?: string|RequestOptions): Promise<types.EpisodeChangesResponse> {
+  episodeChanges (params: string|number|types.ChangesRequest, options?: string|RequestOptions): Promise<types.EpisodeChangesResponse> {
     return this.makeRequest(HttpMethod.Get, '/tv/episode/:id/changes', params, options)
   }
 
-  tvEpisodeAccountStates (params: types.EpisodeRequest, options?: string|RequestOptions): Promise<types.EpisodeAccountStatesResponse> {
+  episodeAccountStates (params: types.EpisodeRequest, options?: string|RequestOptions): Promise<types.EpisodeAccountStatesResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number/account_states', params, options)
   }
 
-  tvEpisodeCredits (params: types.EpisodeRequest, options?: string|RequestOptions): Promise<types.EpisodeCreditsResponse> {
+  episodeCredits (params: types.EpisodeRequest, options?: string|RequestOptions): Promise<types.EpisodeCreditsResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number/credits', params, options)
   }
 
-  tvEpisodeExternalIds (params: types.EpisodeRequest, options?: string|RequestOptions): Promise<types.EpisodeExternalIdsResponse> {
+  episodeExternalIds (params: types.EpisodeRequest, options?: string|RequestOptions): Promise<types.EpisodeExternalIdsResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number/external_ids', params, options)
   }
 
-  tvEpisodeImages (params: types.EpisodeRequest, options?: string|RequestOptions): Promise<types.EpisodeImagesResponse> {
+  episodeImages (params: types.EpisodeRequest, options?: string|RequestOptions): Promise<types.EpisodeImagesResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number/images', params, options)
   }
 
-  tvEpisodeTranslations (params: types.EpisodeRequest, options?: string|RequestOptions): Promise<types.EpisodeTranslationsResponse> {
+  episodeTranslations (params: types.EpisodeRequest, options?: string|RequestOptions): Promise<types.EpisodeTranslationsResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number/translations', params, options)
   }
 
-  tvEpisodeRatingUpdate (params: types.EpisodeRatingRequest, options?: string|RequestOptions): Promise<types.PostResponse> {
+  episodeRatingUpdate (params: types.EpisodeRatingRequest, options?: string|RequestOptions): Promise<types.PostResponse> {
     return this.makeRequest(HttpMethod.Post, 'tv/:id/season/:season_number/episode/:episode_number/rating', params, options)
   }
 
-  tvEpisodeRatingDelete (params: types.EpisodeRequest, options?: string|RequestOptions): Promise<types.PostResponse> {
+  episodeRatingDelete (params: types.EpisodeRequest, options?: string|RequestOptions): Promise<types.PostResponse> {
     return this.makeRequest(HttpMethod.Delete, 'tv/:id/season/:season_number/episode/:episode_number/rating', params, options)
   }
 
-  tvEpisodeVideos (params: types.EpisodeRequest, options?: string|RequestOptions): Promise<types.EpisodeVideosResponse> {
+  episodeVideos (params: types.EpisodeRequest, options?: string|RequestOptions): Promise<types.EpisodeVideosResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number/translations', params, options)
   }
 
