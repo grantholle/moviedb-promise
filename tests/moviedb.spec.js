@@ -5,7 +5,6 @@ require('dotenv').config()
 const assert = require('chai').assert
 const apiKey = process.env.MOVIEDB_API_KEY || process.env.npm_config_key
 const { MovieDb } = require('../dist')
-const endpointGroups = require('../dist/endpoints/endpoints').default
 
 // Include --sesion='{your session id}' to test the watchlist
 // or `MOVIEDB_SESSION_ID` in a .env
@@ -38,17 +37,6 @@ describe('moviedb-promise', function () {
   this.timeout(1200000)
   let api = new MovieDb(apiKey)
 
-  it('should have all the dynamic functions on the object', async () => {
-    for (const group of endpointGroups) {
-      for (const endpoint of group.endpoints) {
-        const method = group.prefix + (endpoint.name || '')
-
-        const func = typeof api[method]
-        func.should.equal('function')
-      }
-    }
-  })
-
   // basic movie search
   it('should search for Zoolander', async () => {
     const res = await api.searchMovie({ query: 'Zoolander' })
@@ -78,15 +66,7 @@ describe('moviedb-promise', function () {
   })
 
   it(`should get tv, season 1, season 1 episodes and credit details for Stargate SG-1`, async () => {
-    const res = await api.tvInfo(4629, 'season/1,season/1/credits')
-    res.should.be.an('object')
-    res.should.have.property('name')
-    res.should.have.property('season/1')
-    res.should.have.property('season/1/credits')
-  })
-
-  it(`specify appendToResponse as option`, async () => {
-    const res = await api.tvInfo(4629, { appendToResponse: 'season/1,season/1/credits' })
+    const res = await api.tvInfo({ id: 4629, append_to_response: 'season/1,season/1/credits' })
     res.should.be.an('object')
     res.should.have.property('name')
     res.should.have.property('season/1')
@@ -95,7 +75,7 @@ describe('moviedb-promise', function () {
 
   it(`specify all options with a short response (1ms) to force timeout`, async () => {
     try {
-      await api.tvInfo(4629, { appendToResponse: 'season/1,season/1/credits', timeout: 1 })
+      await api.tvInfo({ id: 4629, appendToResponse: 'season/1,season/1/credits' }, { timeout: 1 })
     } catch (error) {
       if (error.message.includes('timeout of 1ms exceeded')) {
         return
@@ -136,5 +116,10 @@ describe('moviedb-promise', function () {
     }
 
     return Promise.all(promises)
+  })
+
+  it(`should allow strings to perform search requests`, async () => {
+    const res = await api.searchMovie('Zoolander')
+    haveValidGenericResponse(res)
   })
 })

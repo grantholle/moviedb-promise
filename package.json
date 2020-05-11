@@ -1,12 +1,9 @@
 {
   "name": "moviedb-promise",
   "description": "A library for interacting with themoviedb.org API using Promises",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "scripts": {
     "test": "npm run build && ./node_modules/.bin/mocha ./tests/*.js --reporter spec",
-    "lint": "./node_modules/.bin/standard",
-    "table": "node tools/method-table",
-    "types": "node tools/type-definitions",
     "build": "rm -rf ./dist && ./node_modules/.bin/tsc"
   },
   "repository": {
@@ -25,7 +22,9 @@
   },
   "homepage": "https://github.com/grantholle/moviedb-promise#readme",
   "main": "dist/index.js",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "author": "Grant Holle <https://github.com/grantholle>",
   "contributors": [
     "Irwing Reza <irwing85@gmail.com> (http://irwingreza.com/)",
@@ -39,7 +38,8 @@
     "Shaun Lim (http://github.com/ShaunLWM)"
   ],
   "dependencies": {
-    "axios": "^0.19.2"
+    "axios": "^0.19.2",
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.149",
@@ -47,10 +47,7 @@
     "chai": "^3.5.0",
     "colors": "^1.3.0",
     "dotenv": "^8.2.0",
-    "lodash": "^4.17.15",
-    "markdown-table": "^1.1.2",
     "mocha": "^5.2.0",
-    "standard": "^10.0.3",
     "typescript": "^3.8.3"
   }
 }
