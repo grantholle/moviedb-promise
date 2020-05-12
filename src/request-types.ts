@@ -534,7 +534,7 @@ export interface MovieResponse extends Response {
   backdrop_path?: string
   belongs_to_collection?: object
   budget?: number
-  genres?: Genre
+  genres?: Array<Genre>
   homepage?: string
   id?: number
   imdb_id?: string
