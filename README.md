@@ -300,11 +300,12 @@ The movieInfo, tvInfo, tvSeasonInfo, tvEpisodeInfo and personInfo methods suppor
 const res = await api.tvInfo({ id: 4629, append_to_response: 'season/1,season/1/credits' })
 ```
 
-### Request Timeouts
+### Request Options
 
-To specify something other than the default timeout for a method call's request, specify the timeout property of the options object. The timeout property object is the shape of a standard [superagent timeout object](https://visionmedia.github.io/superagent/#timeouts).
+The last parameter of the endpoint function calls is an [axios request config object](https://github.com/axios/axios#request-config). Those settings will overwrite anything on the underlying request.
 
 ```js
+// Add a timeout restriction to the request
 const res = await api.tvInfo(4629, { timeout: 10000 });
 ```
 
@@ -326,7 +327,7 @@ const res = await api.tvInfo(
 
 First, thanks for taking the time!
 
-Second, before submitting a pull request, make sure to run `npm run test` to make sure the tests pass and if you add any features to add any features to add the appropriate tests.
+Second, before submitting a pull request, make sure to run `npm run test` to make sure the tests pass and if you add any features be sure to add the appropriate tests.
 
 ## License
 
