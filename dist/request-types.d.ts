@@ -407,7 +407,7 @@ export interface DiscoverMovieRequest extends RequestParams {
     primary_release_year?: number;
     'primary_release_date.gte'?: string;
     'primary_release_date.lte'?: string;
-    'release_date.gte?': string;
+    'release_date.gte'?: string;
     'release_date.lte'?: string;
     with_release_type?: number;
     year?: number;
@@ -432,8 +432,8 @@ export interface DiscoverMovieResponse extends PaginatedResponse {
 }
 export interface DiscoverTvRequest extends RequestParams {
     sort_by?: string;
-    'air_date.gte?': string;
-    'air_date.lte?': string;
+    'air_date.gte'?: string;
+    'air_date.lte'?: string;
     'first_air_date.gte'?: string;
     'first_air_date.lte'?: string;
     first_air_date_year?: number;
