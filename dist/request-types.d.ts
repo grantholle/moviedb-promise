@@ -288,7 +288,7 @@ export interface GuestStar {
     order?: number;
     profile_path?: string | null;
 }
-export interface FindRequest extends Request {
+export interface FindRequest extends RequestParams {
     id: string | number;
     language?: string;
     external_source: ExternalId;
