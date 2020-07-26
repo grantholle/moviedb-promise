@@ -229,7 +229,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'configuration/timezones', null, axiosConfig)
   }
 
-  find (params?: string|number|types.FindRequest, axiosConfig?: AxiosRequestConfig): Promise<types.FindResponse> {
+  find (params?: types.FindRequest, axiosConfig?: AxiosRequestConfig): Promise<types.FindResponse> {
     return this.makeRequest(HttpMethod.Get, 'find/:id', params, axiosConfig)
   }
 

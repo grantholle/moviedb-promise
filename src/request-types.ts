@@ -330,9 +330,9 @@ export interface GuestStar {
 }
 
 export interface FindRequest extends Request {
-  id: ExternalId
+  id: string|number
   language?: string
-  external_source?: 'imdb_id'|'freebase_mid'|'freebase_id'|'tvdb_id'|'tvrage_id'|'facebook_id'|'twitter_id'|'instagram_id'
+  external_source?: ExternalId
 }
 
 export interface PaginatedResponse extends Response {
