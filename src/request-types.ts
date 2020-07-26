@@ -329,7 +329,7 @@ export interface GuestStar {
   profile_path?: string|null
 }
 
-export interface FindRequest extends Request {
+export interface FindRequest extends RequestParams {
   id: string|number
   language?: string
   external_source: ExternalId
