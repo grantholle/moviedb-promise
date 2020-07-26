@@ -332,7 +332,7 @@ export interface GuestStar {
 export interface FindRequest extends Request {
   id: string|number
   language?: string
-  external_source?: ExternalId
+  external_source: ExternalId
 }
 
 export interface PaginatedResponse extends Response {

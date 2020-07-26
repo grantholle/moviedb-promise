@@ -50,7 +50,7 @@ export declare class MovieDb {
     languages(axiosConfig?: AxiosRequestConfig): Promise<Array<types.Language>>;
     primaryTranslations(axiosConfig?: AxiosRequestConfig): Promise<Array<string>>;
     timezones(axiosConfig?: AxiosRequestConfig): Promise<Array<types.Timezone>>;
-    find(params?: string | number | types.FindRequest, axiosConfig?: AxiosRequestConfig): Promise<types.FindResponse>;
+    find(params?: types.FindRequest, axiosConfig?: AxiosRequestConfig): Promise<types.FindResponse>;
     searchCompany(params: string | types.SearchRequest, axiosConfig?: AxiosRequestConfig): Promise<types.SearchCompanyResponse>;
     searchCollection(params: types.SearchRequest, axiosConfig?: AxiosRequestConfig): Promise<types.SearchCollectionResponse>;
     searchKeyword(params: types.SearchRequest, axiosConfig?: AxiosRequestConfig): Promise<types.SearchKeywordResponse>;
