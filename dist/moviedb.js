@@ -222,7 +222,7 @@ class MovieDb {
         return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/credits', params, axiosConfig);
     }
     movieExternalIds(params, axiosConfig) {
-        return this.makeRequest(types_1.HttpMethod.Get, '/movie/:id/external_ids', params, axiosConfig);
+        return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/external_ids', params, axiosConfig);
     }
     movieImages(params, axiosConfig) {
         return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/images', params, axiosConfig);
@@ -366,7 +366,7 @@ class MovieDb {
         return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number', params, axiosConfig);
     }
     episodeChanges(params, axiosConfig) {
-        return this.makeRequest(types_1.HttpMethod.Get, '/tv/episode/:id/changes', params, axiosConfig);
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/episode/:id/changes', params, axiosConfig);
     }
     episodeAccountStates(params, axiosConfig) {
         return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/season/:season_number/episode/:episode_number/account_states', params, axiosConfig);
