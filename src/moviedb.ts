@@ -311,7 +311,7 @@ export class MovieDb {
   }
 
   movieExternalIds (params: string|number|types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.MovieExternalIdsResponse> {
-    return this.makeRequest(HttpMethod.Get, '/movie/:id/external_ids', params, axiosConfig)
+    return this.makeRequest(HttpMethod.Get, 'movie/:id/external_ids', params, axiosConfig)
   }
 
   movieImages (params: string|number|types.MovieImagesRequest, axiosConfig?: AxiosRequestConfig): Promise<types.MovieImagesResponse> {
@@ -503,7 +503,7 @@ export class MovieDb {
   }
 
   episodeChanges (params: string|number|types.ChangesRequest, axiosConfig?: AxiosRequestConfig): Promise<types.EpisodeChangesResponse> {
-    return this.makeRequest(HttpMethod.Get, '/tv/episode/:id/changes', params, axiosConfig)
+    return this.makeRequest(HttpMethod.Get, 'tv/episode/:id/changes', params, axiosConfig)
   }
 
   episodeAccountStates (params: types.EpisodeRequest, axiosConfig?: AxiosRequestConfig): Promise<types.EpisodeAccountStatesResponse> {
