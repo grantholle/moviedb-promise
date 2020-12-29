@@ -590,6 +590,72 @@ export interface ChangesResponse extends PaginatedResponse {
   }>
 }
 
+interface WatchProviderCountry {
+  link?: string
+  rent?: Array<WatchProvider>
+  buy?: Array<WatchProvider>
+  flatrate?: Array<WatchProvider>
+}
+
+interface WatchProvider {
+  display_priority?: number
+  logo_path?: string
+  provider_id?: number
+  provider_name?: string
+}
+
+export interface WatchProviderResponse {
+  id?: number,
+  results?: {
+    AR?: WatchProviderCountry
+    AT?: WatchProviderCountry
+    AU?: WatchProviderCountry
+    BE?: WatchProviderCountry
+    BR?: WatchProviderCountry
+    CA?: WatchProviderCountry
+    CH?: WatchProviderCountry
+    CL?: WatchProviderCountry
+    CO?: WatchProviderCountry
+    CZ?: WatchProviderCountry
+    DE?: WatchProviderCountry
+    DK?: WatchProviderCountry
+    EC?: WatchProviderCountry
+    EE?: WatchProviderCountry
+    ES?: WatchProviderCountry
+    FI?: WatchProviderCountry
+    FR?: WatchProviderCountry
+    GB?: WatchProviderCountry
+    GR?: WatchProviderCountry
+    HU?: WatchProviderCountry
+    ID?: WatchProviderCountry
+    IE?: WatchProviderCountry
+    IN?: WatchProviderCountry
+    IT?: WatchProviderCountry
+    JP?: WatchProviderCountry
+    KR?: WatchProviderCountry
+    LT?: WatchProviderCountry
+    LV?: WatchProviderCountry
+    MX?: WatchProviderCountry
+    MY?: WatchProviderCountry
+    NL?: WatchProviderCountry
+    NO?: WatchProviderCountry
+    NZ?: WatchProviderCountry
+    PE?: WatchProviderCountry
+    PH?: WatchProviderCountry
+    PL?: WatchProviderCountry
+    PT?: WatchProviderCountry
+    RO?: WatchProviderCountry
+    RU?: WatchProviderCountry
+    SE?: WatchProviderCountry
+    SG?: WatchProviderCountry
+    TH?: WatchProviderCountry
+    TR?: WatchProviderCountry
+    US?: WatchProviderCountry
+    VE?: WatchProviderCountry
+    ZA?: WatchProviderCountry
+  }
+}
+
 export interface MovieChangesResponse extends Response {
   changes?: Array<{
     key?: string

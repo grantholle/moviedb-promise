@@ -330,6 +330,10 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'movie/:id/videos', params, axiosConfig)
   }
 
+  movieWatchProviders (params: string|number|types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.WatchProviderResponse> {
+    return this.makeRequest(HttpMethod.Get, 'movie/:id/watch/providers', params, axiosConfig)
+  }
+
   movieTranslations (params: string|number|types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.MovieTranslationsResponse> {
     return this.makeRequest(HttpMethod.Get, 'movie/:id/translations', params, axiosConfig)
   }
@@ -440,6 +444,10 @@ export class MovieDb {
 
   tvVideos (params: string|number|types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.VideosResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/videos', params, axiosConfig)
+  }
+
+  tvWatchProviders (params: string|number|types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.WatchProviderResponse> {
+    return this.makeRequest(HttpMethod.Get, 'tv/:id/watch/providers', params, axiosConfig)
   }
 
   tvRatingUpdate (params: types.RatingRequest, axiosConfig?: AxiosRequestConfig): Promise<types.PostResponse> {
