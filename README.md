@@ -192,6 +192,7 @@ moviedb.searchMovie(parameters).then(...)
 | movieKeywords |
 | movieReleaseDates |
 | movieVideos |
+| movieWatchProviders |
 | movieTranslations |
 | movieRecommendations |
 | movieSimilar |
@@ -220,6 +221,7 @@ moviedb.searchMovie(parameters).then(...)
 | tvSimilar |
 | tvTranslations |
 | tvVideos |
+| tvWatchProviders |
 | tvRatingUpdate |
 | tvRatingDelete |
 | tvLatest |
