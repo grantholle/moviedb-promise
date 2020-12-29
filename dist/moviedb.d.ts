@@ -75,6 +75,7 @@ export declare class MovieDb {
     movieKeywords(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.MovieKeywordResponse>;
     movieReleaseDates(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.MovieReleaseDatesResponse>;
     movieVideos(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.VideosResponse>;
+    movieWatchProviders(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.WatchProviderResponse>;
     movieTranslations(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.MovieTranslationsResponse>;
     movieRecommendations(params: string | number | types.MovieRecommendationsRequest, axiosConfig?: AxiosRequestConfig): Promise<types.MovieRecommendationsResponse>;
     movieSimilar(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.SimilarMovieResponse>;
@@ -103,6 +104,7 @@ export declare class MovieDb {
     tvSimilar(params: string | number | types.PagedRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.TvSimilarShowsResponse>;
     tvTranslations(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.TvTranslationsResponse>;
     tvVideos(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.VideosResponse>;
+    tvWatchProviders(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.WatchProviderResponse>;
     tvRatingUpdate(params: types.RatingRequest, axiosConfig?: AxiosRequestConfig): Promise<types.PostResponse>;
     tvRatingDelete(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.PostResponse>;
     tvLatest(params?: RequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.ShowResponse>;
