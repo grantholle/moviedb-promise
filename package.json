@@ -39,7 +39,7 @@
     "Shaun Lim (http://github.com/ShaunLWM)"
   ],
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
