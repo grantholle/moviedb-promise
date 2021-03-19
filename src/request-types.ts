@@ -229,31 +229,31 @@ export interface SimplePerson {
 }
 
 export interface Cast {
-	adult?: boolean;
+  adult?: boolean;
   cast_id?: number
   character?: string
   credit_id?: string
   gender?: number|null
   id?: number
-	known_for_department?: string
+  known_for_department?: string
   name?: string
   order?: number
-	original_name?: string
-	popularity?: number
+  original_name?: string
+  popularity?: number
   profile_path?: string|null
 }
 
 export interface Crew {
-	adult?: boolean;
+  adult?: boolean;
   credit_id?: string
   department?: string
   gender?: number|null
   id?: number
-	known_for_department?: string
+  known_for_department?: string
   job?: string
   name?: string
-	original_name?: string
-	popularity?: number
+  original_name?: string
+  popularity?: number
   profile_path?: string|null
 }
 
