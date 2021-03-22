@@ -298,6 +298,15 @@ moviedb.searchMovie(parameters).then(...)
 
 The movieInfo, tvInfo, tvSeasonInfo, tvEpisodeInfo and personInfo methods support an option to specify the [TMDB API's append_to_response query parameter](https://developers.themoviedb.org/3/getting-started/append-to-response). This makes it possible to make sub requests within the same namespace in a single HTTP request. Each request will get appended to the response as a new JSON object.
 
+In order to receive type support for the items returned with an `append_to_response` request, you'll need to cast the attributes as their appropriate type. **Note** this requires you to be using TypeScript.
+
+```ts
+const response = await moviedb.movieInfo({ id: tmdbId, append_to_response: "release_dates" }))
+  as MovieResponse & { release_dates: MovieReleaseDatesResponse }
+```
+
+In this case, `response.release_dates` will be cast as `MovieReleaseDatesResponse` since it's not in the default `MovieResponse` that gets returned with `movieInfo()`.
+
 ```js
 const res = await api.tvInfo({ id: 4629, append_to_response: 'season/1,season/1/credits' })
 ```
