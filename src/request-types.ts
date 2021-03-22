@@ -229,23 +229,31 @@ export interface SimplePerson {
 }
 
 export interface Cast {
+  adult?: boolean;
   cast_id?: number
   character?: string
   credit_id?: string
   gender?: number|null
   id?: number
+  known_for_department?: string
   name?: string
   order?: number
+  original_name?: string
+  popularity?: number
   profile_path?: string|null
 }
 
 export interface Crew {
+  adult?: boolean;
   credit_id?: string
   department?: string
   gender?: number|null
   id?: number
+  known_for_department?: string
   job?: string
   name?: string
+  original_name?: string
+  popularity?: number
   profile_path?: string|null
 }
 
@@ -1390,15 +1398,15 @@ export interface Certification {
 
 export interface CertificationsResponse extends Response {
   certifications?: {
-    US?: Certification
-    CA?: Certification
-    DE?: Certification
-    GB?: Certification
-    AU?: Certification
-    BR?: Certification
-    FR?: Certification
-    NZ?: Certification
-    IN?: Certification
+    US?: Certification[]
+    CA?: Certification[]
+    DE?: Certification[]
+    GB?: Certification[]
+    AU?: Certification[]
+    BR?: Certification[]
+    FR?: Certification[]
+    NZ?: Certification[]
+    IN?: Certification[]
   }
 }
 
