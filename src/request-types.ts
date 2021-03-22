@@ -1398,15 +1398,15 @@ export interface Certification {
 
 export interface CertificationsResponse extends Response {
   certifications?: {
-    US?: Certification
-    CA?: Certification
-    DE?: Certification
-    GB?: Certification
-    AU?: Certification
-    BR?: Certification
-    FR?: Certification
-    NZ?: Certification
-    IN?: Certification
+    US?: Certification[]
+    CA?: Certification[]
+    DE?: Certification[]
+    GB?: Certification[]
+    AU?: Certification[]
+    BR?: Certification[]
+    FR?: Certification[]
+    NZ?: Certification[]
+    IN?: Certification[]
   }
 }
 
