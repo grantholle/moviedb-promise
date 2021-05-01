@@ -8,6 +8,14 @@ This was originally a pull request that went stale, so it's its own package now.
 
 The main credit goes to the [original `moviedb` package](https://github.com/impronunciable/moviedb) by Dan Zajdband.
 
+## What is themoviedb.org
+
+The Movie Database (TMDB) is a community built project that stores data about movies and television shows. The project started in 2008 and has become one of the largest databases in the world. There are few databases with the vast data TMDB provides. In addition, TMDB gives special attention to international content which is often difficult to find on other databases. TMDB supports 39 different languages and is currently used in 180 countries.
+
+In addition to information about actors, directors, production years, movie titles, genres, etc., TMDB also provides high resolution posters and fanart that can easily be incorporated into personal projects. The size of the image database is vast and growing at a rate of 1000 images a day. TMDB processes over 3 billion requests by millions of users daily.
+
+The vast amount of data gathered and stored by TMDB can be accessed via its API. With a key and a URL, making a request is simple. However, managing all the requests needed to create say, a movie rating website, would be quite the task. You'd have to create a function for every type of request needed. That's where moviedb-promise comes in. With it's suite of over 100 functions, moviedb-promise makes interacting with TMDB easy.
+
 ## Changelog for v3
 
 - Each tmdb function has the correct parameter and response types based on the documentation
@@ -338,8 +346,33 @@ const res = await api.tvInfo(
 
 First, thanks for taking the time!
 
-Second, before submitting a pull request, make sure to run `npm run test` to make sure the tests pass and if you add any features be sure to add the appropriate tests.
 
+
+If you have any questions, come find us in discord server #servernamehere
+
+
+
+#### Testing
+* Before submitting a pull request, please run `npm run test`
+* Make sure all tests pass before submitting a pull request
+* Add tests from any features you add
+
+#### Submitting changes
+Please submit a pull request with an outline of what you've added/changed/removed. When you submit your code, please include examples and make sure that you submit one feature per commit.
+
+#### Syntax guidelines
+* Use typescript
+* Withhold semi-colons
+* Use camelCase for methods
+* Use parenthesis where appropriate
+* Use spaces around operators
+* Avoid code that is platform dependent
+
+#### Documentation guidelines
+* Use Markdown
+* Reference a class with [ClassName]
+* Reference an instance of a class with [Classname::methodName]
+* Reference a method in class with [Classname.methodName]
 ## License
 
 [MIT](LICENSE.md)
