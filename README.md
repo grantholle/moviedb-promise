@@ -426,8 +426,6 @@ const res = await api.tvInfo(
 
 First, thanks for taking the time!
 
-If you have any questions, come find us in discord server #servernamehere
-
 #### Testing
 
 - Before submitting a pull request, please run `npm run test`
