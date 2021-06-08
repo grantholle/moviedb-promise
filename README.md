@@ -8,6 +8,14 @@ This was originally a pull request that went stale, so it's its own package now.
 
 The main credit goes to the [original `moviedb` package](https://github.com/impronunciable/moviedb) by Dan Zajdband.
 
+## What is themoviedb.org?
+
+The Movie Database (TMDB) is a community built project that stores data about movies and television shows. The project started in 2008 and has become one of the largest databases in the world. There are few databases with the vast data TMDB provides. In addition, TMDB gives special attention to international content which is often difficult to find on other databases. TMDB supports 39 different languages and is currently used in 180 countries.
+
+In addition to information about actors, directors, production years, movie titles, genres, etc., TMDB also provides high resolution posters and fanart that can easily be incorporated into personal projects. The size of the image database is vast and growing at a rate of 1000 images a day. TMDB processes over 3 billion requests by millions of users daily.
+
+The vast amount of data gathered and stored by TMDB can be accessed via its API. With a key and a URL, making a request is simple. However, managing all the requests needed to create say, a movie rating website, would be quite the task. You'd have to create a function for every type of request needed. That's where moviedb-promise comes in. With it's suite of over 100 functions, moviedb-promise makes interacting with TMDB easy.
+
 ## Changelog for v3
 
 - Each tmdb function has the correct parameter and response types based on the documentation
@@ -52,9 +60,12 @@ All functions return a Promise, which means that you can also use `async/await`.
 
 ```js
 // Using just the Promise
-moviedb.searchMovie({ query: 'Alien' }).then(res => {
-  console.log(res)
-}).catch(console.error)
+moviedb
+  .searchMovie({ query: 'Alien' })
+  .then((res) => {
+    console.log(res)
+  })
+  .catch(console.error)
 
 // Using await
 // You probably wouldn't ever use it this way...
@@ -68,7 +79,7 @@ moviedb.searchMovie({ query: 'Alien' }).then(res => {
 })()
 
 // This is a more reasonable example
-const findMovie = async title => {
+const findMovie = async (title) => {
   // Equivalant to { query: title }
   const res = await moviedb.searchMovie(title)
 
@@ -85,9 +96,71 @@ try {
 or
 
 ```js
-moviedb.movieInfo({ id: 666 }).then(res => {
-  console.log(res)
-}).catch(console.error)
+moviedb
+  .movieInfo({ id: 666 })
+  .then((res) => {
+    console.log(res)
+  })
+  .catch(console.error)
+```
+
+or
+
+controller file example that
+
+- uses async await
+- reads from a .env file
+- includes parameters
+- handles errors
+
+```js
+import { MovieDb } from 'moviedb-promise'
+import dotenv from 'dotenv'
+
+dotenv.config()
+
+const moviedb = new MovieDb(process.env.KEY)
+
+const newError = (name) => {
+  const e = new Error(name)
+  e.name = name
+  return Promise.reject(e)
+}
+
+export const searchMovie = async (req) => {
+  const parameters = {
+    query: req.query.name,
+    page: req.query.page,
+  }
+  try {
+    const res = await moviedb.searchMovie(parameters)
+    return res.results
+  } catch (error) {
+    return newError(error)
+  }
+}
+
+export const searchPerson = async (req) => {
+  const parameters = {
+    query: req.query.name,
+    page: 1,
+  }
+  try {
+    const res = await moviedb.searchPerson(parameters)
+    return res.results
+  } catch (error) {
+    return newError(error)
+  }
+}
+
+export const movieKeywords = async (req) => {
+  try {
+    const res = await moviedb.movieKeywords({ query: req.query.name })
+    return res.results
+  } catch (error) {
+    return newError(error)
+  }
+}
 ```
 
 Some endpoints, such as watchlist endpoints, have an optional account id parameter. If you have a [session id](https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id), you don't need to provide that parameter.
@@ -96,31 +169,43 @@ Some endpoints, such as watchlist endpoints, have an optional account id paramet
 // This is the same as calling it as
 // moviedb.accountMovieWatchlist({ id: '{account_id}' })
 moviedb.sessionId = 'my-cached-session-id'
-moviedb.accountMovieWatchlist().then(res => {
-  // Your watchlist items
-  console.log(res)
-}).catch(console.error)
-
-// Creating a session id would look something like this
-moviedb.requestToken().then(token => {
-  // Now you need to visit this url to authorize
-  const tokenUrl = `https://www.themoviedb.org/authenticate/${token}`
-}).catch(console.error)
-
-// After that has been authorized, you can get the session id
-moviedb.retrieveSession().then(sessionId => {
-  // Probably cache this id somewhere to avoid this workflow
-  console.log(sessionId)
-
-  // After the sessionId is cached, the next time use instantiate the class,
-  // set the sessionId by moviedb.sessionId = 'my-session-id'
-
-  // This can be called now because sessionId is set
-  moviedb.accountMovieWatchlist().then(res => {
+moviedb
+  .accountMovieWatchlist()
+  .then((res) => {
     // Your watchlist items
     console.log(res)
-  }).catch(console.error)
-}).catch(console.error)
+  })
+  .catch(console.error)
+
+// Creating a session id would look something like this
+moviedb
+  .requestToken()
+  .then((token) => {
+    // Now you need to visit this url to authorize
+    const tokenUrl = `https://www.themoviedb.org/authenticate/${token}`
+  })
+  .catch(console.error)
+
+// After that has been authorized, you can get the session id
+moviedb
+  .retrieveSession()
+  .then((sessionId) => {
+    // Probably cache this id somewhere to avoid this workflow
+    console.log(sessionId)
+
+    // After the sessionId is cached, the next time use instantiate the class,
+    // set the sessionId by moviedb.sessionId = 'my-session-id'
+
+    // This can be called now because sessionId is set
+    moviedb
+      .accountMovieWatchlist()
+      .then((res) => {
+        // Your watchlist items
+        console.log(res)
+      })
+      .catch(console.error)
+  })
+  .catch(console.error)
 ```
 
 ## Available methods
@@ -159,140 +244,140 @@ moviedb.searchMovie(parameters).then(...)
 
 ### Complete function list
 
-| Function |
-| -------- |
-| configuration |
-| countries |
-| jobs |
-| languages |
-| primaryTranslations |
-| timezones |
-| find |
-| searchCompany |
-| searchCollection |
-| searchKeyword |
-| searchMovie |
-| searchMulti |
-| searchPerson |
-| searchTv |
-| searchList |
-| collectionInfo |
-| collectionImages |
-| collectionTranslations |
-| discoverMovie |
-| discoverTv |
-| trending |
-| movieInfo |
-| movieAccountStates |
-| movieAlternativeTitles |
-| movieChanges |
-| movieCredits |
-| movieExternalIds |
-| movieImages |
-| movieKeywords |
-| movieReleaseDates |
-| movieVideos |
-| movieWatchProviders |
-| movieTranslations |
-| movieRecommendations |
-| movieSimilar |
-| movieReviews |
-| movieLists |
-| movieRatingUpdate |
-| movieRatingDelete |
-| movieLatest |
-| movieNowPlaying |
-| moviePopular |
-| movieTopRated |
-| upcomingMovies |
-| tvInfo |
-| tvAccountStates |
-| tvAlternativeTitles |
-| tvChanges |
-| tvContentRatings |
-| tvCredits |
-| episodeGroups |
-| tvExternalIds |
-| tvImages |
-| tvKeywords |
-| tvRecommendations |
-| tvReviews |
-| tvScreenedTheatrically |
-| tvSimilar |
-| tvTranslations |
-| tvVideos |
-| tvWatchProviders |
-| tvRatingUpdate |
-| tvRatingDelete |
-| tvLatest |
-| tvAiringToday |
-| tvOnTheAir |
-| tvPopular |
-| tvTopRated |
-| seasonInfo |
-| seasonChanges |
-| seasonAccountStates |
-| seasonCredits |
-| seasonExternalIds |
-| seasonImages |
-| seasonVideos |
-| episodeInfo |
-| episodeChanges |
-| episodeAccountStates |
-| episodeCredits |
-| episodeExternalIds |
-| episodeImages |
-| episodeTranslations |
-| episodeRatingUpdate |
-| episodeRatingDelete |
-| episodeVideos |
-| personInfo |
-| personChanges |
-| personMovieCredits |
-| personTvCredits |
-| personCombinedCredits |
-| personExternalIds |
-| personImages |
-| personTaggedImages |
-| personTranslations |
-| personLatest |
-| personPopular |
-| creditInfo |
-| listInfo |
-| listStatus |
-| createList |
-| createListItem |
-| removeListItem |
-| clearList |
-| deleteList |
-| genreMovieList |
-| genreTvList |
-| keywordInfo |
-| keywordMovies |
-| companyInfo |
+| Function                |
+| ----------------------- |
+| configuration           |
+| countries               |
+| jobs                    |
+| languages               |
+| primaryTranslations     |
+| timezones               |
+| find                    |
+| searchCompany           |
+| searchCollection        |
+| searchKeyword           |
+| searchMovie             |
+| searchMulti             |
+| searchPerson            |
+| searchTv                |
+| searchList              |
+| collectionInfo          |
+| collectionImages        |
+| collectionTranslations  |
+| discoverMovie           |
+| discoverTv              |
+| trending                |
+| movieInfo               |
+| movieAccountStates      |
+| movieAlternativeTitles  |
+| movieChanges            |
+| movieCredits            |
+| movieExternalIds        |
+| movieImages             |
+| movieKeywords           |
+| movieReleaseDates       |
+| movieVideos             |
+| movieWatchProviders     |
+| movieTranslations       |
+| movieRecommendations    |
+| movieSimilar            |
+| movieReviews            |
+| movieLists              |
+| movieRatingUpdate       |
+| movieRatingDelete       |
+| movieLatest             |
+| movieNowPlaying         |
+| moviePopular            |
+| movieTopRated           |
+| upcomingMovies          |
+| tvInfo                  |
+| tvAccountStates         |
+| tvAlternativeTitles     |
+| tvChanges               |
+| tvContentRatings        |
+| tvCredits               |
+| episodeGroups           |
+| tvExternalIds           |
+| tvImages                |
+| tvKeywords              |
+| tvRecommendations       |
+| tvReviews               |
+| tvScreenedTheatrically  |
+| tvSimilar               |
+| tvTranslations          |
+| tvVideos                |
+| tvWatchProviders        |
+| tvRatingUpdate          |
+| tvRatingDelete          |
+| tvLatest                |
+| tvAiringToday           |
+| tvOnTheAir              |
+| tvPopular               |
+| tvTopRated              |
+| seasonInfo              |
+| seasonChanges           |
+| seasonAccountStates     |
+| seasonCredits           |
+| seasonExternalIds       |
+| seasonImages            |
+| seasonVideos            |
+| episodeInfo             |
+| episodeChanges          |
+| episodeAccountStates    |
+| episodeCredits          |
+| episodeExternalIds      |
+| episodeImages           |
+| episodeTranslations     |
+| episodeRatingUpdate     |
+| episodeRatingDelete     |
+| episodeVideos           |
+| personInfo              |
+| personChanges           |
+| personMovieCredits      |
+| personTvCredits         |
+| personCombinedCredits   |
+| personExternalIds       |
+| personImages            |
+| personTaggedImages      |
+| personTranslations      |
+| personLatest            |
+| personPopular           |
+| creditInfo              |
+| listInfo                |
+| listStatus              |
+| createList              |
+| createListItem          |
+| removeListItem          |
+| clearList               |
+| deleteList              |
+| genreMovieList          |
+| genreTvList             |
+| keywordInfo             |
+| keywordMovies           |
+| companyInfo             |
 | companyAlternativeNames |
-| companyImages |
-| accountInfo |
-| accountLists |
-| accountFavoriteMovies |
-| accountFavoriteTv |
-| accountFavoriteUpdate |
-| accountRatedMovies |
-| accountRatedTv |
-| accountRatedTvEpisodes |
-| accountMovieWatchlist |
-| accountTvWatchlist |
-| accountWatchlistUpdate |
-| changedMovies |
-| changedTvs |
-| changedPeople |
-| movieCertifications |
-| tvCertifications |
-| networkInfo |
+| companyImages           |
+| accountInfo             |
+| accountLists            |
+| accountFavoriteMovies   |
+| accountFavoriteTv       |
+| accountFavoriteUpdate   |
+| accountRatedMovies      |
+| accountRatedTv          |
+| accountRatedTvEpisodes  |
+| accountMovieWatchlist   |
+| accountTvWatchlist      |
+| accountWatchlistUpdate  |
+| changedMovies           |
+| changedTvs              |
+| changedPeople           |
+| movieCertifications     |
+| tvCertifications        |
+| networkInfo             |
 | networkAlternativeNames |
-| networkImages |
-| review |
-| episodeGroup |
+| networkImages           |
+| review                  |
+| episodeGroup            |
 
 ## Support for append_to_response
 
@@ -308,7 +393,10 @@ const response = await moviedb.movieInfo({ id: tmdbId, append_to_response: "rele
 In this case, `response.release_dates` will be cast as `MovieReleaseDatesResponse` since it's not in the default `MovieResponse` that gets returned with `movieInfo()`.
 
 ```js
-const res = await api.tvInfo({ id: 4629, append_to_response: 'season/1,season/1/credits' })
+const res = await api.tvInfo({
+  id: 4629,
+  append_to_response: 'season/1,season/1/credits',
+})
 ```
 
 ### Request Options
@@ -317,7 +405,7 @@ The last parameter of the endpoint function calls is an [axios request config ob
 
 ```js
 // Add a timeout restriction to the request
-const res = await api.tvInfo(4629, { timeout: 10000 });
+const res = await api.tvInfo(4629, { timeout: 10000 })
 ```
 
 or when combining multiple options append_to_response is desired:
@@ -329,16 +417,40 @@ const res = await api.tvInfo(
     append_to_response: 'season/1,season/1/credits',
   },
   {
-    timeout: 10000
-  }
-);
+    timeout: 10000,
+  },
+)
 ```
 
 ## Contributing
 
 First, thanks for taking the time!
 
-Second, before submitting a pull request, make sure to run `npm run test` to make sure the tests pass and if you add any features be sure to add the appropriate tests.
+#### Testing
+
+- Before submitting a pull request, please run `npm run test`
+- Make sure all tests pass before submitting a pull request
+- Add tests from any features you add
+
+#### Submitting changes
+
+Please submit a pull request with an outline of what you've added/changed/removed. When you submit your code, please include examples and make sure that you submit one feature per commit.
+
+#### Syntax guidelines
+
+- Use typescript
+- Withhold semi-colons
+- Use camelCase for methods
+- Use parenthesis where appropriate
+- Use spaces around operators
+- Avoid code that is platform dependent
+
+#### Documentation guidelines
+
+- Use Markdown
+- Reference a class with [ClassName]
+- Reference an instance of a class with [Classname::methodName]
+- Reference a method in class with [Classname.methodName]
 
 ## License
 
