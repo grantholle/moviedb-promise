@@ -48,8 +48,8 @@ npm install moviedb-promise --save
 Require the module and instantiate the class with your themoviedb.org api key.
 
 ```js
-const { MovieDb } = require("moviedb-promise");
-const moviedb = new MovieDb("your api key");
+const { MovieDb } = require('moviedb-promise')
+const moviedb = new MovieDb('your api key')
 ```
 
 ### `async/await` reminder
@@ -61,33 +61,33 @@ All functions return a Promise, which means that you can also use `async/await`.
 ```js
 // Using just the Promise
 moviedb
-  .searchMovie({ query: "Alien" })
+  .searchMovie({ query: 'Alien' })
   .then((res) => {
-    console.log(res);
+    console.log(res)
   })
-  .catch(console.error);
+  .catch(console.error)
 
 // Using await
 // You probably wouldn't ever use it this way...
-(async function () {
+;(async function () {
   try {
-    const res = await moviedb.searchMovie({ query: "alien" });
-    console.log(res);
+    const res = await moviedb.searchMovie({ query: 'alien' })
+    console.log(res)
   } catch (e) {
-    console.log(e);
+    console.log(e)
   }
-})();
+})()
 
 // This is a more reasonable example
 const findMovie = async (title) => {
   // Equivalant to { query: title }
-  const res = await moviedb.searchMovie(title);
+  const res = await moviedb.searchMovie(title)
 
-  return res;
-};
+  return res
+}
 
 try {
-  const results = findMovie("alien");
+  const results = findMovie('alien')
 } catch (e) {
   // Do something
 }
@@ -99,9 +99,9 @@ or
 moviedb
   .movieInfo({ id: 666 })
   .then((res) => {
-    console.log(res);
+    console.log(res)
   })
-  .catch(console.error);
+  .catch(console.error)
 ```
 
 or
@@ -114,53 +114,53 @@ controller file example that
 - handles errors
 
 ```js
-import { MovieDb } from "moviedb-promise";
-import dotenv from "dotenv";
+import { MovieDb } from 'moviedb-promise'
+import dotenv from 'dotenv'
 
-dotenv.config();
+dotenv.config()
 
-const moviedb = new MovieDb(process.env.KEY);
+const moviedb = new MovieDb(process.env.KEY)
 
 const newError = (name) => {
-  const e = new Error(name);
-  e.name = name;
-  return Promise.reject(e);
-};
+  const e = new Error(name)
+  e.name = name
+  return Promise.reject(e)
+}
 
 export const searchMovie = async (req) => {
   const parameters = {
     query: req.query.name,
     page: req.query.page,
-  };
-  try {
-    const res = await moviedb.searchMovie(parameters);
-    return res.results;
-  } catch (error) {
-    return newError(error);
   }
-};
+  try {
+    const res = await moviedb.searchMovie(parameters)
+    return res.results
+  } catch (error) {
+    return newError(error)
+  }
+}
 
 export const searchPerson = async (req) => {
   const parameters = {
     query: req.query.name,
     page: 1,
-  };
-  try {
-    const res = await moviedb.searchPerson(parameters);
-    return res.results;
-  } catch (error) {
-    return newError(error);
   }
-};
+  try {
+    const res = await moviedb.searchPerson(parameters)
+    return res.results
+  } catch (error) {
+    return newError(error)
+  }
+}
 
 export const movieKeywords = async (req) => {
   try {
-    const res = await moviedb.movieKeywords({ query: req.query.name });
-    return res.results;
+    const res = await moviedb.movieKeywords({ query: req.query.name })
+    return res.results
   } catch (error) {
-    return newError(error);
+    return newError(error)
   }
-};
+}
 ```
 
 Some endpoints, such as watchlist endpoints, have an optional account id parameter. If you have a [session id](https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id), you don't need to provide that parameter.
@@ -168,30 +168,30 @@ Some endpoints, such as watchlist endpoints, have an optional account id paramet
 ```js
 // This is the same as calling it as
 // moviedb.accountMovieWatchlist({ id: '{account_id}' })
-moviedb.sessionId = "my-cached-session-id";
+moviedb.sessionId = 'my-cached-session-id'
 moviedb
   .accountMovieWatchlist()
   .then((res) => {
     // Your watchlist items
-    console.log(res);
+    console.log(res)
   })
-  .catch(console.error);
+  .catch(console.error)
 
 // Creating a session id would look something like this
 moviedb
   .requestToken()
   .then((token) => {
     // Now you need to visit this url to authorize
-    const tokenUrl = `https://www.themoviedb.org/authenticate/${token}`;
+    const tokenUrl = `https://www.themoviedb.org/authenticate/${token}`
   })
-  .catch(console.error);
+  .catch(console.error)
 
 // After that has been authorized, you can get the session id
 moviedb
   .retrieveSession()
   .then((sessionId) => {
     // Probably cache this id somewhere to avoid this workflow
-    console.log(sessionId);
+    console.log(sessionId)
 
     // After the sessionId is cached, the next time use instantiate the class,
     // set the sessionId by moviedb.sessionId = 'my-session-id'
@@ -201,11 +201,11 @@ moviedb
       .accountMovieWatchlist()
       .then((res) => {
         // Your watchlist items
-        console.log(res);
+        console.log(res)
       })
-      .catch(console.error);
+      .catch(console.error)
   })
-  .catch(console.error);
+  .catch(console.error)
 ```
 
 ## Available methods
@@ -395,8 +395,8 @@ In this case, `response.release_dates` will be cast as `MovieReleaseDatesRespons
 ```js
 const res = await api.tvInfo({
   id: 4629,
-  append_to_response: "season/1,season/1/credits",
-});
+  append_to_response: 'season/1,season/1/credits',
+})
 ```
 
 ### Request Options
@@ -405,7 +405,7 @@ The last parameter of the endpoint function calls is an [axios request config ob
 
 ```js
 // Add a timeout restriction to the request
-const res = await api.tvInfo(4629, { timeout: 10000 });
+const res = await api.tvInfo(4629, { timeout: 10000 })
 ```
 
 or when combining multiple options append_to_response is desired:
@@ -414,12 +414,12 @@ or when combining multiple options append_to_response is desired:
 const res = await api.tvInfo(
   {
     id: 4629,
-    append_to_response: "season/1,season/1/credits",
+    append_to_response: 'season/1,season/1/credits',
   },
   {
     timeout: 10000,
-  }
-);
+  },
+)
 ```
 
 ## Contributing
