@@ -3,6 +3,7 @@ import {
   isObject,
   isString,
   merge,
+  isEmpty,
   omit
 } from 'lodash'
 import {
@@ -38,7 +39,7 @@ export class MovieDb {
    * @returns {Promise}
    */
   async requestToken (): Promise<AuthenticationToken> {
-    if (!this.token || Date.now() > new Date(this.token.expires_at).getTime()) {
+    if (isEmpty(this.token) || Date.now() > new Date(this.token.expires_at).getTime()) {
       this.token = await this.makeRequest(HttpMethod.Get, 'authentication/token/new')
     }
 
@@ -73,7 +74,7 @@ export class MovieDb {
 
     const request = this.requests.shift()
 
-    if (!request) {
+    if (request === undefined) {
       return
     }
 
@@ -108,7 +109,7 @@ export class MovieDb {
       return params
     }
 
-    const matches = endpoint.match(/:[a-z]*/g) || []
+    const matches = endpoint.match(/:[a-z]*/g) ?? []
 
     if (matches.length === 1) {
       return matches.reduce((obj, match) => {
@@ -142,13 +143,13 @@ export class MovieDb {
     // Merge default parameters with the ones passed in
     const compiledParams: RequestParams = merge({
       api_key: this.apiKey,
-      ...(this.sessionId && { session_id: this.sessionId })
+      ...(!isEmpty(this.sessionId) && { session_id: this.sessionId })
     }, params)
 
     // Some endpoints have an optional account_id parameter (when there's a session).
     // If it's not included, assume we want the current user's id,
     // which is setting it to '{account_id}'
-    if (endpoint.includes(':id') && !compiledParams.id && this.sessionId) {
+    if (endpoint.includes(':id') && isEmpty(compiledParams.id) && !isEmpty(this.sessionId)) {
       compiledParams.id = '{account_id}'
     }
 
@@ -171,7 +172,7 @@ export class MovieDb {
 
     // Get the params that are needed for the endpoint
     // to remove from the data/params of the request
-    const omittedProps = (endpoint.match(/:[a-z]*/gi) || [])
+    const omittedProps = (endpoint.match(/:[a-z]*/gi) ?? [])
       .map(prop => prop.substr(1))
 
     // Prepare the query

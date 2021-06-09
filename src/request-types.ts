@@ -169,13 +169,6 @@ export interface Translation {
   }
 }
 
-export interface Review {
-  id?: string
-  author?: string
-  content?: string
-  url?: string
-}
-
 export interface Company {
   description?: string
   headquarters?: string
