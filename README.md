@@ -438,11 +438,8 @@ Please submit a pull request with an outline of what you've added/changed/remove
 
 #### Syntax guidelines
 
-- Use typescript
-- Withhold semi-colons
-- Use camelCase for methods
-- Use parenthesis where appropriate
-- Use spaces around operators
+- Use TypeScript
+- Run `npm run format` before submitting to let Prettier handle the formatting
 - Avoid code that is platform dependent
 
 #### Documentation guidelines

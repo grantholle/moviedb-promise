@@ -17,7 +17,7 @@ export interface EndpointGroup {
 }
 
 export interface Request {
-  id?: string|number
+  id?: string | number
   language?: string
   request_token?: string
 }
@@ -31,7 +31,7 @@ export interface AuthenticationToken extends Response {
 }
 
 export interface RequestParams {
-  id?: string|number
+  id?: string | number
   language?: string
 }
 
@@ -44,8 +44,8 @@ export interface SessionResponse extends Response {
 }
 
 export interface QueueItem {
-  promiseGenerator: Function,
-  resolve: Function,
+  promiseGenerator: Function
+  resolve: Function
   reject: Function
 }
 

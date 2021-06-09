@@ -1,14 +1,7 @@
-import {
-  Response,
-  RequestParams,
-  Genre,
-  ProductionCountry,
-  SpokenLanguage,
-  ProductionCompany
-} from './types'
+import { Response, RequestParams, Genre, ProductionCountry, SpokenLanguage, ProductionCompany } from './types'
 
 export interface IdRequestParams extends RequestParams {
-  id: string|number
+  id: string | number
 }
 
 export interface AppendToResponseRequest {
@@ -62,24 +55,24 @@ export interface PersonResult {
   id?: number
   name?: string
   popularity?: number
-  known_for?: Array<MovieResult|TvResult>
+  known_for?: Array<MovieResult | TvResult>
 }
 
 export interface Person {
-  birthday?: string|null
+  birthday?: string | null
   known_for_department?: string
-  deathday?: null|string
+  deathday?: null | string
   id?: number
   name?: string
   also_known_as?: string[]
   gender?: number
   biography?: string
   popularity?: number
-  place_of_birth?: string|null
-  profile_path?: string|null
+  place_of_birth?: string | null
+  profile_path?: string | null
   adult?: boolean
   imdb_id?: string
-  homepage?: null|string
+  homepage?: null | string
 }
 
 export interface Image {
@@ -97,7 +90,7 @@ export interface Logo {
   file_path?: string
   height?: number
   id?: string
-  file_type?: '.svg'|'.png'
+  file_type?: '.svg' | '.png'
   vote_average?: number
   vote_count?: number
   width?: number
@@ -153,8 +146,8 @@ export interface Video {
   key?: string
   name?: string
   site?: string
-  size?: 360|480|720|1080
-  type?: 'Trailer'|'Teaser'|'Clip'|'Featurette'|'Behind the Scenes'|'Bloopers'
+  size?: 360 | 480 | 720 | 1080
+  type?: 'Trailer' | 'Teaser' | 'Clip' | 'Featurette' | 'Behind the Scenes' | 'Bloopers'
 }
 
 export interface Translation {
@@ -177,7 +170,7 @@ export interface Company {
   logo_path?: string
   name?: string
   origin_country?: string
-  parent_company?: null|object
+  parent_company?: null | object
 }
 
 export interface SimpleEpisode {
@@ -222,32 +215,32 @@ export interface SimplePerson {
 }
 
 export interface Cast {
-  adult?: boolean;
+  adult?: boolean
   cast_id?: number
   character?: string
   credit_id?: string
-  gender?: number|null
+  gender?: number | null
   id?: number
   known_for_department?: string
   name?: string
   order?: number
   original_name?: string
   popularity?: number
-  profile_path?: string|null
+  profile_path?: string | null
 }
 
 export interface Crew {
-  adult?: boolean;
+  adult?: boolean
   credit_id?: string
   department?: string
-  gender?: number|null
+  gender?: number | null
   id?: number
   known_for_department?: string
   job?: string
   name?: string
   original_name?: string
   popularity?: number
-  profile_path?: string|null
+  profile_path?: string | null
 }
 
 export interface Country {
@@ -279,9 +272,9 @@ export interface Episode {
   name?: string
   overview?: string
   id?: number
-  production_code?: string|null
+  production_code?: string | null
   season_number?: number
-  still_path?: string|null
+  still_path?: string | null
   vote_average?: number
   vote_count?: number
 }
@@ -318,7 +311,7 @@ export interface MovieList {
   iso_639_1?: string
   list_type?: string
   name?: string
-  poster_path?: null|string
+  poster_path?: null | string
 }
 
 export interface GuestStar {
@@ -327,11 +320,11 @@ export interface GuestStar {
   credit_id?: string
   character?: string
   order?: number
-  profile_path?: string|null
+  profile_path?: string | null
 }
 
 export interface FindRequest extends RequestParams {
-  id: string|number
+  id: string | number
   language?: string
   external_source: ExternalId
 }
@@ -396,7 +389,7 @@ export interface SearchMultiRequest extends SearchRequest {
 }
 
 export interface SearchMultiResponse extends PaginatedResponse {
-  results?: Array<MovieResult|TvResult|PersonResult>
+  results?: Array<MovieResult | TvResult | PersonResult>
 }
 
 export interface SearchPersonResponse extends PaginatedResponse {
@@ -453,7 +446,21 @@ export interface CollectionTranslationsResponse extends Response {
 
 export interface DiscoverMovieRequest extends RequestParams {
   region?: string
-  sort_by?: 'popularity.asc'|'popularity.desc'|'release_date.asc'|'release_date.desc'|'revenue.asc'|'revenue.desc'|'primary_release_date.asc'|'primary_release_date.desc'|'original_title.asc'|'original_title.desc'|'vote_average.asc'|'vote_average.desc'|'vote_count.asc'|'vote_count.desc'
+  sort_by?:
+    | 'popularity.asc'
+    | 'popularity.desc'
+    | 'release_date.asc'
+    | 'release_date.desc'
+    | 'revenue.asc'
+    | 'revenue.desc'
+    | 'primary_release_date.asc'
+    | 'primary_release_date.desc'
+    | 'original_title.asc'
+    | 'original_title.desc'
+    | 'vote_average.asc'
+    | 'vote_average.desc'
+    | 'vote_count.asc'
+    | 'vote_count.desc'
   certification_country?: string
   certification?: string
   'certification.lte'?: string
@@ -524,12 +531,12 @@ export interface DiscoverTvResponse extends PaginatedResponse {
 }
 
 export interface TrendingRequest extends RequestParams {
-  media_type: 'all'|'movie'|'tv'|'person'
-  time_window: 'day'|'week'
+  media_type: 'all' | 'movie' | 'tv' | 'person'
+  time_window: 'day' | 'week'
 }
 
 export interface TrendingResponse extends PaginatedResponse {
-  results?: Array<MovieResult|TvResult|PersonResult>
+  results?: Array<MovieResult | TvResult | PersonResult>
 }
 
 export interface MovieResponse extends Response {
@@ -552,7 +559,7 @@ export interface MovieResponse extends Response {
   revenue?: number
   runtime?: number
   spoken_languages?: Array<SpokenLanguage>
-  status?: 'Rumored'|'Planned'|'In Production'|'Post Production'|'Released'|'Canceled'
+  status?: 'Rumored' | 'Planned' | 'In Production' | 'Post Production' | 'Released' | 'Canceled'
   tagline?: string
   title?: string
   video?: boolean
@@ -563,7 +570,7 @@ export interface MovieResponse extends Response {
 export interface MovieAccountStateResponse extends Response {
   id?: number
   favorite?: boolean
-  rated?: object|boolean
+  rated?: object | boolean
   watchlist?: boolean
 }
 
@@ -589,7 +596,7 @@ export interface ChangesRequest extends IdRequestParams {
 export interface ChangesResponse extends PaginatedResponse {
   results?: Array<{
     id?: number
-    adult?: boolean|null
+    adult?: boolean | null
   }>
 }
 
@@ -608,7 +615,7 @@ interface WatchProvider {
 }
 
 export interface WatchProviderResponse {
-  id?: number,
+  id?: number
   results?: {
     AR?: WatchProviderCountry
     AT?: WatchProviderCountry
@@ -680,10 +687,10 @@ export interface CreditsResponse extends Response {
 }
 
 export interface MovieExternalIdsResponse extends Response {
-  imdb_id?: string|null
-  facebook_id?: string|null
-  instagram_id?: string|null
-  twitter_id?: string|null
+  imdb_id?: string | null
+  facebook_id?: string | null
+  instagram_id?: string | null
+  twitter_id?: string | null
   id?: number
 }
 
@@ -783,7 +790,7 @@ export interface UpcomingMoviesResponse extends MovieNowPlayingResponse {
 }
 
 export interface ShowResponse extends Response {
-  backdrop_path?: string|null
+  backdrop_path?: string | null
   created_by?: Array<SimplePerson>
   episode_run_time?: number[]
   first_air_date?: string
@@ -804,7 +811,7 @@ export interface ShowResponse extends Response {
   original_name?: string
   overview?: string
   popularity?: number
-  poster_path?: string|null
+  poster_path?: string | null
   production_companies?: Array<ProductionCompany>
   seasons?: Array<SimpleSeason>
   status?: string
@@ -816,7 +823,7 @@ export interface ShowResponse extends Response {
 export interface ShowAccountStatesResponse extends Response {
   id?: number
   favorite?: boolean
-  rated?: object|boolean
+  rated?: object | boolean
   watchlist?: boolean
 }
 
@@ -853,19 +860,19 @@ export interface TvEpisodeGroupsResponse extends Response {
     group_count?: number
     id?: string
     name?: string
-    network?: null|Network
+    network?: null | Network
   }>
 }
 
 export interface TvExternalIdsResponse extends Response {
-  imdb_id?: string|null
-  freebase_mid?: string|null
-  freebase_id?: string|null
-  tvdb_id?: number|null
-  tvrage_id?: number|null
-  facebook_id?: string|null
-  instagram_id?: string|null
-  twitter_id?: string|null
+  imdb_id?: string | null
+  freebase_mid?: string | null
+  freebase_id?: string | null
+  tvdb_id?: number | null
+  tvrage_id?: number | null
+  facebook_id?: string | null
+  instagram_id?: string | null
+  twitter_id?: string | null
   id?: number
 }
 
@@ -917,7 +924,7 @@ export interface TvSeasonResponse extends Response {
   name?: string
   overview?: string
   id?: number
-  poster_path?: string|null
+  poster_path?: string | null
   season_number?: number
 }
 
@@ -928,10 +935,12 @@ export interface TvSeasonChangesResponse extends Response {
       id?: string
       action?: string
       time?: string
-      value?: string|{
-        episode_id?: number
-        episode_number?: number
-      }
+      value?:
+        | string
+        | {
+            episode_id?: number
+            episode_number?: number
+          }
       iso_639_1?: string
       original_value?: string
     }>
@@ -943,17 +952,19 @@ export interface TvSeasonAccountStatesResponse extends Response {
   results?: Array<{
     id?: number
     episode_number?: number
-    rated?: boolean|{
-      value?: number
-    }
+    rated?:
+      | boolean
+      | {
+          value?: number
+        }
   }>
 }
 
 export interface TvSeasonExternalIdsResponse extends Response {
-  freebase_mid?: string|null
-  freebase_id?: null|string
-  tvdb_id?: number|null
-  tvrage_id?: null|number
+  freebase_mid?: string | null
+  freebase_id?: null | string
+  tvdb_id?: number | null
+  tvrage_id?: null | number
   id?: number
 }
 
@@ -981,7 +992,7 @@ export interface EpisodeChangesResponse extends Response {
 
 export interface EpisodeAccountStatesResponse extends Response {
   id?: number
-  rated?: object|boolean
+  rated?: object | boolean
 }
 
 export interface EpisodeCreditsResponse extends CreditsResponse {
@@ -989,11 +1000,11 @@ export interface EpisodeCreditsResponse extends CreditsResponse {
 }
 
 export interface EpisodeExternalIdsResponse extends Response {
-  imdb_id?: string|null
-  freebase_mid?: string|null
-  freebase_id?: string|null
-  tvdb_id?: number|null
-  tvrage_id?: number|null
+  imdb_id?: string | null
+  freebase_mid?: string | null
+  freebase_id?: string | null
+  tvdb_id?: number | null
+  tvrage_id?: number | null
   id?: number
 }
 
@@ -1003,8 +1014,8 @@ export interface EpisodeImagesResponse extends Response {
     aspect_ratio?: number
     file_path?: string
     height?: number
-    iso_639_1?: null|string
-    vote_average?: number|number
+    iso_639_1?: null | string
+    vote_average?: number | number
     vote_count?: number
     width?: number
   }>
@@ -1037,8 +1048,8 @@ export interface EpisodeVideosResponse extends Response {
     key?: string
     name?: string
     site?: string
-    size?: 360|480|720|1080
-    type?: 'Trailer'|'Teaser'|'Clip'|'Featurette'|'Opening Credits'|'Behind the Scenes'|'Bloopers'|'Recap'
+    size?: 360 | 480 | 720 | 1080
+    type?: 'Trailer' | 'Teaser' | 'Clip' | 'Featurette' | 'Opening Credits' | 'Behind the Scenes' | 'Bloopers' | 'Recap'
   }>
 }
 
@@ -1067,16 +1078,16 @@ export interface PersonMovieCreditsResponse extends Response {
     vote_count?: number
     video?: boolean
     adult?: boolean
-    vote_average?: number|number
+    vote_average?: number | number
     title?: string
     genre_ids?: number[]
     original_language?: string
     original_title?: string
     popularity?: number
     id?: number
-    backdrop_path?: string|null
+    backdrop_path?: string | null
     overview?: string
-    poster_path?: string|null
+    poster_path?: string | null
   }>
   crew?: Array<{
     id?: number
@@ -1087,8 +1098,8 @@ export interface PersonMovieCreditsResponse extends Response {
     overview?: string
     vote_count?: number
     video?: boolean
-    poster_path?: string|null
-    backdrop_path?: string|null
+    poster_path?: string | null
+    backdrop_path?: string | null
     title?: string
     popularity?: number
     genre_ids?: number[]
@@ -1108,14 +1119,14 @@ export interface PersonTvCreditsResponse extends Response {
     genre_ids?: number[]
     character?: string
     name?: string
-    poster_path?: string|null
+    poster_path?: string | null
     vote_count?: number
     vote_average?: number
     popularity?: number
     episode_count?: number
     original_language?: string
     first_air_date?: string
-    backdrop_path?: string|null
+    backdrop_path?: string | null
     overview?: string
     origin_country?: string[]
   }>
@@ -1131,11 +1142,11 @@ export interface PersonTvCreditsResponse extends Response {
     genre_ids?: number[]
     name?: string
     first_air_date?: string
-    backdrop_path?: string|null
+    backdrop_path?: string | null
     popularity?: number
     vote_count?: number
     vote_average?: number
-    poster_path?: string|null
+    poster_path?: string | null
     credit_id?: string
   }>
 }
@@ -1152,12 +1163,12 @@ export interface PersonCombinedCreditsResponse extends Response {
     genre_ids?: number[]
     name?: string
     media_type?: string
-    poster_path?: string|null
+    poster_path?: string | null
     first_air_date?: string
-    vote_average?: number|number
+    vote_average?: number | number
     vote_count?: number
     character?: string
-    backdrop_path?: string|null
+    backdrop_path?: string | null
     popularity?: number
     credit_id?: string
     original_title?: string
@@ -1180,11 +1191,11 @@ export interface PersonCombinedCreditsResponse extends Response {
     media_type?: string
     popularity?: number
     credit_id?: string
-    backdrop_path?: string|null
+    backdrop_path?: string | null
     first_air_date?: string
     vote_average?: number
     genre_ids?: number[]
-    poster_path?: string|null
+    poster_path?: string | null
     original_title?: string
     video?: boolean
     title?: string
@@ -1194,14 +1205,14 @@ export interface PersonCombinedCreditsResponse extends Response {
 }
 
 export interface PersonExternalIdsResponse extends Response {
-  imdb_id?: string|null
-  facebook_id?: null|string
-  freebase_mid?: string|null
-  freebase_id?: null|string
-  tvrage_id?: number|null
-  twitter_id?: null|string
+  imdb_id?: string | null
+  facebook_id?: null | string
+  freebase_mid?: string | null
+  freebase_id?: null | string
+  tvrage_id?: number | null
+  twitter_id?: null | string
   id: number
-  instagram_id?: string|null
+  instagram_id?: string | null
 }
 
 export interface PersonImagesResponse extends Response {
@@ -1216,12 +1227,12 @@ export interface PersonTaggedImagesResponse extends PaginatedResponse {
     file_path?: string
     height?: number
     id?: string
-    iso_639_1?: null|string
+    iso_639_1?: null | string
     vote_average?: number
     vote_count?: number
     width?: number
     image_type?: string
-    media?: MovieResult|TvResult
+    media?: MovieResult | TvResult
   }>
 }
 
@@ -1243,7 +1254,7 @@ export interface PersonPopularResponse extends PaginatedResponse {
     profile_path?: string
     adult?: boolean
     id?: number
-    known_for?: MovieResult|TvResult
+    known_for?: MovieResult | TvResult
     name?: string
     popularity?: number
   }>
@@ -1282,11 +1293,11 @@ export interface ListsDetailResponse extends Response {
   item_count?: number
   iso_639_1?: string
   name?: string
-  poster_path?: string|null
+  poster_path?: string | null
 }
 
 export interface ListStatusParams extends RequestParams {
-  id: string|number
+  id: string | number
   movie_id: number
 }
 
@@ -1370,17 +1381,17 @@ export interface AccountListsResponse extends PaginatedResponse {
 }
 
 export interface AccountMediaRequest extends PagedRequestParams {
-  sort_by?: 'created_at.asc'|'created_at.desc'
+  sort_by?: 'created_at.asc' | 'created_at.desc'
 }
 
 export interface MarkAsFavoriteRequest extends IdRequestParams {
-  media_type: 'movie'|'tv'
+  media_type: 'movie' | 'tv'
   media_id: number
   favorite: boolean
 }
 
 export interface AccountWatchlistRequest extends IdRequestParams {
-  media_type: 'movie'|'tv'
+  media_type: 'movie' | 'tv'
   media_id: number
   watchlist: boolean
 }
