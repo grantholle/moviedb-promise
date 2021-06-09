@@ -1,3 +1,4 @@
+
 import {
   Response,
   RequestParams,
@@ -487,6 +488,9 @@ export interface DiscoverMovieRequest extends RequestParams {
   'with_runtime.gte'?: number
   'with_runtime.lte'?: number
   with_original_language?: string
+  with_watch_providers?: string
+  watch_region?: string
+  with_watch_monetization_types?: string
 }
 
 export interface DiscoverMovieResponse extends PaginatedResponse {
@@ -515,6 +519,9 @@ export interface DiscoverTvRequest extends RequestParams {
   screened_theatrically?: boolean
   with_companies?: string
   with_keywords?: string
+  with_watch_providers?: string
+  watch_region?: string
+  with_watch_monetization_types?: string
 }
 
 export interface DiscoverTvResponse extends PaginatedResponse {
