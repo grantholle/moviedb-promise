@@ -30,7 +30,7 @@ class MovieDb {
     async retrieveSession() {
         const token = await this.requestToken();
         const request = {
-            request_token: token.request_token
+            request_token: token.request_token,
         };
         const res = await this.makeRequest(types_1.HttpMethod.Get, 'authentication/session/new', request);
         this.sessionId = res.session_id;
@@ -48,7 +48,8 @@ class MovieDb {
             return;
         }
         this.requesting = true;
-        request.promiseGenerator()
+        request
+            .promiseGenerator()
             .then(request.resolve)
             .catch(request.reject)
             .finally(() => {
@@ -96,7 +97,7 @@ class MovieDb {
         // Merge default parameters with the ones passed in
         const compiledParams = lodash_1.merge({
             api_key: this.apiKey,
-            ...(this.sessionId && { session_id: this.sessionId })
+            ...(this.sessionId && { session_id: this.sessionId }),
         }, params);
         // Some endpoints have an optional account_id parameter (when there's a session).
         // If it's not included, assume we want the current user's id,
@@ -115,8 +116,7 @@ class MovieDb {
         const fullQuery = this.getParams(endpoint, normalizedParams);
         // Get the params that are needed for the endpoint
         // to remove from the data/params of the request
-        const omittedProps = (endpoint.match(/:[a-z]*/gi) || [])
-            .map(prop => prop.substr(1));
+        const omittedProps = (endpoint.match(/:[a-z]*/gi) || []).map((prop) => prop.substr(1));
         // Prepare the query
         const query = lodash_1.omit(fullQuery, omittedProps);
         const request = {
@@ -124,14 +124,14 @@ class MovieDb {
             url: this.baseUrl + this.getEndpoint(endpoint, fullQuery),
             ...(method === types_1.HttpMethod.Get && { params: query }),
             ...(method !== types_1.HttpMethod.Get && { data: query }),
-            ...axiosConfig
+            ...axiosConfig,
         };
         // Push the request to the queue
         return new Promise((resolve, reject) => {
             this.requests.push({
-                promiseGenerator: () => axios_1.default.request(request).then(res => res.data),
+                promiseGenerator: () => axios_1.default.request(request).then((res) => res.data),
                 resolve,
-                reject
+                reject,
             });
             this.dequeue();
         });

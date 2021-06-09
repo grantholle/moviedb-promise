@@ -145,12 +145,6 @@ export interface Translation {
         homepage?: string;
     };
 }
-export interface Review {
-    id?: string;
-    author?: string;
-    content?: string;
-    url?: string;
-}
 export interface Company {
     description?: string;
     headquarters?: string;
@@ -360,9 +354,6 @@ export interface SearchPersonResponse extends PaginatedResponse {
 export interface SearchTvRequest extends SearchRequest {
     include_adult?: boolean;
     first_air_date_year?: number;
-}
-export interface TvResultsResponse extends PaginatedResponse {
-    results?: Array<TvResult>;
 }
 export interface EpisodeResultsResponse extends PaginatedResponse {
     results?: Array<SimpleEpisode>;
