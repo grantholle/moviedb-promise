@@ -26,7 +26,7 @@ export interface MovieResult {
   adult?: boolean
   overview?: string
   release_date?: string
-  genre_ids?: Array<number>
+  genre_ids?: number[]
   id?: number
   media_type: 'movie'
   original_title?: string
@@ -48,8 +48,8 @@ export interface TvResult {
   vote_average?: number
   media_type: 'tv'
   first_air_date?: string
-  origin_country?: Array<string>
-  genre_ids?: Array<number>
+  origin_country?: string[]
+  genre_ids?: number[]
   original_language?: string
   vote_count?: number
   name?: string
@@ -85,11 +85,11 @@ export interface Person {
 export interface Image {
   base_url?: string
   secure_base_url?: string
-  backdrop_sizes?: Array<string>
-  logo_sizes?: Array<string>
-  poster_sizes?: Array<string>
-  profile_sizes?: Array<string>
-  still_sizes?: Array<string>
+  backdrop_sizes?: string[]
+  logo_sizes?: string[]
+  poster_sizes?: string[]
+  profile_sizes?: string[]
+  still_sizes?: string[]
 }
 
 export interface Logo {
@@ -229,7 +229,7 @@ export interface SimplePerson {
 }
 
 export interface Cast {
-  adult?: boolean;
+  adult?: boolean
   cast_id?: number
   character?: string
   credit_id?: string
@@ -244,7 +244,7 @@ export interface Cast {
 }
 
 export interface Crew {
-  adult?: boolean;
+  adult?: boolean
   credit_id?: string
   department?: string
   gender?: number|null
@@ -280,7 +280,7 @@ export interface Job {
 
 export interface Episode {
   air_date?: string
-  crew?: Array<Crew>
+  crew?: Crew[]
   episode_number?: number
   guest_stars?: GuestStar[]
   name?: string
@@ -350,11 +350,11 @@ export interface PaginatedResponse extends Response {
 }
 
 export interface FindResponse extends Response {
-  movie_results: Array<MovieResult>
-  tv_results: Array<TvResult>
-  person_results: Array<PersonResult>
-  tv_episode_results: Array<object>
-  tv_season_results: Array<object>
+  movie_results: MovieResult[]
+  tv_results: TvResult[]
+  person_results: PersonResult[]
+  tv_episode_results: object[]
+  tv_season_results: object[]
 }
 
 export interface SearchRequest extends RequestParams {
@@ -394,7 +394,7 @@ export interface SearchMovieRequest extends SearchRequest {
 }
 
 export interface MovieResultsResponse extends PaginatedResponse {
-  results?: Array<MovieResult>
+  results?: MovieResult[]
 }
 
 export interface SearchMultiRequest extends SearchRequest {
@@ -407,7 +407,7 @@ export interface SearchMultiResponse extends PaginatedResponse {
 }
 
 export interface SearchPersonResponse extends PaginatedResponse {
-  results?: Array<PersonResult>
+  results?: PersonResult[]
 }
 
 export interface SearchTvRequest extends SearchRequest {
@@ -416,11 +416,11 @@ export interface SearchTvRequest extends SearchRequest {
 }
 
 export interface TvResultsResponse extends PaginatedResponse {
-  results?: Array<TvResult>
+  results?: TvResult[]
 }
 
 export interface EpisodeResultsResponse extends PaginatedResponse {
-  results?: Array<SimpleEpisode>
+  results?: SimpleEpisode[]
 }
 
 export interface CollectionRequest extends RequestParams {
@@ -453,13 +453,13 @@ export interface CollectionInfoResponse extends Response {
 
 export interface CollectionImagesResponse extends Response {
   id?: number
-  backdrops?: Array<Backdrop>
-  posters?: Array<Poster>
+  backdrops?: Backdrop[]
+  posters?: Poster[]
 }
 
 export interface CollectionTranslationsResponse extends Response {
   id?: number
-  translations?: Array<Translation>
+  translations?: Translation[]
 }
 
 export interface DiscoverMovieRequest extends RequestParams {
@@ -497,7 +497,7 @@ export interface DiscoverMovieRequest extends RequestParams {
 }
 
 export interface DiscoverMovieResponse extends PaginatedResponse {
-  results?: Array<MovieResult>
+  results?: MovieResult[]
 }
 
 export interface DiscoverTvRequest extends RequestParams {
@@ -525,7 +525,7 @@ export interface DiscoverTvRequest extends RequestParams {
 }
 
 export interface DiscoverTvResponse extends PaginatedResponse {
-  results?: Array<TvResult>
+  results?: TvResult[]
 }
 
 export interface TrendingRequest extends RequestParams {
@@ -542,7 +542,7 @@ export interface MovieResponse extends Response {
   backdrop_path?: string
   belongs_to_collection?: object
   budget?: number
-  genres?: Array<Genre>
+  genres?: Genre[]
   homepage?: string
   id?: number
   imdb_id?: string
@@ -551,12 +551,12 @@ export interface MovieResponse extends Response {
   overview?: string
   popularity?: number
   poster_path?: string
-  production_companies?: Array<ProductionCompany>
-  production_countries?: Array<ProductionCountry>
+  production_companies?: ProductionCompany[]
+  production_countries?: ProductionCountry[]
   release_date?: string
   revenue?: number
   runtime?: number
-  spoken_languages?: Array<SpokenLanguage>
+  spoken_languages?: SpokenLanguage[]
   status?: 'Rumored'|'Planned'|'In Production'|'Post Production'|'Released'|'Canceled'
   tagline?: string
   title?: string
@@ -600,9 +600,9 @@ export interface ChangesResponse extends PaginatedResponse {
 
 interface WatchProviderCountry {
   link?: string
-  rent?: Array<WatchProvider>
-  buy?: Array<WatchProvider>
-  flatrate?: Array<WatchProvider>
+  rent?: WatchProvider[]
+  buy?: WatchProvider[]
+  flatrate?: WatchProvider[]
 }
 
 interface WatchProvider {
@@ -613,7 +613,7 @@ interface WatchProvider {
 }
 
 export interface WatchProviderResponse {
-  id?: number,
+  id?: number
   results?: {
     AR?: WatchProviderCountry
     AT?: WatchProviderCountry
@@ -680,8 +680,8 @@ export interface MovieChangesResponse extends Response {
 
 export interface CreditsResponse extends Response {
   id?: number
-  cast?: Array<Cast>
-  crew?: Array<Crew>
+  cast?: Cast[]
+  crew?: Crew[]
 }
 
 export interface MovieExternalIdsResponse extends Response {
@@ -698,26 +698,26 @@ export interface MovieImagesRequest extends IdRequestParams {
 
 export interface MovieImagesResponse extends Response {
   id?: number
-  backdrops?: Array<Backdrop>
-  posters?: Array<Poster>
+  backdrops?: Backdrop[]
+  posters?: Poster[]
 }
 
 export interface MovieKeywordResponse extends Response {
   id?: number
-  keywords?: Array<Keyword>
+  keywords?: Keyword[]
 }
 
 export interface MovieReleaseDatesResponse extends Response {
   id?: number
   results?: Array<{
     iso_3166_1?: string
-    release_dates?: Array<ReleaseDate>
+    release_dates?: ReleaseDate[]
   }>
 }
 
 export interface VideosResponse extends Response {
   id?: number
-  results?: Array<Video>
+  results?: Video[]
 }
 
 export interface MovieTranslationsResponse extends CollectionTranslationsResponse {}
@@ -727,7 +727,7 @@ export interface MovieRecommendationsRequest extends IdRequestParams {
 }
 
 export interface MovieRecommendationsResponse extends PaginatedResponse {
-  results?: Array<MovieResult>
+  results?: MovieResult[]
 }
 
 export interface SimilarMovieResponse extends MovieRecommendationsResponse {}
@@ -735,13 +735,13 @@ export interface SimilarMovieResponse extends MovieRecommendationsResponse {}
 export interface MovieReviewsRequest extends MovieRecommendationsRequest {}
 
 export interface MovieReviewsResponse extends PaginatedResponse {
-  results?: Array<Review>
+  results?: Review[]
 }
 
 export interface MovieListsRequest extends MovieRecommendationsRequest {}
 
 export interface MovieListsResponse extends PaginatedResponse {
-  results?: Array<MovieList>
+  results?: MovieList[]
 }
 
 export interface RatingRequest extends IdRequestParams {
@@ -759,7 +759,7 @@ export interface MovieNowPlayingRequest extends RequestParams {
 }
 
 export interface MovieNowPlayingResponse extends PaginatedResponse {
-  results?: Array<MovieResult>
+  results?: MovieResult[]
   dates?: {
     maximum?: string
     minimum?: string
@@ -780,7 +780,7 @@ export interface UpcomingMoviesRequest extends MovieNowPlayingRequest {
 }
 
 export interface UpcomingMoviesResponse extends MovieNowPlayingResponse {
-  results?: Array<MovieResult>
+  results?: MovieResult[]
   dates?: {
     maximum?: string
     minimum?: string
@@ -789,10 +789,10 @@ export interface UpcomingMoviesResponse extends MovieNowPlayingResponse {
 
 export interface ShowResponse extends Response {
   backdrop_path?: string|null
-  created_by?: Array<SimplePerson>
+  created_by?: SimplePerson[]
   episode_run_time?: number[]
   first_air_date?: string
-  genres?: Array<Genre>
+  genres?: Genre[]
   homepage?: string
   id?: number
   in_production?: boolean
@@ -801,7 +801,7 @@ export interface ShowResponse extends Response {
   last_episode_to_air?: SimpleEpisode
   name?: string
   next_episode_to_air?: null
-  networks?: Array<Network>
+  networks?: Network[]
   number_of_episodes?: number
   number_of_seasons?: number
   origin_country?: string[]
@@ -810,8 +810,8 @@ export interface ShowResponse extends Response {
   overview?: string
   popularity?: number
   poster_path?: string|null
-  production_companies?: Array<ProductionCompany>
-  seasons?: Array<SimpleSeason>
+  production_companies?: ProductionCompany[]
+  seasons?: SimpleSeason[]
   status?: string
   type?: string
   vote_average?: number
@@ -875,22 +875,18 @@ export interface TvExternalIdsResponse extends Response {
 }
 
 export interface TvImagesResponse extends Response {
-  backdrops?: Array<Backdrop>
+  backdrops?: Backdrop[]
   id?: number
-  posters?: Array<Poster>
+  posters?: Poster[]
 }
 
 export interface TvKeywordsResponse extends Response {
   id?: number
-  results?: Array<Keyword>
-}
-
-export interface TvResultsResponse extends PaginatedResponse {
-  results?: Array<TvResult>
+  results?: Keyword[]
 }
 
 export interface TvReviewsResponse extends PaginatedResponse {
-  results?: Array<Review>
+  results?: Review[]
 }
 
 export interface TvScreenTheatricallyResponse extends Response {
@@ -903,12 +899,12 @@ export interface TvScreenTheatricallyResponse extends Response {
 }
 
 export interface TvSimilarShowsResponse extends PaginatedResponse {
-  results?: Array<TvResult>
+  results?: TvResult[]
 }
 
 export interface TvTranslationsResponse extends Response {
   id?: number
-  translations?: Array<Translation>
+  translations?: Translation[]
 }
 
 export interface TvSeasonRequest extends IdAppendToResponseRequest {
@@ -918,7 +914,7 @@ export interface TvSeasonRequest extends IdAppendToResponseRequest {
 export interface TvSeasonResponse extends Response {
   _id?: string
   air_date?: string
-  episodes?: Array<Episode>
+  episodes?: Episode[]
   name?: string
   overview?: string
   id?: number
@@ -964,7 +960,7 @@ export interface TvSeasonExternalIdsResponse extends Response {
 
 export interface TvSeasonImagesResponse extends Response {
   id?: number
-  posters?: Array<Poster>
+  posters?: Poster[]
 }
 
 export interface EpisodeRequest extends TvSeasonRequest {
@@ -990,7 +986,7 @@ export interface EpisodeAccountStatesResponse extends Response {
 }
 
 export interface EpisodeCreditsResponse extends CreditsResponse {
-  guest_stars?: Array<GuestStar>
+  guest_stars?: GuestStar[]
 }
 
 export interface EpisodeExternalIdsResponse extends Response {
@@ -1211,7 +1207,7 @@ export interface PersonExternalIdsResponse extends Response {
 
 export interface PersonImagesResponse extends Response {
   id?: number
-  profiles?: Array<Profile>
+  profiles?: Profile[]
 }
 
 export interface PersonTaggedImagesResponse extends PaginatedResponse {
@@ -1263,7 +1259,7 @@ export interface CreditDetailsResponse extends Response {
     name?: string
     original_name?: string
     character?: string
-    episodes?: Array<SimpleEpisode>
+    episodes?: SimpleEpisode[]
     seasons?: Array<{
       air_date?: string
       poster_path?: string
@@ -1283,7 +1279,7 @@ export interface ListsDetailResponse extends Response {
   description?: string
   favorite_count?: number
   id?: string
-  items?: Array<MovieResult>
+  items?: MovieResult[]
   item_count?: number
   iso_639_1?: string
   name?: string
@@ -1322,7 +1318,7 @@ export interface ClearListParams extends IdRequestParams {
 }
 
 export interface GenresResponse extends Response {
-  genres?: Array<Genre>
+  genres?: Genre[]
 }
 
 export interface KeywordResponse extends Response {
@@ -1344,7 +1340,7 @@ export interface CompanyAlternativeNamesResponse extends Response {
 
 export interface CompanyImagesResponse extends Response {
   id?: number
-  logos?: Array<Logo>
+  logos?: Logo[]
 }
 
 export interface AccountInfoResponse extends Response {
@@ -1410,7 +1406,7 @@ export interface CertificationsResponse extends Response {
   }
 }
 
-export type CountriesResponse = Array<Country>
+export type CountriesResponse = Country[]
 
 export interface NetworkResponse extends Response {
   headquarters?: string
@@ -1442,7 +1438,7 @@ export interface EpisodeGroupResponse extends Response {
     name?: string
     order?: number
     locked?: boolean
-    episodes?: Array<SimpleEpisode>
+    episodes?: SimpleEpisode[]
   }>
   network?: Network
   type?: number

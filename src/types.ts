@@ -13,7 +13,7 @@ export interface Endpoint {
 
 export interface EndpointGroup {
   readonly prefix: string
-  readonly endpoints: Array<Endpoint>
+  readonly endpoints: Endpoint[]
 }
 
 export interface Request {
@@ -44,8 +44,8 @@ export interface SessionResponse extends Response {
 }
 
 export interface QueueItem {
-  promiseGenerator: Function,
-  resolve: Function,
+  promiseGenerator: Function
+  resolve: Function
   reject: Function
 }
 
