@@ -145,6 +145,8 @@ export interface Video {
   iso_3166_1?: string
   key?: string
   name?: string
+  official?: boolean
+  published_at?: string
   site?: string
   size?: 360 | 480 | 720 | 1080
   type?: 'Trailer' | 'Teaser' | 'Clip' | 'Featurette' | 'Behind the Scenes' | 'Bloopers'
