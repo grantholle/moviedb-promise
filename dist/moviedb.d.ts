@@ -129,7 +129,7 @@ export declare class MovieDb {
     episodeRatingUpdate(params: types.EpisodeRatingRequest, axiosConfig?: AxiosRequestConfig): Promise<types.PostResponse>;
     episodeRatingDelete(params: types.EpisodeRequest, axiosConfig?: AxiosRequestConfig): Promise<types.PostResponse>;
     episodeVideos(params: types.EpisodeRequest, axiosConfig?: AxiosRequestConfig): Promise<types.EpisodeVideosResponse>;
-    personInfo(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.Person>;
+    personInfo(params: string | number | types.IdAppendToResponseRequest, axiosConfig?: AxiosRequestConfig): Promise<types.Person>;
     personChanges(params: string | number | types.ChangesRequest, axiosConfig?: AxiosRequestConfig): Promise<types.PersonChangesResponse>;
     personMovieCredits(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.PersonMovieCreditsResponse>;
     personTvCredits(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.PersonTvCreditsResponse>;
