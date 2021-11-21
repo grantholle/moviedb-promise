@@ -743,7 +743,7 @@ export class MovieDb {
     )
   }
 
-  personInfo(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.Person> {
+  personInfo(params: string | number | types.IdAppendToResponseRequest, axiosConfig?: AxiosRequestConfig): Promise<types.Person> {
     return this.makeRequest(HttpMethod.Get, 'person/:id', params, axiosConfig)
   }
 
