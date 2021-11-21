@@ -381,7 +381,7 @@ moviedb.searchMovie(parameters).then(...)
 
 ## Support for append_to_response
 
-The movieInfo, tvInfo, tvSeasonInfo, tvEpisodeInfo and personInfo methods support an option to specify the [TMDB API's append_to_response query parameter](https://developers.themoviedb.org/3/getting-started/append-to-response). This makes it possible to make sub requests within the same namespace in a single HTTP request. Each request will get appended to the response as a new JSON object.
+The movieInfo, tvInfo, seasonInfo, episodeInfo and personInfo methods support an option to specify the [TMDB API's append_to_response query parameter](https://developers.themoviedb.org/3/getting-started/append-to-response). This makes it possible to make sub requests within the same namespace in a single HTTP request. Each request will get appended to the response as a new JSON object.
 
 In order to receive type support for the items returned with an `append_to_response` request, you'll need to cast the attributes as their appropriate type. **Note** this requires you to be using TypeScript.
 
