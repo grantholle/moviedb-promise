@@ -664,7 +664,8 @@ export interface PostResponse extends Response {
     status_code?: number;
     status_message?: string;
 }
-export interface MovieNowPlayingRequest extends RequestParams {
+export interface MovieNowPlayingRequest {
+    language?: string;
     page?: number;
     region?: string;
 }
