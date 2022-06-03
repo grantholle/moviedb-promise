@@ -98,10 +98,10 @@ export declare class MovieDb {
     tvExternalIds(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.TvExternalIdsResponse>;
     tvImages(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.TvImagesResponse>;
     tvKeywords(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.TvKeywordsResponse>;
-    tvRecommendations(params: string | number | types.PagedRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.TvResultsResponse>;
-    tvReviews(params: string | number | types.PagedRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.TvReviewsResponse>;
+    tvRecommendations(params: string | number | types.IdPagedRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.TvResultsResponse>;
+    tvReviews(params: string | number | types.IdPagedRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.TvReviewsResponse>;
     tvScreenedTheatrically(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.TvScreenTheatricallyResponse>;
-    tvSimilar(params: string | number | types.PagedRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.TvSimilarShowsResponse>;
+    tvSimilar(params: string | number | types.IdPagedRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.TvSimilarShowsResponse>;
     tvTranslations(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.TvTranslationsResponse>;
     tvVideos(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.VideosResponse>;
     tvWatchProviders(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.WatchProviderResponse>;
@@ -136,7 +136,7 @@ export declare class MovieDb {
     personCombinedCredits(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.PersonCombinedCreditsResponse>;
     personExternalIds(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.PersonExternalIdsResponse>;
     personImages(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.PersonImagesResponse>;
-    personTaggedImages(params: string | number | types.PagedRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.PersonTaggedImagesResponse>;
+    personTaggedImages(params: string | number | types.IdPagedRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.PersonTaggedImagesResponse>;
     personTranslations(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.PersonTranslationsResponse>;
     personLatest(params?: RequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.Person>;
     personPopular(params?: types.PagedRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.PersonPopularResponse>;
@@ -156,7 +156,7 @@ export declare class MovieDb {
     companyAlternativeNames(params: string | number | RequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.CompanyAlternativeNamesResponse>;
     companyImages(params: string | number | RequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.CompanyImagesResponse>;
     accountInfo(axiosConfig?: AxiosRequestConfig): Promise<types.AccountInfoResponse>;
-    accountLists(params: string | number | types.PagedRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.AccountListsResponse>;
+    accountLists(params: string | number | types.IdPagedRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.AccountListsResponse>;
     accountFavoriteMovies(params?: string | number | types.AccountMediaRequest, axiosConfig?: AxiosRequestConfig): Promise<types.MovieResultsResponse>;
     accountFavoriteTv(params?: string | number | types.AccountMediaRequest, axiosConfig?: AxiosRequestConfig): Promise<types.TvResultsResponse>;
     accountFavoriteUpdate(params: types.MarkAsFavoriteRequest, axiosConfig?: AxiosRequestConfig): Promise<types.PostResponse>;

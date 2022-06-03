@@ -7,7 +7,10 @@ export interface AppendToResponseRequest {
 }
 export interface IdAppendToResponseRequest extends IdRequestParams, AppendToResponseRequest {
 }
-export interface PagedRequestParams extends IdRequestParams {
+export interface PagedRequestParams extends RequestParams {
+    page?: number;
+}
+export interface IdPagedRequestParams extends IdRequestParams {
     page?: number;
 }
 export interface MovieResult {
