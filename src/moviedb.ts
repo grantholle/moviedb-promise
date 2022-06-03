@@ -529,14 +529,14 @@ export class MovieDb {
   }
 
   tvRecommendations(
-    params: string | number | types.PagedRequestParams,
+    params: string | number | types.IdPagedRequestParams,
     axiosConfig?: AxiosRequestConfig,
   ): Promise<types.TvResultsResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/recommendations', params, axiosConfig)
   }
 
   tvReviews(
-    params: string | number | types.PagedRequestParams,
+    params: string | number | types.IdPagedRequestParams,
     axiosConfig?: AxiosRequestConfig,
   ): Promise<types.TvReviewsResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/reviews', params, axiosConfig)
@@ -550,7 +550,7 @@ export class MovieDb {
   }
 
   tvSimilar(
-    params: string | number | types.PagedRequestParams,
+    params: string | number | types.IdPagedRequestParams,
     axiosConfig?: AxiosRequestConfig,
   ): Promise<types.TvSimilarShowsResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/similar', params, axiosConfig)
@@ -790,7 +790,7 @@ export class MovieDb {
   }
 
   personTaggedImages(
-    params: string | number | types.PagedRequestParams,
+    params: string | number | types.IdPagedRequestParams,
     axiosConfig?: AxiosRequestConfig,
   ): Promise<types.PersonTaggedImagesResponse> {
     return this.makeRequest(HttpMethod.Get, 'person/:id/tagged_images', params, axiosConfig)
@@ -903,7 +903,7 @@ export class MovieDb {
   }
 
   accountLists(
-    params: string | number | types.PagedRequestParams,
+    params: string | number | types.IdPagedRequestParams,
     axiosConfig?: AxiosRequestConfig,
   ): Promise<types.AccountListsResponse> {
     return this.makeRequest(HttpMethod.Get, 'account/:id/lists', params, axiosConfig)
