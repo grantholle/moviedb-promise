@@ -293,6 +293,9 @@ class MovieDb {
     tvCredits(params, axiosConfig) {
         return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/credits', params, axiosConfig);
     }
+    tvAggregateCredits(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/aggregate_credits', params, axiosConfig);
+    }
     episodeGroups(params, axiosConfig) {
         return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/episode_groups', params, axiosConfig);
     }

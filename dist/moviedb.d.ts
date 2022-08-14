@@ -94,6 +94,7 @@ export declare class MovieDb {
     tvChanges(params: string | number | types.ChangesRequest, axiosConfig?: AxiosRequestConfig): Promise<types.ShowChangesResponse>;
     tvContentRatings(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.ShowContentRatingResponse>;
     tvCredits(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.CreditsResponse>;
+    tvAggregateCredits(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.CreditsResponse>;
     episodeGroups(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.TvEpisodeGroupsResponse>;
     tvExternalIds(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.TvExternalIdsResponse>;
     tvImages(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.TvImagesResponse>;
