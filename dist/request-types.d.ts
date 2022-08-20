@@ -447,7 +447,6 @@ export interface DiscoverTvRequest extends RequestParams {
     page?: number;
     timezone?: string;
     'vote_average.gte'?: number;
-    'vote_average.lte'?: number;
     'vote_count.gte'?: number;
     with_genres?: string;
     with_networks?: string;
