@@ -58,6 +58,7 @@ export interface PersonResult {
   adult?: boolean
   id?: number
   name?: string
+  media_type: 'person'
   popularity?: number
   known_for?: Array<MovieResult | TvResult>
 }
