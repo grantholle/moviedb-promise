@@ -17,7 +17,6 @@ const haveValidGenericResponse = res => {
 }
 
 require('chai').should()
-require('colors')
 
 /**
  * Checks for missing API key.
