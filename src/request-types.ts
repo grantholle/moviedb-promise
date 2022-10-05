@@ -331,43 +331,43 @@ export interface GuestStar {
 
 
 export interface Role {
-  credit_id?: string;
-  character?: string;
-  episode_count?: number;
+  credit_id?: string
+  character?: string
+  episode_count?: number
 }
 
 export interface AggregateCast {
-  adult?: boolean;
-  gender?: number;
-  id?: number;
-  known_for_department?: string;
-  name?: string;
-  original_name?: string;
-  popularity?: number;
-  profile_path?: string;
-  roles?: Role[];
-  total_episode_count?: number;
-  order?: number;
+  adult?: boolean
+  gender?: number
+  id?: number
+  known_for_department?: string
+  name?: string
+  original_name?: string
+  popularity?: number
+  profile_path?: string
+  roles?: Role[]
+  total_episode_count?: number
+  order?: number
 }
 
 export interface AggregateJob {
-  credit_id?: string;
-  job?: string;
-  episode_count?: number;
+  credit_id?: string
+  job?: string
+  episode_count?: number
 }
 
 export interface AggregateCrew {
-  adult?: boolean;
-  gender?: number;
-  id?: number;
-  known_for_department?: string;
-  name?: string;
-  original_name?: string;
-  popularity?: number;
-  profile_path?: string;
-  jobs?: AggregateJob[];
-  department?: string;
-  total_episode_count?: number;
+  adult?: boolean
+  gender?: number
+  id?: number
+  known_for_department?: string
+  name?: string
+  original_name?: string
+  popularity?: number
+  profile_path?: string
+  jobs?: AggregateJob[]
+  department?: string
+  total_episode_count?: number
 }
 
 
@@ -737,9 +737,9 @@ export interface CreditsResponse extends Response {
 }
 
 export interface AggregateCreditsResponse extends Response {
-  cast?: Array<AggregateCast>;
-  crew?: Array<AggregateCrew>;
-  id?: number;
+  cast?: Array<AggregateCast>
+  crew?: Array<AggregateCrew>
+  id?: number
 }
 
 export interface MovieExternalIdsResponse extends Response {

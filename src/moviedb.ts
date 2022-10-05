@@ -502,7 +502,7 @@ export class MovieDb {
   tvAggregateCredits(
     params: string | number | types.IdRequestParams,
     axiosConfig?: AxiosRequestConfig,
-  ): Promise<types.CreditsResponse> {
+  ): Promise<types.AggregateCreditsResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/aggregate_credits', params, axiosConfig)
   }
   episodeGroups(
