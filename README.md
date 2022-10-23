@@ -386,7 +386,7 @@ The movieInfo, tvInfo, seasonInfo, episodeInfo and personInfo methods support an
 In order to receive type support for the items returned with an `append_to_response` request, you'll need to cast the attributes as their appropriate type. **Note** this requires you to be using TypeScript.
 
 ```ts
-const response = await moviedb.movieInfo({ id: tmdbId, append_to_response: "release_dates" }))
+const response = await moviedb.movieInfo({ id: tmdbId, append_to_response: "release_dates" })
   as MovieResponse & { release_dates: MovieReleaseDatesResponse }
 ```
 
