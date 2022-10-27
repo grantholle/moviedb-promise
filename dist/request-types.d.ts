@@ -765,8 +765,11 @@ export interface ShowResponse extends Response {
     popularity?: number;
     poster_path?: string | null;
     production_companies?: Array<ProductionCompany>;
+    production_countries?: Array<ProductionCountry>;
     seasons?: Array<SimpleSeason>;
+    spoken_languages?: Array<SpokenLanguage>;
     status?: string;
+    tagline?: string;
     type?: string;
     vote_average?: number;
     vote_count?: number;
