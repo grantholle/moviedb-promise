@@ -76,6 +76,7 @@ export declare class MovieDb {
     movieReleaseDates(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.MovieReleaseDatesResponse>;
     movieVideos(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.VideosResponse>;
     movieWatchProviders(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.WatchProviderResponse>;
+    movieWatchProviderList(params: string | number | types.WatchProvidersParams, axiosConfig?: AxiosRequestConfig): Promise<types.WatchProviderResponse>;
     movieTranslations(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.MovieTranslationsResponse>;
     movieRecommendations(params: string | number | types.MovieRecommendationsRequest, axiosConfig?: AxiosRequestConfig): Promise<types.MovieRecommendationsResponse>;
     movieSimilar(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.SimilarMovieResponse>;
@@ -106,6 +107,7 @@ export declare class MovieDb {
     tvTranslations(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.TvTranslationsResponse>;
     tvVideos(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.VideosResponse>;
     tvWatchProviders(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.WatchProviderResponse>;
+    tvWatchProviderList(params: string | number | types.WatchProvidersParams, axiosConfig?: AxiosRequestConfig): Promise<types.WatchProviderResponse>;
     tvRatingUpdate(params: types.RatingRequest, axiosConfig?: AxiosRequestConfig): Promise<types.PostResponse>;
     tvRatingDelete(params: string | number | types.IdRequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.PostResponse>;
     tvLatest(params?: RequestParams, axiosConfig?: AxiosRequestConfig): Promise<types.ShowResponse>;

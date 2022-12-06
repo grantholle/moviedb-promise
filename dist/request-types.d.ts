@@ -13,6 +13,9 @@ export interface PagedRequestParams extends RequestParams {
 export interface IdPagedRequestParams extends IdRequestParams {
     page?: number;
 }
+export interface WatchProvidersParams extends RequestParams {
+    watch_region?: string;
+}
 export interface MovieResult {
     poster_path?: string;
     adult?: boolean;

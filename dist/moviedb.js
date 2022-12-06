@@ -239,6 +239,9 @@ class MovieDb {
     movieWatchProviders(params, axiosConfig) {
         return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/watch/providers', params, axiosConfig);
     }
+    movieWatchProviderList(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'watch/movie/providers', params, axiosConfig);
+    }
     movieTranslations(params, axiosConfig) {
         return this.makeRequest(types_1.HttpMethod.Get, 'movie/:id/translations', params, axiosConfig);
     }
@@ -328,6 +331,9 @@ class MovieDb {
     }
     tvWatchProviders(params, axiosConfig) {
         return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/watch/providers', params, axiosConfig);
+    }
+    tvWatchProviderList(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'watch/providers/tv', params, axiosConfig);
     }
     tvRatingUpdate(params, axiosConfig) {
         return this.makeRequest(types_1.HttpMethod.Post, 'tv/:id/rating', params, axiosConfig);
