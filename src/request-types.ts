@@ -18,6 +18,10 @@ export interface IdPagedRequestParams extends IdRequestParams {
   page?: number
 }
 
+export interface WatchProvidersParams extends RequestParams {
+  watch_region?: string
+}
+
 export interface MovieResult {
   poster_path?: string
   adult?: boolean
@@ -330,7 +334,6 @@ export interface GuestStar {
   profile_path?: string | null
 }
 
-
 export interface Role {
   credit_id?: string
   character?: string
@@ -370,7 +373,6 @@ export interface AggregateCrew {
   department?: string
   total_episode_count?: number
 }
-
 
 export interface FindRequest extends RequestParams {
   id: string | number

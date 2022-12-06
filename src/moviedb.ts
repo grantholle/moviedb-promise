@@ -375,6 +375,13 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'movie/:id/watch/providers', params, axiosConfig)
   }
 
+  movieWatchProviderList(
+    params: string | number | types.WatchProvidersParams,
+    axiosConfig?: AxiosRequestConfig,
+  ): Promise<types.WatchProviderResponse> {
+    return this.makeRequest(HttpMethod.Get, 'watch/movie/providers', params, axiosConfig)
+  }
+
   movieTranslations(
     params: string | number | types.IdRequestParams,
     axiosConfig?: AxiosRequestConfig,
@@ -582,6 +589,13 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/watch/providers', params, axiosConfig)
   }
 
+  tvWatchProviderList(
+    params: string | number | types.WatchProvidersParams,
+    axiosConfig?: AxiosRequestConfig,
+  ): Promise<types.WatchProviderResponse> {
+    return this.makeRequest(HttpMethod.Get, 'watch/providers/tv', params, axiosConfig)
+  }
+
   tvRatingUpdate(params: types.RatingRequest, axiosConfig?: AxiosRequestConfig): Promise<types.PostResponse> {
     return this.makeRequest(HttpMethod.Post, 'tv/:id/rating', params, axiosConfig)
   }
@@ -748,7 +762,10 @@ export class MovieDb {
     )
   }
 
-  personInfo(params: string | number | types.IdAppendToResponseRequest, axiosConfig?: AxiosRequestConfig): Promise<types.Person> {
+  personInfo(
+    params: string | number | types.IdAppendToResponseRequest,
+    axiosConfig?: AxiosRequestConfig,
+  ): Promise<types.Person> {
     return this.makeRequest(HttpMethod.Get, 'person/:id', params, axiosConfig)
   }
 
