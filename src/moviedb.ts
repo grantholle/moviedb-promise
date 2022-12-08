@@ -379,7 +379,7 @@ export class MovieDb {
     params: string | number | types.WatchProvidersParams,
     axiosConfig?: AxiosRequestConfig,
   ): Promise<types.WatchProviderResponse> {
-    return this.makeRequest(HttpMethod.Get, 'watch/movie/providers', params, axiosConfig)
+    return this.makeRequest(HttpMethod.Get, 'watch/providers/movie', params, axiosConfig)
   }
 
   movieTranslations(
