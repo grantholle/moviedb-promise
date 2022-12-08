@@ -667,6 +667,10 @@ interface WatchProvider {
   provider_name?: string
 }
 
+export interface WatchProviderListResponse {
+  results?: Array<WatchProvider>
+}
+
 export interface WatchProviderResponse {
   id?: number
   results?: {

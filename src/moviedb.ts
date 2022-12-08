@@ -378,7 +378,7 @@ export class MovieDb {
   movieWatchProviderList(
     params: string | number | types.WatchProvidersParams,
     axiosConfig?: AxiosRequestConfig,
-  ): Promise<types.WatchProviderResponse> {
+  ): Promise<types.WatchProviderListResponse> {
     return this.makeRequest(HttpMethod.Get, 'watch/providers/movie', params, axiosConfig)
   }
 
@@ -592,7 +592,7 @@ export class MovieDb {
   tvWatchProviderList(
     params: string | number | types.WatchProvidersParams,
     axiosConfig?: AxiosRequestConfig,
-  ): Promise<types.WatchProviderResponse> {
+  ): Promise<types.WatchProviderListResponse> {
     return this.makeRequest(HttpMethod.Get, 'watch/providers/tv', params, axiosConfig)
   }
 
