@@ -378,8 +378,8 @@ export class MovieDb {
   movieWatchProviderList(
     params: string | number | types.WatchProvidersParams,
     axiosConfig?: AxiosRequestConfig,
-  ): Promise<types.WatchProviderResponse> {
-    return this.makeRequest(HttpMethod.Get, 'watch/movie/providers', params, axiosConfig)
+  ): Promise<types.WatchProviderListResponse> {
+    return this.makeRequest(HttpMethod.Get, 'watch/providers/movie', params, axiosConfig)
   }
 
   movieTranslations(
@@ -592,7 +592,7 @@ export class MovieDb {
   tvWatchProviderList(
     params: string | number | types.WatchProvidersParams,
     axiosConfig?: AxiosRequestConfig,
-  ): Promise<types.WatchProviderResponse> {
+  ): Promise<types.WatchProviderListResponse> {
     return this.makeRequest(HttpMethod.Get, 'watch/providers/tv', params, axiosConfig)
   }
 
