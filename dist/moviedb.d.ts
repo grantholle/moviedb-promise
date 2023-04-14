@@ -4,8 +4,6 @@ import * as types from './request-types';
 export declare class MovieDb {
     private apiKey;
     private token;
-    private requests;
-    private requesting;
     baseUrl: string;
     sessionId: string;
     constructor(apiKey: string, baseUrl?: string);
@@ -19,10 +17,6 @@ export declare class MovieDb {
      * Gets the session id
      */
     retrieveSession(): Promise<string>;
-    /**
-     * Processes the next request in the request queue
-     */
-    private dequeue;
     /**
      * Compiles the endpoint based on the params
      */

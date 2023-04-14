@@ -8,8 +8,6 @@ const lodash_1 = require("lodash");
 const types_1 = require("./types");
 class MovieDb {
     constructor(apiKey, baseUrl = 'https://api.themoviedb.org/3/') {
-        this.requests = [];
-        this.requesting = false;
         this.apiKey = apiKey;
         this.baseUrl = baseUrl;
     }
@@ -35,27 +33,6 @@ class MovieDb {
         const res = await this.makeRequest(types_1.HttpMethod.Get, 'authentication/session/new', request);
         this.sessionId = res.session_id;
         return this.sessionId;
-    }
-    /**
-     * Processes the next request in the request queue
-     */
-    dequeue() {
-        if (this.requesting) {
-            return;
-        }
-        const request = this.requests.shift();
-        if (!request) {
-            return;
-        }
-        this.requesting = true;
-        request
-            .promiseGenerator()
-            .then(request.resolve)
-            .catch(request.reject)
-            .finally(() => {
-            this.requesting = false;
-            this.dequeue();
-        });
     }
     /**
      * Compiles the endpoint based on the params
@@ -126,15 +103,8 @@ class MovieDb {
             ...(method !== types_1.HttpMethod.Get && { data: query }),
             ...axiosConfig,
         };
-        // Push the request to the queue
-        return new Promise((resolve, reject) => {
-            this.requests.push({
-                promiseGenerator: () => axios_1.default.request(request).then((res) => res.data),
-                resolve,
-                reject,
-            });
-            this.dequeue();
-        });
+        return axios_1.default.request(request)
+            .then((res) => res.data);
     }
     parseSearchParams(params) {
         if (lodash_1.isString(params)) {

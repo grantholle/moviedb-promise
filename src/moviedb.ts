@@ -7,15 +7,12 @@ import {
   RequestParams,
   SessionRequestParams,
   SessionResponse,
-  QueueItem,
 } from './types'
 import * as types from './request-types'
 
 export class MovieDb {
   private apiKey: string
   private token: AuthenticationToken
-  private requests: Array<QueueItem> = []
-  private requesting: boolean = false
   public baseUrl: string
   public sessionId: string
 
@@ -51,32 +48,6 @@ export class MovieDb {
     this.sessionId = res.session_id
 
     return this.sessionId
-  }
-
-  /**
-   * Processes the next request in the request queue
-   */
-  private dequeue(): void {
-    if (this.requesting) {
-      return
-    }
-
-    const request = this.requests.shift()
-
-    if (!request) {
-      return
-    }
-
-    this.requesting = true
-
-    request
-      .promiseGenerator()
-      .then(request.resolve)
-      .catch(request.reject)
-      .finally(() => {
-        this.requesting = false
-        this.dequeue()
-      })
   }
 
   /**
@@ -172,16 +143,8 @@ export class MovieDb {
       ...axiosConfig,
     }
 
-    // Push the request to the queue
-    return new Promise((resolve, reject) => {
-      this.requests.push({
-        promiseGenerator: () => axios.request(request).then((res) => res.data),
-        resolve,
-        reject,
-      })
-
-      this.dequeue()
-    })
+    return axios.request(request)
+      .then((res) => res.data)
   }
 
   private parseSearchParams(params: string | types.SearchRequest): types.SearchRequest {
