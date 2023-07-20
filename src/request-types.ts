@@ -167,7 +167,7 @@ export interface Translation {
   name?: string
   english_name?: string
   data?: {
-    title?: string
+    name?: string
     overview?: string
     homepage?: string
   }
