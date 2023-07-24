@@ -3,10 +3,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.MovieDb = void 0;
 const axios_1 = __importDefault(require("axios"));
 const lodash_1 = require("lodash");
 const types_1 = require("./types");
 class MovieDb {
+    apiKey;
+    token;
+    baseUrl;
+    sessionId;
     constructor(apiKey, baseUrl = 'https://api.themoviedb.org/3/') {
         this.apiKey = apiKey;
         this.baseUrl = baseUrl;
@@ -46,7 +51,7 @@ class MovieDb {
      * Normalizes a request into a RequestParams object
      */
     normalizeParams(endpoint, params = {}) {
-        if (lodash_1.isObject(params)) {
+        if ((0, lodash_1.isObject)(params)) {
             return params;
         }
         const matches = endpoint.match(/:[a-z]*/g) || [];
@@ -62,7 +67,7 @@ class MovieDb {
      * Normalizes request options
      */
     normalizeOptions(options = {}) {
-        if (lodash_1.isString(options)) {
+        if ((0, lodash_1.isString)(options)) {
             return { appendToResponse: options };
         }
         return options;
@@ -72,7 +77,7 @@ class MovieDb {
      */
     getParams(endpoint, params = {}) {
         // Merge default parameters with the ones passed in
-        const compiledParams = lodash_1.merge({
+        const compiledParams = (0, lodash_1.merge)({
             api_key: this.apiKey,
             ...(this.sessionId && { session_id: this.sessionId }),
         }, params);
@@ -95,7 +100,7 @@ class MovieDb {
         // to remove from the data/params of the request
         const omittedProps = (endpoint.match(/:[a-z]*/gi) || []).map((prop) => prop.substr(1));
         // Prepare the query
-        const query = lodash_1.omit(fullQuery, omittedProps);
+        const query = (0, lodash_1.omit)(fullQuery, omittedProps);
         const request = {
             method,
             url: this.baseUrl + this.getEndpoint(endpoint, fullQuery),
@@ -107,7 +112,7 @@ class MovieDb {
             .then((res) => res.data);
     }
     parseSearchParams(params) {
-        if (lodash_1.isString(params)) {
+        if ((0, lodash_1.isString)(params)) {
             return { query: params };
         }
         return params;
@@ -234,7 +239,7 @@ class MovieDb {
         return this.makeRequest(types_1.HttpMethod.Delete, 'movie/:id/rating', params, axiosConfig);
     }
     movieLatest(params, axiosConfig) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'movie/latest', lodash_1.isString(params) ? { language: params } : params, axiosConfig);
+        return this.makeRequest(types_1.HttpMethod.Get, 'movie/latest', (0, lodash_1.isString)(params) ? { language: params } : params, axiosConfig);
     }
     movieNowPlaying(params, axiosConfig) {
         return this.makeRequest(types_1.HttpMethod.Get, 'movie/now_playing', params, axiosConfig);

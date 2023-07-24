@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ExternalId = void 0;
 var ExternalId;
 (function (ExternalId) {
     ExternalId["ImdbId"] = "imdb_id";
@@ -10,4 +11,4 @@ var ExternalId;
     ExternalId["FacebookId"] = "facebook_id";
     ExternalId["TwitterId"] = "twitter_id";
     ExternalId["InstagramId"] = "instagram_id";
-})(ExternalId = exports.ExternalId || (exports.ExternalId = {}));
+})(ExternalId || (exports.ExternalId = ExternalId = {}));
