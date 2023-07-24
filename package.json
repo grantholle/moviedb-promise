@@ -37,7 +37,8 @@
     },
     "pankaja92 (http://thidasapankaja.me/)",
     "Valentin Mocanu <mr_vali@yahoo.ro> (http://rontavstudio.com)",
-    "Shaun Lim (http://github.com/ShaunLWM)"
+    "Shaun Lim (https://github.com/ShaunLWM)",
+    "Alexander Roidl (https://github.com/alexanderroidl)"
   ],
   "dependencies": {
     "axios": "^0.26.1",
