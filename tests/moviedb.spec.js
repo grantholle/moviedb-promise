@@ -22,13 +22,13 @@ require('chai').should()
  * Checks for missing API key.
  *
  * The proper way to run the test:
- * npm test --key='{your api key}'
+ * MOVIEDB_API_KEY="{your api key}" npm test
  */
-if (!apiKey || apiKey.length === 0) {
+if (!apiKey) {
   console.log('You have not provided the API key'.red)
   console.log('\tRunning tests:'.cyan)
-  console.log('\tnpm test --key="{your api key}"'.cyan)
-  throw new Error('Missing API key, please run `npm test --key="{your api key}"`')
+  console.log('\tMOVIEDB_API_KEY="{your api key}" npm test'.cyan)
+  throw new Error('Environmental variable "MOVIEDB_API_KEY" is missing.')
 }
 
 
