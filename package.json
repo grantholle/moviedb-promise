@@ -3,8 +3,8 @@
   "description": "A library for interacting with themoviedb.org API using Promises",
   "version": "3.4.1",
   "scripts": {
-    "test": "npm run build && ./node_modules/.bin/mocha ./tests/*.js --reporter spec",
-    "build": "rm -rf ./dist && ./node_modules/.bin/tsc",
+    "test": "npm run build && mocha ./tests/*.js --reporter spec",
+    "build": "rm -rf ./dist && tsc",
     "prepare": "npm run build",
     "format": "prettier --write src/**/*.ts"
   },
@@ -41,16 +41,16 @@
     "Alexander Roidl (https://github.com/alexanderroidl)"
   ],
   "dependencies": {
-    "axios": "^0.26.1",
+    "axios": "^1.4.0",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.149",
-    "@types/node": "^13.11.1",
-    "chai": "^3.5.0",
-    "dotenv": "^8.2.0",
+    "@types/node": "^20.4.4",
+    "chai": "^4.3.7",
+    "dotenv": "^16.3.1",
     "mocha": "^10.0.0",
-    "prettier": "^2.3.1",
-    "typescript": "^3.8.3"
+    "prettier": "^3.0.0",
+    "typescript": "^5.1.6"
   }
 }
