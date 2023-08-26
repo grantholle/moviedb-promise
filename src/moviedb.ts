@@ -1,24 +1,23 @@
 import axios, { AxiosRequestConfig } from 'axios'
 import { isObject, isString, merge, omit } from 'lodash'
-import {
-  HttpMethod,
-  AuthenticationToken,
-  RequestOptions,
-  RequestParams,
-  SessionRequestParams,
-  SessionResponse,
-} from './types'
+import PromiseThrottle from 'promise-throttle'
+import { HttpMethod, AuthenticationToken, RequestParams, SessionRequestParams, SessionResponse } from './types'
 import * as types from './request-types'
 
 export class MovieDb {
   private apiKey: string
   private token: AuthenticationToken
+  private queue: PromiseThrottle
   public baseUrl: string
   public sessionId: string
 
-  constructor(apiKey: string, baseUrl: string = 'https://api.themoviedb.org/3/') {
+  constructor(apiKey: string, baseUrl: string = 'https://api.themoviedb.org/3/', requestsPerSecondLimit: number = 50) {
     this.apiKey = apiKey
     this.baseUrl = baseUrl
+    this.queue = new PromiseThrottle({
+      requestsPerSecond: requestsPerSecondLimit,
+      promiseImplementation: Promise,
+    })
   }
 
   /**
@@ -71,24 +70,13 @@ export class MovieDb {
 
     if (matches.length === 1) {
       return matches.reduce((obj, match) => {
-        obj[match.substr(1)] = params
+        obj[match.slice(1)] = params
 
         return obj
       }, {})
     }
 
     return {}
-  }
-
-  /**
-   * Normalizes request options
-   */
-  private normalizeOptions(options: string | RequestOptions = {}): RequestOptions {
-    if (isString(options)) {
-      return { appendToResponse: options }
-    }
-
-    return options
   }
 
   /**
@@ -130,7 +118,7 @@ export class MovieDb {
 
     // Get the params that are needed for the endpoint
     // to remove from the data/params of the request
-    const omittedProps = (endpoint.match(/:[a-z]*/gi) || []).map((prop) => prop.substr(1))
+    const omittedProps = [...(endpoint.match(/:[a-z]*/gi) ?? [])].map((prop) => prop.slice(1))
 
     // Prepare the query
     const query = omit(fullQuery, omittedProps)
@@ -143,8 +131,7 @@ export class MovieDb {
       ...axiosConfig,
     }
 
-    return axios.request(request)
-      .then((res) => res.data)
+    return this.queue.add(async () => (await axios.request(request)).data)
   }
 
   private parseSearchParams(params: string | types.SearchRequest): types.SearchRequest {
