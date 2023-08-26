@@ -4,9 +4,10 @@ import * as types from './request-types';
 export declare class MovieDb {
     private apiKey;
     private token;
+    private queue;
     baseUrl: string;
     sessionId: string;
-    constructor(apiKey: string, baseUrl?: string);
+    constructor(apiKey: string, baseUrl?: string, requestsPerSecondLimit?: number);
     /**
      * Gets an api token using an api key
      *
@@ -25,10 +26,6 @@ export declare class MovieDb {
      * Normalizes a request into a RequestParams object
      */
     private normalizeParams;
-    /**
-     * Normalizes request options
-     */
-    private normalizeOptions;
     /**
      * Compiles the data/query data to send with the request
      */

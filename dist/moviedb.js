@@ -6,15 +6,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.MovieDb = void 0;
 const axios_1 = __importDefault(require("axios"));
 const lodash_1 = require("lodash");
+const promise_throttle_1 = __importDefault(require("promise-throttle"));
 const types_1 = require("./types");
 class MovieDb {
     apiKey;
     token;
+    queue;
     baseUrl;
     sessionId;
-    constructor(apiKey, baseUrl = 'https://api.themoviedb.org/3/') {
+    constructor(apiKey, baseUrl = 'https://api.themoviedb.org/3/', requestsPerSecondLimit = 50) {
         this.apiKey = apiKey;
         this.baseUrl = baseUrl;
+        this.queue = new promise_throttle_1.default({
+            requestsPerSecond: requestsPerSecondLimit,
+            promiseImplementation: Promise,
+        });
     }
     /**
      * Gets an api token using an api key
@@ -57,20 +63,11 @@ class MovieDb {
         const matches = endpoint.match(/:[a-z]*/g) || [];
         if (matches.length === 1) {
             return matches.reduce((obj, match) => {
-                obj[match.substr(1)] = params;
+                obj[match.slice(1)] = params;
                 return obj;
             }, {});
         }
         return {};
-    }
-    /**
-     * Normalizes request options
-     */
-    normalizeOptions(options = {}) {
-        if ((0, lodash_1.isString)(options)) {
-            return { appendToResponse: options };
-        }
-        return options;
     }
     /**
      * Compiles the data/query data to send with the request
@@ -98,7 +95,7 @@ class MovieDb {
         const fullQuery = this.getParams(endpoint, normalizedParams);
         // Get the params that are needed for the endpoint
         // to remove from the data/params of the request
-        const omittedProps = (endpoint.match(/:[a-z]*/gi) || []).map((prop) => prop.substr(1));
+        const omittedProps = [...(endpoint.match(/:[a-z]*/gi) ?? [])].map((prop) => prop.slice(1));
         // Prepare the query
         const query = (0, lodash_1.omit)(fullQuery, omittedProps);
         const request = {
@@ -108,8 +105,7 @@ class MovieDb {
             ...(method !== types_1.HttpMethod.Get && { data: query }),
             ...axiosConfig,
         };
-        return axios_1.default.request(request)
-            .then((res) => res.data);
+        return this.queue.add(async () => (await axios_1.default.request(request)).data);
     }
     parseSearchParams(params) {
         if ((0, lodash_1.isString)(params)) {
