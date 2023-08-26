@@ -16,6 +16,11 @@ In addition to information about actors, directors, production years, movie titl
 
 The vast amount of data gathered and stored by TMDB can be accessed via its API. With a key and a URL, making a request is simple. However, managing all the requests needed to create say, a movie rating website, would be quite the task. You'd have to create a function for every type of request needed. That's where moviedb-promise comes in. With it's suite of over 100 functions, moviedb-promise makes interacting with TMDB easy.
 
+## Changelog for v4
+
+- Updated dependencies that may not support lower versions of Node
+- Implemented a throttle for Cloudflare rate limiting ([#72](https://github.com/grantholle/moviedb-promise/pull/74)) (thanks [@alexanderroidl](https://github.com/alexanderroidl))
+
 ## Changelog for v3
 
 - Each tmdb function has the correct parameter and response types based on the documentation
