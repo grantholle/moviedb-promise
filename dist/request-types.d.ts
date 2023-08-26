@@ -1315,7 +1315,7 @@ export interface CertificationsResponse extends Response {
         IN?: Certification[];
     };
 }
-export declare type CountriesResponse = Array<Country>;
+export type CountriesResponse = Array<Country>;
 export interface NetworkResponse extends Response {
     headquarters?: string;
     homepage?: string;
