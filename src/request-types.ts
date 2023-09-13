@@ -984,6 +984,12 @@ export interface TvSeasonRequest extends IdAppendToResponseRequest {
   season_number: number
 }
 
+export interface TvAggregateCreditsRequest {
+  id: number
+  season_number: number
+  language?: string
+}
+
 export interface TvSeasonResponse extends Response {
   _id?: string
   air_date?: string

@@ -599,7 +599,7 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/credits', params, axiosConfig)
   }
 
-  seasonAggregateCredits(params: types.TvSeasonRequest, axiosConfig?: AxiosRequestConfig): Promise<types.CreditsResponse> {
+  seasonAggregateCredits(params: types.TvAggregateCreditsRequest, axiosConfig?: AxiosRequestConfig): Promise<types.CreditsResponse> {
     return this.makeRequest(HttpMethod.Get, 'tv/:id/season/:season_number/aggregate_credits', params, axiosConfig)
   }
 
