@@ -339,6 +339,9 @@ class MovieDb {
     seasonCredits(params, axiosConfig) {
         return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/season/:season_number/credits', params, axiosConfig);
     }
+    seasonAggregateCredits(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/season/:season_number/aggregate_credits', params, axiosConfig);
+    }
     seasonExternalIds(params, axiosConfig) {
         return this.makeRequest(types_1.HttpMethod.Get, 'tv/:id/season/:season_number/external_ids', params, axiosConfig);
     }

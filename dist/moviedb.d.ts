@@ -110,6 +110,7 @@ export declare class MovieDb {
     seasonChanges(params: types.ChangesRequest, axiosConfig?: AxiosRequestConfig): Promise<types.TvSeasonChangesResponse>;
     seasonAccountStates(params: types.TvSeasonRequest, axiosConfig?: AxiosRequestConfig): Promise<types.TvSeasonAccountStatesResponse>;
     seasonCredits(params: types.TvSeasonRequest, axiosConfig?: AxiosRequestConfig): Promise<types.CreditsResponse>;
+    seasonAggregateCredits(params: types.TvAggregateCreditsRequest, axiosConfig?: AxiosRequestConfig): Promise<types.CreditsResponse>;
     seasonExternalIds(params: types.TvSeasonRequest, axiosConfig?: AxiosRequestConfig): Promise<types.TvSeasonExternalIdsResponse>;
     seasonImages(params: types.TvSeasonRequest, axiosConfig?: AxiosRequestConfig): Promise<types.TvSeasonImagesResponse>;
     seasonVideos(params: types.TvSeasonRequest, axiosConfig?: AxiosRequestConfig): Promise<types.VideosResponse>;
