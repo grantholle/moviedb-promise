@@ -93,32 +93,22 @@ export interface Logo {
     vote_count?: number;
     width?: number;
 }
-export interface Backdrop {
+export interface BaseMedia {
     aspect_ratio?: number;
     file_path?: string;
     height?: number;
-    iso_639_1?: null;
+    iso_639_1?: string | null;
     vote_average?: number;
     vote_count?: number;
     width?: number;
 }
-export interface Profile {
-    aspect_ratio?: number;
-    file_path?: string;
-    height?: number;
-    iso_639_1?: null;
-    vote_average?: number;
-    vote_count?: number;
-    width?: number;
+export interface Backdrop extends BaseMedia {
 }
-export interface Poster {
-    aspect_ratio?: number;
-    file_path?: string;
-    height?: number;
-    iso_639_1?: string;
-    vote_average?: number;
-    vote_count?: number;
-    width?: number;
+export interface Profile extends BaseMedia {
+}
+export interface TitleLogo extends BaseMedia {
+}
+export interface Poster extends BaseMedia {
 }
 export interface Keyword {
     id?: number;
@@ -673,6 +663,7 @@ export interface MovieImagesResponse extends Response {
     id?: number;
     backdrops?: Array<Backdrop>;
     posters?: Array<Poster>;
+    logos?: Array<TitleLogo>;
 }
 export interface MovieKeywordResponse extends Response {
     id?: number;
@@ -834,6 +825,7 @@ export interface TvImagesResponse extends Response {
     backdrops?: Array<Backdrop>;
     id?: number;
     posters?: Array<Poster>;
+    logos?: Array<TitleLogo>;
 }
 export interface TvKeywordsResponse extends Response {
     id?: number;
@@ -947,15 +939,7 @@ export interface EpisodeExternalIdsResponse extends Response {
 }
 export interface EpisodeImagesResponse extends Response {
     id?: number;
-    stills?: Array<{
-        aspect_ratio?: number;
-        file_path?: string;
-        height?: number;
-        iso_639_1?: null | string;
-        vote_average?: number | number;
-        vote_count?: number;
-        width?: number;
-    }>;
+    stills?: Array<BaseMedia>;
 }
 export interface EpisodeTranslationsResponse extends Response {
     id?: number;
