@@ -104,26 +104,45 @@ export interface Logo {
   vote_count?: number
   width?: number
 }
-export interface BaseMedia {
-  aspect_ratio?: number;
-  file_path?: string;
-  height?: number;
-  iso_639_1?: string | null;
-  vote_average?: number;
-  vote_count?: number;
-  width?: number;
+
+export interface Backdrop {
+  aspect_ratio?: number
+  file_path?: string
+  height?: number
+  iso_639_1?: null
+  vote_average?: number
+  vote_count?: number
+  width?: number
 }
 
-export interface Backdrop extends BaseMedia {
+export interface Profile {
+  aspect_ratio?: number
+  file_path?: string
+  height?: number
+  iso_639_1?: null
+  vote_average?: number
+  vote_count?: number
+  width?: number
 }
 
-export interface Profile extends BaseMedia {
+export interface Poster {
+  aspect_ratio?: number
+  file_path?: string
+  height?: number
+  iso_639_1?: string
+  vote_average?: number
+  vote_count?: number
+  width?: number
 }
 
-export interface TitleLogo extends BaseMedia {
-}
-
-export interface Poster extends BaseMedia {
+export interface TitleLogo {
+  aspect_ratio?: number
+  file_path?: string
+  height?: number
+  iso_639_1?: string
+  vote_average?: number
+  vote_count?: number
+  width?: number
 }
 
 export interface Keyword {
@@ -1076,7 +1095,15 @@ export interface EpisodeExternalIdsResponse extends Response {
 
 export interface EpisodeImagesResponse extends Response {
   id?: number
-  stills?: Array<BaseMedia>
+  stills?: Array<{
+    aspect_ratio?: number
+    file_path?: string
+    height?: number
+    iso_639_1?: null | string
+    vote_average?: number | number
+    vote_count?: number
+    width?: number
+  }>
 }
 
 export interface EpisodeTranslationsResponse extends Response {
