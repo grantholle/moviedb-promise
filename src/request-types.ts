@@ -67,6 +67,11 @@ export interface PersonResult {
   known_for?: Array<MovieResult | TvResult>
 }
 
+export interface EpisodeResult extends SimpleEpisode {
+  media_type: 'tv_episode'
+  runtime?: string
+}
+
 export interface Person {
   birthday?: string | null
   known_for_department?: string
@@ -189,15 +194,15 @@ export interface SimpleEpisode {
   episode_number?: number
   id?: number
   name?: string
+  order?: number
   overview?: string
   production_code?: string
+  rating?: number
   season_number?: number
   show_id?: number
   still_path?: string
   vote_average?: number
   vote_count?: number
-  rating?: number
-  order?: number
 }
 
 export interface Network {
@@ -390,7 +395,7 @@ export interface FindResponse extends Response {
   movie_results: Array<MovieResult>
   tv_results: Array<TvResult>
   person_results: Array<PersonResult>
-  tv_episode_results: Array<object>
+  tv_episode_results: Array<EpisodeResult>
   tv_season_results: Array<object>
 }
 
