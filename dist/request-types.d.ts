@@ -101,10 +101,10 @@ export interface Backdrop extends BaseImage {
 export interface Profile extends BaseImage {
     iso_639_1?: string;
 }
-export interface Poster {
+export interface Poster extends BaseImage {
     iso_639_1?: string;
 }
-export interface TitleLogo {
+export interface TitleLogo extends BaseImage {
     iso_639_1?: string;
 }
 export interface Keyword {
