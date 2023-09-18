@@ -105,6 +105,7 @@ export interface Poster {
     iso_639_1?: string;
 }
 export interface TitleLogo {
+    iso_639_1?: string;
 }
 export interface Keyword {
     id?: number;
