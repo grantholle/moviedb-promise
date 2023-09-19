@@ -94,45 +94,34 @@ export interface Image {
   still_sizes?: Array<string>
 }
 
-export interface Logo {
+interface BaseImage {
   aspect_ratio?: number
   file_path?: string
   height?: number
+  vote_average?: number
+  vote_count?: number
+  width?: number
+}
+
+export interface Logo extends BaseImage {
   id?: string
   file_type?: '.svg' | '.png'
-  vote_average?: number
-  vote_count?: number
-  width?: number
 }
 
-export interface Backdrop {
-  aspect_ratio?: number
-  file_path?: string
-  height?: number
-  iso_639_1?: null
-  vote_average?: number
-  vote_count?: number
-  width?: number
-}
-
-export interface Profile {
-  aspect_ratio?: number
-  file_path?: string
-  height?: number
-  iso_639_1?: null
-  vote_average?: number
-  vote_count?: number
-  width?: number
-}
-
-export interface Poster {
-  aspect_ratio?: number
-  file_path?: string
-  height?: number
+export interface Backdrop extends BaseImage {
   iso_639_1?: string
-  vote_average?: number
-  vote_count?: number
-  width?: number
+}
+
+export interface Profile extends BaseImage {
+  iso_639_1?: string
+}
+
+export interface Poster extends BaseImage {
+  iso_639_1?: string
+}
+
+export interface TitleLogo extends BaseImage {
+  iso_639_1?: string
 }
 
 export interface Keyword {
@@ -765,6 +754,7 @@ export interface MovieImagesResponse extends Response {
   id?: number
   backdrops?: Array<Backdrop>
   posters?: Array<Poster>
+  logos?: Array<TitleLogo>
 }
 
 export interface MovieKeywordResponse extends Response {
@@ -947,6 +937,7 @@ export interface TvImagesResponse extends Response {
   backdrops?: Array<Backdrop>
   id?: number
   posters?: Array<Poster>
+  logos?: Array<TitleLogo>
 }
 
 export interface TvKeywordsResponse extends Response {
@@ -1081,17 +1072,13 @@ export interface EpisodeExternalIdsResponse extends Response {
   id?: number
 }
 
+interface EpisodeImage extends BaseImage {
+  iso_639_1?: null | string;
+}
+
 export interface EpisodeImagesResponse extends Response {
   id?: number
-  stills?: Array<{
-    aspect_ratio?: number
-    file_path?: string
-    height?: number
-    iso_639_1?: null | string
-    vote_average?: number | number
-    vote_count?: number
-    width?: number
-  }>
+  stills?: Array<EpisodeImage>
 }
 
 export interface EpisodeTranslationsResponse extends Response {
@@ -1293,20 +1280,17 @@ export interface PersonImagesResponse extends Response {
   profiles?: Array<Profile>
 }
 
+interface PersonTaggedImage extends BaseImage {
+  id?: string
+  iso_639_1?: null | string
+  image_type?: string
+  media?: MovieResult | TvResult
+}
+
+
 export interface PersonTaggedImagesResponse extends PaginatedResponse {
   id?: number
-  results?: Array<{
-    aspect_ratio?: number
-    file_path?: string
-    height?: number
-    id?: string
-    iso_639_1?: null | string
-    vote_average?: number
-    vote_count?: number
-    width?: number
-    image_type?: string
-    media?: MovieResult | TvResult
-  }>
+  results?: Array<PersonTaggedImage>
 }
 
 export interface PersonTranslationsResponse extends PaginatedResponse {
