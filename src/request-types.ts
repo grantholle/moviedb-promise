@@ -646,7 +646,7 @@ export interface ChangesResponse extends PaginatedResponse {
   }>
 }
 
-interface WatchProviderCountry {
+export interface WatchProviderCountry {
   link?: string
   rent?: Array<WatchProvider>
   buy?: Array<WatchProvider>
@@ -655,7 +655,7 @@ interface WatchProviderCountry {
   free?: Array<WatchProvider>
 }
 
-interface WatchProvider {
+export interface WatchProvider {
   display_priority?: number
   logo_path?: string
   provider_id?: number
