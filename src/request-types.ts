@@ -651,7 +651,8 @@ interface WatchProviderCountry {
   rent?: Array<WatchProvider>
   buy?: Array<WatchProvider>
   flatrate?: Array<WatchProvider>
-  flatrate_and_buy?: Array<WatchProvider>
+  ads?: Array<WatchProvider>
+  free?: Array<WatchProvider>
 }
 
 interface WatchProvider {
