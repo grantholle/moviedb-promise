@@ -560,14 +560,15 @@ export interface ChangesResponse extends PaginatedResponse {
         adult?: boolean | null;
     }>;
 }
-interface WatchProviderCountry {
+export interface WatchProviderCountry {
     link?: string;
     rent?: Array<WatchProvider>;
     buy?: Array<WatchProvider>;
     flatrate?: Array<WatchProvider>;
-    flatrate_and_buy?: Array<WatchProvider>;
+    ads?: Array<WatchProvider>;
+    free?: Array<WatchProvider>;
 }
-interface WatchProvider {
+export interface WatchProvider {
     display_priority?: number;
     logo_path?: string;
     provider_id?: number;
