@@ -753,7 +753,7 @@ export interface ShowResponse extends Response {
     last_air_date?: string;
     last_episode_to_air?: SimpleEpisode;
     name?: string;
-    next_episode_to_air?: null;
+    next_episode_to_air?: SimpleEpisode;
     networks?: Array<Network>;
     number_of_episodes?: number;
     number_of_seasons?: number;
