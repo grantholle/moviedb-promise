@@ -10,7 +10,7 @@ const { MovieDb } = require('../dist')
 // or `MOVIEDB_SESSION_ID` in a .env
 const sessionId = process.env.MOVIEDB_SESSION_ID || process.env.npm_config_session
 
-const haveValidGenericResponse = res => {
+const haveValidGenericResponse = (res) => {
   res.should.be.an('object')
   res.should.have.property('results')
   res.results.should.be.an('array')
@@ -31,10 +31,14 @@ if (!apiKey) {
   throw new Error('Environmental variable "MOVIEDB_API_KEY" is missing.')
 }
 
-
 describe('moviedb-promise', function () {
   this.timeout(1200000)
   let api = new MovieDb(apiKey)
+
+  it('should discover movie with with a specific release type', async () => {
+    const res = await api.discoverMovie({ with_release_type: '2|3' })
+    haveValidGenericResponse(res)
+  })
 
   // basic movie search
   it('should search for Zoolander', async () => {
@@ -108,10 +112,12 @@ describe('moviedb-promise', function () {
     const promises = []
 
     for (let i = 0; i < 30; i++) {
-      promises.push(api.trending({
-        media_type: 'all',
-        time_window: 'week',
-      }))
+      promises.push(
+        api.trending({
+          media_type: 'all',
+          time_window: 'week',
+        }),
+      )
     }
 
     return Promise.all(promises)
