@@ -444,7 +444,7 @@ export interface DiscoverMovieRequest extends RequestParams {
     'primary_release_date.lte'?: string;
     'release_date.gte'?: string;
     'release_date.lte'?: string;
-    with_release_type?: number;
+    with_release_type?: string;
     year?: number;
     'vote_count.gte'?: number;
     'vote_count.lte'?: number;
