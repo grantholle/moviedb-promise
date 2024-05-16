@@ -518,7 +518,7 @@ export interface DiscoverMovieRequest extends RequestParams {
   'primary_release_date.lte'?: string
   'release_date.gte'?: string
   'release_date.lte'?: string
-  with_release_type?: number
+  with_release_type?: string
   year?: number
   'vote_count.gte'?: number
   'vote_count.lte'?: number
@@ -1079,7 +1079,7 @@ export interface EpisodeExternalIdsResponse extends Response {
 }
 
 interface EpisodeImage extends BaseImage {
-  iso_639_1?: null | string;
+  iso_639_1?: null | string
 }
 
 export interface EpisodeImagesResponse extends Response {
@@ -1292,7 +1292,6 @@ interface PersonTaggedImage extends BaseImage {
   image_type?: string
   media?: MovieResult | TvResult
 }
-
 
 export interface PersonTaggedImagesResponse extends PaginatedResponse {
   id?: number
