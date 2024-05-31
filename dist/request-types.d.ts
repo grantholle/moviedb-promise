@@ -245,6 +245,7 @@ export interface Episode {
     overview?: string;
     id?: number;
     production_code?: string | null;
+    runtime?: number;
     season_number?: number;
     still_path?: string | null;
     vote_average?: number;
