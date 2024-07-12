@@ -450,6 +450,9 @@ export interface SearchPersonResponse extends PaginatedResponse {
 export interface SearchTvRequest extends SearchRequest {
   include_adult?: boolean
   first_air_date_year?: number
+  language?: string
+  page?: number;
+  year?: number
 }
 
 export interface EpisodeResultsResponse extends PaginatedResponse {
