@@ -1372,7 +1372,7 @@ export interface ListsDetailResponse extends Response {
   description?: string
   favorite_count?: number
   id?: string
-  items?: Array<MovieResult>
+  items?: Array<MovieResult | TvResult>
   item_count?: number
   iso_639_1?: string
   name?: string
