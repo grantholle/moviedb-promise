@@ -36,7 +36,7 @@ export declare class MovieDb {
     private makeRequest;
     private parseSearchParams;
     configuration(axiosConfig?: AxiosRequestConfig): Promise<types.ConfigurationResponse>;
-    countries(axiosConfig?: AxiosRequestConfig): Promise<types.CountriesResponse>;
+    countries(params?: types.CountriesRequest, axiosConfig?: AxiosRequestConfig): Promise<types.CountriesResponse>;
     jobs(axiosConfig?: AxiosRequestConfig): Promise<Array<types.Job>>;
     languages(axiosConfig?: AxiosRequestConfig): Promise<Array<types.Language>>;
     primaryTranslations(axiosConfig?: AxiosRequestConfig): Promise<Array<string>>;
