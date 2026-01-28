@@ -1013,6 +1013,7 @@ export interface TvSeasonResponse extends Response {
   id?: number
   poster_path?: string | null
   season_number?: number
+  networks?: Array<Network>
 }
 
 export interface TvSeasonChangesResponse extends Response {
