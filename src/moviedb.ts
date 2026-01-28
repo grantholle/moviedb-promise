@@ -146,8 +146,8 @@ export class MovieDb {
     return this.makeRequest(HttpMethod.Get, 'configuration', null, axiosConfig)
   }
 
-  countries(axiosConfig?: AxiosRequestConfig): Promise<types.CountriesResponse> {
-    return this.makeRequest(HttpMethod.Get, 'configuration/countries', null, axiosConfig)
+  countries(params?: types.CountriesRequest, axiosConfig?: AxiosRequestConfig): Promise<types.CountriesResponse> {
+    return this.makeRequest(HttpMethod.Get, 'configuration/countries', params, axiosConfig)
   }
 
   jobs(axiosConfig?: AxiosRequestConfig): Promise<Array<types.Job>> {

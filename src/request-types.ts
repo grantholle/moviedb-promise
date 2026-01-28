@@ -251,6 +251,11 @@ export interface Crew {
 export interface Country {
   iso_3166_1?: string
   english_name?: string
+  native_name?: string
+}
+
+export interface CountriesRequest extends RequestParams {
+  language?: string
 }
 
 export interface Language {
