@@ -118,18 +118,22 @@ export interface Logo extends BaseImage {
 
 export interface Backdrop extends BaseImage {
   iso_639_1?: string
+  iso_3166_1?: null | string
 }
 
 export interface Profile extends BaseImage {
   iso_639_1?: string
+  iso_3166_1?: null | string
 }
 
 export interface Poster extends BaseImage {
   iso_639_1?: string
+  iso_3166_1?: null | string
 }
 
 export interface TitleLogo extends BaseImage {
   iso_639_1?: string
+  iso_3166_1?: null | string
 }
 
 export interface Keyword {
@@ -1092,6 +1096,7 @@ export interface EpisodeExternalIdsResponse extends Response {
 
 interface EpisodeImage extends BaseImage {
   iso_639_1?: null | string
+  iso_3166_1?: null | string
 }
 
 export interface EpisodeImagesResponse extends Response {
