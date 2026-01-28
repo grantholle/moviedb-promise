@@ -285,6 +285,7 @@ export interface Episode {
   air_date?: string
   crew?: Array<Crew>
   episode_number?: number
+  episode_type?: string
   guest_stars?: GuestStar[]
   name?: string
   overview?: string
