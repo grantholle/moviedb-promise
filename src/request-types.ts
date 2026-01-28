@@ -475,6 +475,8 @@ export interface CollectionInfoResponse extends Response {
   id?: number
   name?: string
   overview?: string
+  original_language: string
+  original_name: string
   poster_path?: null
   backdrop_path?: string
   parts?: Array<{
