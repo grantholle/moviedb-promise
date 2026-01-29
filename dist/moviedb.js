@@ -116,8 +116,8 @@ class MovieDb {
     configuration(axiosConfig) {
         return this.makeRequest(types_1.HttpMethod.Get, 'configuration', null, axiosConfig);
     }
-    countries(axiosConfig) {
-        return this.makeRequest(types_1.HttpMethod.Get, 'configuration/countries', null, axiosConfig);
+    countries(params, axiosConfig) {
+        return this.makeRequest(types_1.HttpMethod.Get, 'configuration/countries', params, axiosConfig);
     }
     jobs(axiosConfig) {
         return this.makeRequest(types_1.HttpMethod.Get, 'configuration/jobs', null, axiosConfig);

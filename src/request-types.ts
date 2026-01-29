@@ -58,12 +58,15 @@ export interface TvResult {
 }
 
 export interface PersonResult {
-  profile_path?: string
   adult?: boolean
   id?: number
   name?: string
+  original_name?: string
   media_type: 'person'
   popularity?: number
+  gender?: number
+  known_for_department?: string
+  profile_path?: string
   known_for?: Array<MovieResult | TvResult>
 }
 
@@ -115,18 +118,22 @@ export interface Logo extends BaseImage {
 
 export interface Backdrop extends BaseImage {
   iso_639_1?: string
+  iso_3166_1?: null | string
 }
 
 export interface Profile extends BaseImage {
   iso_639_1?: string
+  iso_3166_1?: null | string
 }
 
 export interface Poster extends BaseImage {
   iso_639_1?: string
+  iso_3166_1?: null | string
 }
 
 export interface TitleLogo extends BaseImage {
   iso_639_1?: string
+  iso_3166_1?: null | string
 }
 
 export interface Keyword {
@@ -251,6 +258,11 @@ export interface Crew {
 export interface Country {
   iso_3166_1?: string
   english_name?: string
+  native_name?: string
+}
+
+export interface CountriesRequest extends RequestParams {
+  language?: string
 }
 
 export interface Language {
@@ -273,6 +285,7 @@ export interface Episode {
   air_date?: string
   crew?: Array<Crew>
   episode_number?: number
+  episode_type?: string
   guest_stars?: GuestStar[]
   name?: string
   overview?: string
@@ -446,7 +459,7 @@ export interface SearchTvRequest extends SearchRequest {
   include_adult?: boolean
   first_air_date_year?: number
   language?: string
-  page?: number;
+  page?: number
   year?: number
 }
 
@@ -462,6 +475,8 @@ export interface CollectionInfoResponse extends Response {
   id?: number
   name?: string
   overview?: string
+  original_language: string
+  original_name: string
   poster_path?: null
   backdrop_path?: string
   parts?: Array<{
@@ -522,7 +537,7 @@ export interface DiscoverMovieRequest extends RequestParams {
   'primary_release_date.lte'?: string
   'release_date.gte'?: string
   'release_date.lte'?: string
-  with_release_type?: string
+  with_release_type?: number
   year?: number
   'vote_count.gte'?: number
   'vote_count.lte'?: number
@@ -1000,6 +1015,7 @@ export interface TvSeasonResponse extends Response {
   id?: number
   poster_path?: string | null
   season_number?: number
+  networks?: Array<Network>
 }
 
 export interface TvSeasonChangesResponse extends Response {
@@ -1084,6 +1100,7 @@ export interface EpisodeExternalIdsResponse extends Response {
 
 interface EpisodeImage extends BaseImage {
   iso_639_1?: null | string
+  iso_3166_1?: null | string
 }
 
 export interface EpisodeImagesResponse extends Response {
@@ -1355,7 +1372,7 @@ export interface ListsDetailResponse extends Response {
   description?: string
   favorite_count?: number
   id?: string
-  items?: Array<MovieResult>
+  items?: Array<MovieResult | TvResult>
   item_count?: number
   iso_639_1?: string
   name?: string
